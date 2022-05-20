@@ -1,5 +1,8 @@
+int MAP_WIDTH = 1000;
+
 int money;
 int health;
+int ticks;            // number of frames since animation started
 Level currentLevel;
 
 void setup() {
@@ -8,5 +11,6 @@ void setup() {
 }
 
 void draw() {
-  currentLevel.displayBloons();
+  background(255);
+  currentLevel.display();
 }
