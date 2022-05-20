@@ -9,7 +9,14 @@ public class Level {
   }
   
   public void display() {
+    displayPath();
     displayBloons();
+  }
+  
+  public void displayPath() {
+    fill(250,234,180);
+    noStroke();
+    rect(0, height/2 - 40, MAP_WIDTH, 80);
   }
   
   public void displayBloons() {
