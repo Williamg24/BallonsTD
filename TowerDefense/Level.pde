@@ -4,7 +4,7 @@ public class Level {
   public Level() {
     bloons = new ArrayList<Bloon>();
     for (int i=0; i<10; i++) {
-      bloons.add(new Bloon(0,(float) i / 20-0.5));
+      bloons.add(new Bloon(0,(float) i / 10-0.5));
     }
   }
   
@@ -13,11 +13,21 @@ public class Level {
   }
   
   public void displayBloons() {
-    for (Bloon b : bloons) {
-      b.move();
-      b.setX(pathFunctionX(b.getT()));
-      b.setY(pathFunctionY(b.getT()));
-      b.display();
+    Bloon b;
+    for (int i=0; i<bloons.size(); i++) {
+      b = bloons.get(i);
+      if (! b.isPopped()){
+        b.move();
+        b.setX(pathFunctionX(b.getT()));
+        b.setY(pathFunctionY(b.getT()));
+        b.display();
+      } else {
+        if (b.getT() > 1) {      // decrease health if bloon went off map
+          health--;
+        }
+        bloons.remove(i);
+        i--;
+      }
     }
   }
   

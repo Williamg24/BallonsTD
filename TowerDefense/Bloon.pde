@@ -2,18 +2,14 @@ public class Bloon {
   int type;
   float xCor;
   float yCor;
-  float speed;
+  float speed;     // how quickly t changes
   float t;
-  
-  //public Bloon() {
-  //  this(0);
-  //}
   
   public Bloon(int type_, float t_) {
     type = type_;
     xCor = 0;
     yCor = height/2;
-    speed = 0.01;
+    speed = 0.001 * (type + 1);       // go faster for higher types
     t = t_;
   }
   
@@ -36,5 +32,9 @@ public class Bloon {
   
   public void setY(float y) {
     yCor = y;
+  }
+  
+  public boolean isPopped() {
+    return t > 1 || type < 0;
   }
 }
