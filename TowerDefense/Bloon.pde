@@ -13,4 +13,8 @@ public class Bloon {
     xCor = 0;
     yCor = height/2;
   }
+  
+  public void display() {
+    ellipse(xCor, yCor, 40,40);
+  }
 }
