@@ -22,5 +22,5 @@ void draw() {
 }
 
 void mouseClicked(){
-  towers.add(new Tower(mouseX,mouseY,1,3,100));
+  towers.add(new Tower(mouseX,mouseY,1,75,100));
 }
