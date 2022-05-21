@@ -5,6 +5,7 @@ int health;
 int ticks;            // number of frames since animation started
 Level currentLevel;
 boolean animate;
+ArrayList<Tower> towers = new ArrayList<Tower>();
 
 void setup() {
   size(1200,700);
@@ -15,4 +16,16 @@ void setup() {
 void draw() {
   background(90,190,50);     // the "grass"
   currentLevel.display();
+  for (Tower t1 : towers){
+    t1.display();
+    // testing inRange
+    if (t1.inRange(currentLevel.getBloon(5))){
+      money += 10;
+    }
+  }
+  text("Money: " + money, 20, 20);
+}
+
+void mouseClicked(){
+  towers.add(new Tower(mouseX,mouseY,1,75,100));
 }
