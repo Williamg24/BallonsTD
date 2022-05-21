@@ -16,9 +16,11 @@ public class Tower {
   }
 
   public void display() {
+    noFill();
+    stroke(0);
+    ellipse(x,y,range * 2,range * 2);
     fill(0);
     ellipse(x,y,50,50);
-    
   }
 
   public void attack() {
