@@ -45,4 +45,9 @@ public class Level {
   public float pathFunctionY(float t) {
     return height/2;
   }
+  
+  public Bloon getBloon(int index){
+    return bloons.get(index);
+  }
+  
 }
