@@ -18,7 +18,12 @@ void draw() {
   currentLevel.display();
   for (Tower t1 : towers){
     t1.display();
+    // testing inRange
+    if (t1.inRange(currentLevel.getBloon(5))){
+      money += 10;
+    }
   }
+  text("Money: " + money, 20, 20);
 }
 
 void mouseClicked(){
