@@ -15,3 +15,6 @@ Maya Mori: I finished the Level class and worked on the Bloon class. Bloons move
 
 5/21
 William Guo: Started the Tower class and tested the range method for tower to detect bloons. Dispaly the range for towers and place with click. 
+
+5/22
+William Guo: Added methods in Level to get Bloon and Level size(). Completed Tower class and tested attack to pop each bloon on path in range. 
