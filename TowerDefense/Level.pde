@@ -50,4 +50,7 @@ public class Level {
     return bloons.get(index);
   }
   
+  public int getSize(){
+    return bloons.size();
+  }
 }

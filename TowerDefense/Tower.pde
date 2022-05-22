@@ -23,11 +23,8 @@ public class Tower {
     ellipse(x,y,50,50);
   }
 
-  public void attack() {
-    
-  }
-  public void placeTower(){
-    
+  public void attack(Bloon current) {
+    current.type -= damage;
   }
   // radius around tower
   public boolean inRange(Bloon value){
