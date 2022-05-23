@@ -39,7 +39,7 @@ void draw() {
       attackBloons(t1);
     }
   }
-  text("Money: " + money, 20, 20);
+  //text("Money: " + money, 20, 20);
   //text("Index: " + currentBloon, 20, 40);
   //ticks++;
   //text("Ticks: " + ticks, 20, 60);
