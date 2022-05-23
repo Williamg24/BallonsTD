@@ -2,7 +2,6 @@ int MAP_WIDTH = 900;
 
 int money;
 int health;
-//int ticks;            // number of frames since animation started
 Level currentLevel;
 boolean animate;
 ArrayList<Tower> towers = new ArrayList<Tower>();
@@ -15,8 +14,6 @@ void setup() {
   health = 5; 
   currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
-  
-  //ticks = 0;
 }
 
 void draw() {
@@ -36,24 +33,27 @@ void draw() {
     //  }
     //}
     if (t1.canAttack()) {
+      println("can attack");
       attackBloons(t1);
     }
   }
-  //text("Money: " + money, 20, 20);
-  //text("Index: " + currentBloon, 20, 40);
-  //ticks++;
-  //text("Ticks: " + ticks, 20, 60);
 }
 
 void attackBloons(Tower attacking) {
-  for (Bloon b : currentLevel.bloons) {
+  Bloon b;
+  int i = 0;
+  boolean done = false;
+  while (i < currentLevel.bloons.size() && ! done) {
+    b = currentLevel.bloons.get(i);
     if (attacking.inRange(b)) {
       b.hit(attacking.getDamage());
-      attacking.resetTicks();
+      attacking.resetTick();
+      done = true;
     }
+    i++;
   }
 }
 
 void mouseClicked() {
-  towers.add(new Tower(mouseX, mouseY, 1, 75, 100,200));
+  towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 120));
 }

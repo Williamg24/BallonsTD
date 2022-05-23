@@ -27,7 +27,7 @@ public class Tower {
     tick++; 
   }
   
-  void resetTicks() {      // tower needs to wait before attacking again
+  void resetTick() {      // tower needs to wait before attacking again
     tick = 0;
   }
   

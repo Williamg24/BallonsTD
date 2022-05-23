@@ -31,6 +31,8 @@ public class Level {
       } else {
         if (b.getT() > 1) {      // decrease health if bloon went off map
           health--;
+        } else {                 // a tower popped it
+          money += b.worth();
         }
         bloons.remove(i);
         i--;
