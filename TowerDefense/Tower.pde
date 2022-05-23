@@ -1,18 +1,20 @@
 public class Tower {
   int cost;
   int range;
-  float delay;
+  int delay;
   int damage;
   int tick;
   float x;
   float y;
   
-  public Tower(float xcor, float ycor, int atk, int radius, int money){
+  public Tower(float xcor, float ycor, int atk, int radius, int money, int wait){
     x = xcor;
     y = ycor;
     damage = atk;
     range = radius;
     cost = money;
+    delay = wait;
+    tick = delay;      // tower can start attacking right away
   }
 
   public void display() {
@@ -21,6 +23,16 @@ public class Tower {
     ellipse(x,y,range * 2,range * 2);
     fill(0);
     ellipse(x,y,50,50);
+    
+    tick++; 
+  }
+  
+  void resetTicks() {
+    tick = 0;
+  }
+  
+  boolean canAttack() {
+    return tick > delay;
   }
 
   public void attack(Bloon current) {

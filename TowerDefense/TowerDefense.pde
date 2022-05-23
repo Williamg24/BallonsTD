@@ -1,4 +1,4 @@
-int MAP_WIDTH = 1200;
+int MAP_WIDTH = 900;
 
 int money;
 int health;
@@ -9,10 +9,12 @@ ArrayList<Tower> towers = new ArrayList<Tower>();
 int currentBloon;
 
 void setup() {
-  size(2000, 1200);
+  size(1200, 800);
   currentLevel = new Level();
   health = 5; 
   currentBloon = currentLevel.getSize() - 1;
+  
+  ticks = 0;
 }
 
 void draw() {
@@ -30,20 +32,25 @@ void draw() {
     //    }
     //  }
     //}
-    attackBloons(t1);
+    if (t1.canAttack()) {
+      attackBloons(t1);
+    }
   }
   text("Money: " + money, 20, 20);
   text("Index: " + currentBloon, 20, 40);
+  ticks++;
+  text("Ticks: " + ticks, 20, 60);
 }
 
 void attackBloons(Tower attacking) {
   for (Bloon b : currentLevel.bloons) {
     if (attacking.inRange(b)) {
       b.hit(1);
+      attacking.resetTicks();
     }
   }
 }
 
 void mouseClicked() {
-  towers.add(new Tower(mouseX, mouseY, 1, 75, 100));
+  towers.add(new Tower(mouseX, mouseY, 1, 75, 100,200));
 }
