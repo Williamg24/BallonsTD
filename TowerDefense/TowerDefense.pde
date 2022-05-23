@@ -21,18 +21,27 @@ void draw() {
   for (Tower t1 : towers) {
     t1.display();
     // testing inRange & attack
-    if (currentBloon != -1) {
-      if (t1.inRange(currentLevel.getBloon(currentBloon))) {
-        t1.attack(currentLevel.getBloon(currentBloon));
-        if (currentLevel.getBloon(currentBloon).isPopped()) {
-          money+=10;
-          currentBloon--;
-        }
-      }
-    }
+    //if (currentBloon != -1) {
+    //  if (t1.inRange(currentLevel.getBloon(currentBloon))) {
+    //    t1.attack(currentLevel.getBloon(currentBloon));
+    //    if (currentLevel.getBloon(currentBloon).isPopped()) {
+    //      money+=10;
+    //      currentBloon--;
+    //    }
+    //  }
+    //}
+    attackBloons(t1);
   }
   text("Money: " + money, 20, 20);
   text("Index: " + currentBloon, 20, 40);
+}
+
+void attackBloons(Tower attacking) {
+  for (Bloon b : currentLevel.bloons) {
+    if (attacking.inRange(b)) {
+      b.hit(1);
+    }
+  }
 }
 
 void mouseClicked() {

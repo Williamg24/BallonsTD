@@ -26,6 +26,10 @@ public class Bloon {
     return t;
   }
   
+  public void hit(int damage) {
+    type -= damage;
+  }
+  
   public void setX(float x) {
     xCor = x;
   }
