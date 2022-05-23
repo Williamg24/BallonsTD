@@ -9,6 +9,7 @@ ArrayList<Tower> towers = new ArrayList<Tower>();
 int currentBloon;
 
 void setup() {
+  // 1600 by 900
   size(2000, 1200);
   currentLevel = new Level();
   health = 5; 
@@ -21,6 +22,8 @@ void draw() {
   for (Tower t1 : towers) {
     t1.display();
     // testing inRange & attack
+    if (t1.inRange(currentLevel.bloons
+    /*
     if (currentBloon != -1) {
       if (t1.inRange(currentLevel.getBloon(currentBloon))) {
         t1.attack(currentLevel.getBloon(currentBloon));
@@ -30,6 +33,7 @@ void draw() {
         }
       }
     }
+    */
   }
   text("Money: " + money, 20, 20);
   text("Index: " + currentBloon, 20, 40);
@@ -37,4 +41,9 @@ void draw() {
 
 void mouseClicked() {
   towers.add(new Tower(mouseX, mouseY, 1, 75, 100));
+}
+
+boolean checkRange(Tower t1, Bloon b1){
+  float d = dist(b1.xCor,b1.yCor,t1.x,t1.y);
+  return (d <= t1.getRange());
 }
