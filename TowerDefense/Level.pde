@@ -46,10 +46,11 @@ public class Level {
     return height/2;
   }
   
+  /*
   public Bloon getBloon(int index){
     return bloons.get(index);
   }
-  
+  */
   public int getSize(){
     return bloons.size();
   }
