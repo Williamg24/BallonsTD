@@ -14,7 +14,10 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
 Maya Mori: I finished the Level class and worked on the Bloon class. Bloons move along a path and are destroyed once they reach the end.
 
 5/21
-William Guo: Started the Tower class and tested the range method for tower to detect bloons. Dispaly the range for towers and place with click. 
+William Guo: Started the Tower class and tested the range method for tower to detect bloons. Dispaly the range for towers and place with click.
 
 5/22
-William Guo: Added methods in Level to get Bloon and Level size(). Completed Tower class and tested attack to pop each bloon on path in range. 
+William Guo: Added methods in Level to get Bloon and Level size(). Completed Tower class and tested attack to pop each bloon on path in range.
+
+5/23
+Maya Mori: Towers attack bloons in range after some delay. Basic sidebar created.
