@@ -34,6 +34,7 @@ public class Bloon {
   
   public void hit(int damage) {
     type -= damage;
+    speed -= 0.001;
   }
   
   public void setX(float x) {

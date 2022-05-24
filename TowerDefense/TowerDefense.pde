@@ -22,18 +22,7 @@ void draw() {
   bar.display();
   for (Tower t1 : towers) {
     t1.display();
-    // testing inRange & attack
-    //if (currentBloon != -1) {
-    //  if (t1.inRange(currentLevel.getBloon(currentBloon))) {
-    //    t1.attack(currentLevel.getBloon(currentBloon));
-    //    if (currentLevel.getBloon(currentBloon).isPopped()) {
-    //      money+=10;
-    //      currentBloon--;
-    //    }
-    //  }
-    //}
     if (t1.canAttack()) {
-      println("can attack");
       attackBloons(t1);
     }
   }
@@ -55,5 +44,5 @@ void attackBloons(Tower attacking) {
 }
 
 void mouseClicked() {
-  towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 120));
+  towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 30));
 }
