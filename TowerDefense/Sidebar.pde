@@ -1,6 +1,9 @@
 public class Sidebar {
+    ArrayList<Button> buttons;
   
   public Sidebar() {
+     buttons = new ArrayList<Button>();
+    buttons.add(new Button(MAP_WIDTH + 20, 120, 100, 120,28,10));
   }
   
   public void display() {
@@ -11,5 +14,12 @@ public class Sidebar {
     textSize(22);
     text("Money: "+money, MAP_WIDTH+20, 30);
     text("Health: "+health, MAP_WIDTH+20, 60);
+    displayButtons();
+  }
+  
+    public void displayButtons(){
+    for (Button b : buttons){
+      b.displayIcon();
+    }
   }
 }
