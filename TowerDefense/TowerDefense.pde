@@ -55,5 +55,5 @@ void attackBloons(Tower attacking) {
 }
 
 void mouseClicked() {
-  towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 120));
+  towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 120, 50));
 }
