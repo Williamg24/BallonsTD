@@ -65,8 +65,15 @@ void mouseClicked() {
 }
 
 String select(int x, int y) {
-  while (b.isInside(x, y) && mousePressed) {
-    return b.name;
+  int i = 0;
+  Button b;
+  while (i < bar.buttons.size()) {
+    b = bar.buttons.get(i);
+    if (b.isInside(x, y) && mousePressed) {
+      return b.name;
+    } else {
+      i++;
+    }
   }
   return "not selected";
 }
