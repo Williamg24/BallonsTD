@@ -44,6 +44,10 @@ public class Level {
     return t * MAP_WIDTH;
   }
   
+  public boolean onPath(float x, float y) {
+    return (y > height/2 - 40 && y < height/2 + 40 && x > 0 && x < MAP_WIDTH);
+  }
+  
   public float pathFunctionY(float t) {
     return height/2;
   }
