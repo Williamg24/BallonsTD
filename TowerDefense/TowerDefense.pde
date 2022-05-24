@@ -7,6 +7,7 @@ boolean animate;
 ArrayList<Tower> towers = new ArrayList<Tower>();
 int currentBloon;
 Sidebar bar;
+String type;
 
 void setup() {
   size(1200, 800);
@@ -55,5 +56,17 @@ void attackBloons(Tower attacking) {
 }
 
 void mouseClicked() {
-  towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 120, 50));
+  if (mouseX < MAP_WIDTH) {
+    towers.add(new Tower(mouseX, mouseY, 1, 100, 100, 120, 50));
+  }
+  if (bar.inSidebar(mouseX)) {
+    type = select(mouseX, mouseY);
+  }
+}
+
+String select(int x, int y) {
+  while (b.isInside(x, y) && mousePressed) {
+    return b.name;
+  }
+  return "not selected";
 }

@@ -5,14 +5,16 @@ public class Button {
   float tall;
   float radius;
   int money;
+  String name;
 
-  public Button(float x, float y, float w, float t,float curve,int cost) {
+  public Button(String m, float x, float y, float w, float t,float curve,int cost) {
     xCor = x;
     yCor = y;
     wide = w;
     tall = t;
     radius = curve;
     money = cost;
+    name = m;
   }
 
   public boolean isInside(float x, float y){
@@ -28,4 +30,5 @@ public class Button {
   public void display(){
    rect(xCor,yCor,wide,tall);
   }
+  
 }
