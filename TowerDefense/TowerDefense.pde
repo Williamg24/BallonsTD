@@ -45,6 +45,6 @@ void attackBloons(Tower attacking) {
 
 void mouseClicked() {
   if (! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) {
-    towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 30));
+    towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 60));
   }
 }

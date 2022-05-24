@@ -4,7 +4,7 @@ public class Level {
   public Level() {
     bloons = new ArrayList<Bloon>();
     for (int i=0; i<10; i++) {
-      bloons.add(new Bloon(0,(float) i / 10-0.5));
+      bloons.add(new Bloon(0, (float) i * -0.05));
     }
   }
   
