@@ -15,6 +15,7 @@ void setup() {
   health = 5; 
   currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
+  animate = false;
 }
 
 void draw() {
@@ -50,6 +51,11 @@ void mouseClicked() {
   }
   if (bar.inSidebar(mouseX)) {
     type = bar.findButtonName(mouseX, mouseY);
+    if (type.equals("Start") && ! animate) {
+      println("start the animation");
+      currentLevel.startAnimation();
+      animate = true;
+    }
   }
 }
 

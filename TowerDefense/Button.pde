@@ -27,6 +27,10 @@ public class Button {
   public void display(color c) {
     fill(c);
     rect(xCor, yCor, wide, tall,radius);
+    
+    fill(255);
+    textSize(32);
+    text(name, xCor+80, yCor+35);
   }
 
   boolean isInside(float x, float y) {
