@@ -1,10 +1,13 @@
 public class Sidebar {
   ArrayList<Button> buttons;
+  Button start;
 
   public Sidebar() {
     buttons = new ArrayList<Button>();
     buttons.add(new Button("Basic", MAP_WIDTH + 20, 120, 100, 120, 28, 10));
     buttons.add(new Button("Advanced", MAP_WIDTH + 160, 120, 100, 120, 28, 20));
+    
+    start = new Button("Start", MAP_WIDTH + 20, height-60, 150, 40, 10, 0);
   }
 
   public void display() {
@@ -23,6 +26,7 @@ public class Sidebar {
     for (Button b : buttons) {
       b.displayIcon();
     }
+    start.display(color(90, 190, 50));
   }
   public Button getButton(int index) {
     return buttons.get(index);

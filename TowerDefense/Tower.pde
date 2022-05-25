@@ -20,7 +20,7 @@ public class Tower {
   }
 
   public void display() {
-    if (mouseInside(mouseX, mouseY) && mousePressed) {
+    if (mouseInside(mouseX, mouseY)){// && mousePressed) {
       noFill();
       stroke(0);
       ellipse(x, y, range * 2, range * 2);

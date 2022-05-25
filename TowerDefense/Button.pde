@@ -24,9 +24,9 @@ public class Button {
     text("$" + money, xCor + wide / 4, yCor + tall - 3);
   }
 
-  public void display() {
-    fill(0);
-    rect(xCor, yCor, wide, tall);
+  public void display(color c) {
+    fill(c);
+    rect(xCor, yCor, wide, tall,radius);
   }
 
   boolean isInside(float x, float y) {
