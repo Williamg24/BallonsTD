@@ -60,7 +60,7 @@ void mouseClicked() {
     towers.add(new Tower(mouseX, mouseY, 1, 100, 100, 120, 50));
   }
   if (bar.inSidebar(mouseX)) {
-    type = select(mouseX, mouseY);
+    type = bar.findButtonName(mouseX, mouseY);
   }
 }
 
