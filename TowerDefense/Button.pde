@@ -16,10 +16,6 @@ public class Button {
     money = cost;
     name = m;
   }
-
-  public boolean isInside(float x, float y){
-    return (x <= xCor + wide) && ( x >= xCor - wide) && (y <= yCor + tall) && (y >= yCor - tall);
-  }
   
   public void displayIcon(){
     rect(xCor,yCor,wide,tall,radius);

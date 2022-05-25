@@ -64,6 +64,11 @@ void mouseClicked() {
   }
 }
 
+public boolean isInside(int x, int y, Button b) {
+  return (x <= b.xCor + b.wide) && ( x >= b.xCor - b.wide) && (y <= b.yCor + b.tall) && (y >= b.yCor - b.tall);
+}
+
+/*
 String select(int x, int y) {
   int i = 0;
   Button b;
@@ -77,3 +82,4 @@ String select(int x, int y) {
   }
   return "not selected";
 }
+*/
