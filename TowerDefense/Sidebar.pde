@@ -26,8 +26,23 @@ public class Sidebar {
   public Button getButton(int index) {
     return buttons.get(index);
   }
-  
-  public boolean inSidebar(int x){
+
+  public boolean inSidebar(int x) {
     return (x >= MAP_WIDTH);
+  }
+
+  String findButtonName(int x, int y) {
+    int index = 0;
+    Button b = getButton(index);
+    while ((x < b.xCor) && (y < b.yCor)) {
+      index++;
+      b = bar.getButton(index);
+    }
+    float d = dist(x,y,b.xCor,b.yCor);
+    if ((Math.abs(d) <= b.wide) && (Math.abs(d) <= b.tall)){
+      return b.name;
+    }else{
+      return "not selected";
+    }
   }
 }
