@@ -27,7 +27,6 @@ public class Tower {
     }
     fill(0);
     ellipse(x, y, Tsize, Tsize);
-
     tick++;
   }
 

@@ -23,19 +23,7 @@ void draw() {
   bar.display();
   for (Tower t1 : towers) {
     t1.display();
-    // testing inRange & attack
-
-    //if (currentBloon != -1) {
-    //  if (t1.inRange(currentLevel.getBloon(currentBloon))) {
-    //    t1.attack(currentLevel.getBloon(currentBloon));
-    //    if (currentLevel.getBloon(currentBloon).isPopped()) {
-    //      money+=10;
-    //      currentBloon--;
-    //    }
-    //  }
-    //}
     if (t1.canAttack()) {
-      //println("can attack");
       attackBloons(t1);
     }
   }
@@ -57,8 +45,8 @@ void attackBloons(Tower attacking) {
 }
 
 void mouseClicked() {
-  if (mouseX < MAP_WIDTH) {
-    towers.add(new Tower(mouseX, mouseY, 1, 100, 100, 120, 50));
+  if (! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) {
+    towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 30,50));
   }
   if (bar.inSidebar(mouseX)) {
     type = bar.findButtonName(mouseX, mouseY);
@@ -68,19 +56,3 @@ void mouseClicked() {
 public boolean isInside(int x, int y, Button b) {
   return (x <= b.xCor + b.wide) && ( x >= b.xCor - b.wide) && (y <= b.yCor + b.tall) && (y >= b.yCor - b.tall);
 }
-
-/*
-String select(int x, int y) {
-  int i = 0;
-  Button b;
-  while (i < bar.buttons.size()) {
-    b = bar.buttons.get(i);
-    if (b.isInside(x, y) && mousePressed) {
-      return b.name;
-    } else {
-      i++;
-    }
-  }
-  return "not selected";
-}
-*/
