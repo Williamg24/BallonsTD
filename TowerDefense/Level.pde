@@ -9,6 +9,8 @@ public class Level {
   }
   
   public void display() {
+    text("Mouse x: " + mouseX,0, 20);
+    text("Mouse y: " + mouseY,0,40);
     displayPath();
     displayBloons();
   }
@@ -52,10 +54,11 @@ public class Level {
     return height/2;
   }
   
+  /*
   public Bloon getBloon(int index){
     return bloons.get(index);
   }
-  
+  */
   public int getSize(){
     return bloons.size();
   }

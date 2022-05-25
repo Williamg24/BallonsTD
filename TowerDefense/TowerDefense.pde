@@ -7,6 +7,7 @@ boolean animate;
 ArrayList<Tower> towers = new ArrayList<Tower>();
 int currentBloon;
 Sidebar bar;
+String type;
 
 void setup() {
   size(1200, 800);
@@ -45,6 +46,13 @@ void attackBloons(Tower attacking) {
 
 void mouseClicked() {
   if (! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) {
-    towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 60));
+    towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 30,50));
   }
+  if (bar.inSidebar(mouseX)) {
+    type = bar.findButtonName(mouseX, mouseY);
+  }
+}
+
+public boolean isInside(int x, int y, Button b) {
+  return (x <= b.xCor + b.wide) && ( x >= b.xCor - b.wide) && (y <= b.yCor + b.tall) && (y >= b.yCor - b.tall);
 }
