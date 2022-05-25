@@ -4,7 +4,7 @@ public class Level {
   public Level() {
     bloons = new ArrayList<Bloon>();
     for (int i=0; i<10; i++) {
-      bloons.add(new Bloon(0,(float) i / 10-0.5));
+      bloons.add(new Bloon(0, (float) i * -0.05));
     }
   }
   
@@ -42,6 +42,10 @@ public class Level {
   
   public float pathFunctionX(float t) {
     return t * MAP_WIDTH;
+  }
+  
+  public boolean onPath(float x, float y) {
+    return (y > height/2 - 40 && y < height/2 + 40 && x > 0 && x < MAP_WIDTH);
   }
   
   public float pathFunctionY(float t) {

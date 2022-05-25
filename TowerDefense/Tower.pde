@@ -25,6 +25,8 @@ public class Tower {
     ellipse(x,y,50,50);
     
     tick++; 
+    //fill(0);
+    //text("tick:"+tick,MAP_WIDTH+20,100);
   }
   
   void resetTick() {      // tower needs to wait before attacking again
