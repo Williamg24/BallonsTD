@@ -7,7 +7,7 @@ public class Button {
   int money;
   String name;
 
-  public Button(String m, float x, float y, float w, float t,float curve,int cost) {
+  public Button(String m, float x, float y, float w, float t, float curve, int cost) {
     xCor = x;
     yCor = y;
     wide = w;
@@ -16,16 +16,16 @@ public class Button {
     money = cost;
     name = m;
   }
-  
-  public void displayIcon(){
-    rect(xCor,yCor,wide,tall,radius);
+
+  public void displayIcon() {
+    fill(0);
+    rect(xCor, yCor, wide, tall, radius);
     fill(255);
-    text("$" + money,xCor + wide / 4,yCor + tall - 3);
+    text("$" + money, xCor + wide / 4, yCor + tall - 3);
   }
-  
-  public void display(){
-   rect(xCor,yCor,wide,tall);
+
+  public void display() {
+    fill(0);
+    rect(xCor, yCor, wide, tall);
   }
-  
-  
 }

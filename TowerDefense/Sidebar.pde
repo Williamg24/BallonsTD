@@ -4,10 +4,11 @@ public class Sidebar {
   public Sidebar() {
     buttons = new ArrayList<Button>();
     buttons.add(new Button("Basic", MAP_WIDTH + 20, 120, 100, 120, 28, 10));
+    buttons.add(new Button("Advanced", MAP_WIDTH + 160, 120, 100, 120, 28, 20));
   }
 
   public void display() {
-    fill(255);
+    fill(#b5651d);
     rect(MAP_WIDTH, 0, width-MAP_WIDTH, height);
 
     fill(0);
@@ -38,10 +39,11 @@ public class Sidebar {
       index++;
       b = bar.getButton(index);
     }
-    float d = dist(x,y,b.xCor,b.yCor);
-    if ((Math.abs(d) <= b.wide) && (Math.abs(d) <= b.tall)){
+    if (x > b.xCor && x < b.xCor + b.wide && y > b.yCor && y < b.yCor + b.tall){
+      println("Actual cords: " + b.xCor + "," + b.yCor);
       return b.name;
     }else{
+      println("Actual cords: " + b.xCor + "," + b.yCor);
       return "not selected";
     }
   }
