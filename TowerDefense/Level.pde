@@ -10,7 +10,7 @@ public class Level {
   
   public void startAnimation() {
     for (int i=0; i<10; i++) {
-      bloons.add(new Bloon(0, (float) i * -0.05));
+      bloons.add(new Bloon(0, (float) i * -0.08));
     }
   }
   

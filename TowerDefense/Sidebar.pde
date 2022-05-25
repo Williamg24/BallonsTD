@@ -26,7 +26,11 @@ public class Sidebar {
     for (Button b : buttons) {
       b.displayIcon();
     }
-    start.display(color(90, 190, 50));
+    if (animate) {
+      start.display(color(70, 160, 40));      // dim button if already clicked
+    } else {
+      start.display(color(90, 190, 50));
+    }
   }
   public Button getButton(int index) {
     return buttons.get(index);
