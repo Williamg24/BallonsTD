@@ -1,49 +1,86 @@
-int MAP_WIDTH = 1200;
+int MAP_WIDTH = 900;
 
 int money;
 int health;
-int ticks;            // number of frames since animation started
 Level currentLevel;
 boolean animate;
 ArrayList<Tower> towers = new ArrayList<Tower>();
 int currentBloon;
+Sidebar bar;
+String type;
 
 void setup() {
-  // 1600 by 900
-  size(2000, 1200);
+  size(1200, 800);
   currentLevel = new Level();
   health = 5; 
   currentBloon = currentLevel.getSize() - 1;
+  bar = new Sidebar();
 }
 
 void draw() {
   background(90, 190, 50);     // the "grass"
   currentLevel.display();
+  bar.display();
   for (Tower t1 : towers) {
     t1.display();
     // testing inRange & attack
-    if (t1.inRange(currentLevel.bloons
-    /*
-    if (currentBloon != -1) {
-      if (t1.inRange(currentLevel.getBloon(currentBloon))) {
-        t1.attack(currentLevel.getBloon(currentBloon));
-        if (currentLevel.getBloon(currentBloon).isPopped()) {
-          money+=10;
-          currentBloon--;
-        }
-      }
+
+    //if (currentBloon != -1) {
+    //  if (t1.inRange(currentLevel.getBloon(currentBloon))) {
+    //    t1.attack(currentLevel.getBloon(currentBloon));
+    //    if (currentLevel.getBloon(currentBloon).isPopped()) {
+    //      money+=10;
+    //      currentBloon--;
+    //    }
+    //  }
+    //}
+    if (t1.canAttack()) {
+      //println("can attack");
+      attackBloons(t1);
     }
-    */
   }
-  text("Money: " + money, 20, 20);
-  text("Index: " + currentBloon, 20, 40);
+}
+
+void attackBloons(Tower attacking) {
+  Bloon b;
+  int i = 0;
+  boolean done = false;
+  while (i < currentLevel.bloons.size() && ! done) {
+    b = currentLevel.bloons.get(i);
+    if (attacking.inRange(b)) {
+      b.hit(attacking.getDamage());
+      attacking.resetTick();
+      done = true;
+    }
+    i++;
+  }
 }
 
 void mouseClicked() {
-  towers.add(new Tower(mouseX, mouseY, 1, 75, 100));
+  if (mouseX < MAP_WIDTH) {
+    towers.add(new Tower(mouseX, mouseY, 1, 100, 100, 120, 50));
+  }
+  if (bar.inSidebar(mouseX)) {
+    type = bar.findButtonName(mouseX, mouseY);
+  }
 }
 
-boolean checkRange(Tower t1, Bloon b1){
-  float d = dist(b1.xCor,b1.yCor,t1.x,t1.y);
-  return (d <= t1.getRange());
+public boolean isInside(int x, int y, Button b) {
+  return (x <= b.xCor + b.wide) && ( x >= b.xCor - b.wide) && (y <= b.yCor + b.tall) && (y >= b.yCor - b.tall);
 }
+
+/*
+String select(int x, int y) {
+  int i = 0;
+  Button b;
+  while (i < bar.buttons.size()) {
+    b = bar.buttons.get(i);
+    if (b.isInside(x, y) && mousePressed) {
+      return b.name;
+    } else {
+      i++;
+    }
+  }
+  return "not selected";
+}
+*/

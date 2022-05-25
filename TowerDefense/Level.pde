@@ -9,6 +9,8 @@ public class Level {
   }
   
   public void display() {
+    text("Mouse x: " + mouseX,0, 20);
+    text("Mouse y: " + mouseY,0,40);
     displayPath();
     displayBloons();
   }
@@ -31,6 +33,8 @@ public class Level {
       } else {
         if (b.getT() > 1) {      // decrease health if bloon went off map
           health--;
+        } else {                 // a tower popped it
+          money += b.worth();
         }
         bloons.remove(i);
         i--;

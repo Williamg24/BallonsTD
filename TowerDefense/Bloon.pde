@@ -4,6 +4,7 @@ public class Bloon {
   float yCor;
   float speed;     // how quickly t changes
   float t;
+  int reward;      // how much money player earns if bloon is defeated
   
   public Bloon(int type_, float t_) {
     type = type_;
@@ -11,6 +12,7 @@ public class Bloon {
     yCor = height/2;
     speed = 0.001 * (type + 1);       // go faster for higher types
     t = t_;
+    reward = (type + 1) * 10;
   }
   
   public void display() {
@@ -24,6 +26,14 @@ public class Bloon {
   
   public float getT() {
     return t;
+  }
+  
+  public int worth() {
+    return reward;
+  }
+  
+  public void hit(int damage) {
+    type -= damage;
   }
   
   public void setX(float x) {
