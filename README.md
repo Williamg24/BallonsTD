@@ -24,3 +24,6 @@ Maya Mori: Towers attack bloons in range after some delay. Basic sidebar created
 
 5/23
 William Guo: Updated display so range only shows when pressed. Started Button class and reworking the highlights and selected text.
+
+5/24
+William Guo: Minor changes to Button and Level display. Experimented with 2 buttons to try to interchange between the two when selecting.
