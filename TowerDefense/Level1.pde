@@ -9,8 +9,8 @@ public class Level1 extends Level{
   }
   
   public void startAnimation() {
-    for (int i=0; i<1; i++) {
-      bloons.add(new Bloon(0, (float) i * -0.08,points[0][0], points[0][1], points.length));
+    for (int i=0; i<10; i++) {
+      bloons.add(new Bloon(0,points[0][0] - (float) i * 70, points[0][1], points.length));
     }
   }
 
@@ -22,17 +22,6 @@ public class Level1 extends Level{
   public void displayPath() {
     image(mapImg, 0, 0, MAP_WIDTH, height);
   }
-  
-  //public float pathFunctionX(float x, float speed, int index) {
-  //  if (index % 2 == 0) {
-  //    float newX = x + speed*1000;
-  //    if (newX > points[index][0]) {
-        
-  //    }
-  //  } else {
-  //    return x;
-  //  }
-  //}
   
   public float pathFunctionY(int t) {
     return height/2;
@@ -64,6 +53,7 @@ public class Level1 extends Level{
     }
   }
   
+  // finds out if x should be increased or decreased
   public int findConstantX(int index) {
     if (points[index][0] - points[index-1][0] > 0) {
        return 1;

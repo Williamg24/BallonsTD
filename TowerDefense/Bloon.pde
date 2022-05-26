@@ -18,12 +18,11 @@ public class Bloon {
     pointIndex = 0;
   }
 
-  public Bloon(int type_, float t_, float x, float y, int maxPointIndex_) {
+  public Bloon(int type_, float x, float y, int maxPointIndex_) {
     type = type_;
     xCor = x;
     yCor = y;
     speed = 0.001 * (type + 1);       // go faster for higher types
-    t = t_;
     reward = (type + 1) * 10;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
@@ -75,7 +74,7 @@ public class Bloon {
     if (pointIndex % 2 != 1) {
       return;
     }
-    float newX = xCor + speed*9000*constant;
+    float newX = xCor + speed*3000*constant;
     if (constant > 0){
       if (newX > aimX) {
         pointIndex++;
@@ -95,7 +94,7 @@ public class Bloon {
     if (index % 2 != 0) {
       return;
     }
-    float newY = yCor + speed*9000*constant;
+    float newY = yCor + speed*3000*constant;
     if (constant > 0){
       if (newY > aimY) {
         pointIndex++;
