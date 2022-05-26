@@ -40,23 +40,23 @@ public class Sidebar {
     return (x >= MAP_WIDTH);
   }
 
-  String findButtonName(int x, int y) {
+  Button findButton(int x, int y) {
     int index = 0;
     Button b;
     boolean done = false;
     while (!done && index < buttons.size()) {
       b = bar.getButton(index);
       if (b.isInside(x,y)){
-        return b.name;
+        return b;
       }else{
         index++;
       }
     }
     b = start;
     if (b.isInside(x,y)){
-       return b.name;
+       return b;
     }
-    return "not selcted";
+    return null;
   }
 
 }
