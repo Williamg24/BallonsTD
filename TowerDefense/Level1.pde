@@ -1,6 +1,6 @@
 public class Level1 extends Level{
   PImage mapImg;
-  int[][] points = {{0,296}, {445,296}, {296,131}, {294,131}, {294,566}, {145,566}, {145,405}, {565,405}, {566,236}, {679,236}, {679,512}, {400,512}, {400,height}};
+  int[][] points = {{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {568,405}, {568,236}, {679,236}, {679,512}, {400,512}, {400,height}};
   
   public Level1() {
     super();
@@ -9,24 +9,25 @@ public class Level1 extends Level{
   }
   
   public void startAnimation() {
-    for (int i=0; i<10; i++) {
-      bloons.add(new Bloon(0,points[0][0] - (float) i * 70, points[0][1], points.length));
+    for (int i=0; i<15; i++) {
+      if (i % 5 == 0) {
+        bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
+      } else {
+        bloons.add(new Bloon(0,points[0][0] - (float) i * 70, points[0][1], points.length));
+      }
     }
   }
 
   public void display() {
     displayPath();
     displayBloons();
+    text("bloons length "+bloons.size(),10,80);
   }
 
   public void displayPath() {
     image(mapImg, 0, 0, MAP_WIDTH, height);
   }
-  
-  public float pathFunctionY(int t) {
-    return height/2;
-  }
-  
+
   public void displayBloons() {
     Bloon b;
     int[] reference;
@@ -69,7 +70,7 @@ public class Level1 extends Level{
   }
 
   public boolean onPath(float x, float y) {
-    return (y > height/2 - 40 && y < height/2 + 40 && x > 0 && x < MAP_WIDTH);
+    return false;
   }
   
 }
