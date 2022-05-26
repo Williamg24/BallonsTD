@@ -32,6 +32,7 @@ void draw() {
   }
 }
 
+// deal damage to bloons in tower range
 void attackBloons(Tower attacking) {
   Bloon b;
   int i = 0;
@@ -47,14 +48,14 @@ void attackBloons(Tower attacking) {
   }
 }
 
-
+// find Tower index that mouse is over
 public int findTower(int xCor, int yCor) {
   int index = 0;
   Tower current;
   boolean done = false;
   while (! done && index < towers.size()) {
     current = towers.get(index);
-    if (current.mouseInside(xCor, yCor)) {
+    if (current.insideTower(xCor, yCor)) {
       return index;
     } else {
       index++;
@@ -66,9 +67,9 @@ public int findTower(int xCor, int yCor) {
 
 void mouseClicked() {
   // only place tower if sufficient money for tower type selected and not on path
-  if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selected != null) && (money >= selected.money)){
-      towers.add(new Tower(mouseX, mouseY, 1, 75, 50, selected.money, 60));
-      money -= selected.money;
+  if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selected != null) && (money >= selected.money)) {
+    towers.add(new Tower(mouseX, mouseY, 1, 75, 50, selected.money, 60));
+    money -= selected.money;
   }
   // select the type of tower
   if (bar.inSidebar(mouseX)) {
