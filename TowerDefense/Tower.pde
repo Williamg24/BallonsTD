@@ -8,6 +8,28 @@ public class Tower {
   float y;
   int Tsize;
 
+  public Tower(String towerType) {
+    switch (towerType) {
+    case "Basic":
+      towerSettings(mouseX, mouseY, 1, 75, 50, selected.money, 100);
+      break;
+    case "Advanced":
+      towerSettings(mouseX, mouseY, 1, 100, 50, selected.money, 50);
+      break;
+    }
+  }
+  
+  public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait) {
+    x = xcor;
+    y = ycor;
+    damage = atk;
+    range = radius;
+    cost = money;
+    delay = wait;
+    tick = delay;      // tower can start attacking right away
+    Tsize = tsize;
+  }
+
   public Tower(float xcor, float ycor, int atk, int radius, int tsize, int money, int wait) {
     x = xcor;
     y = ycor;
@@ -41,7 +63,7 @@ public class Tower {
   public void attack(Bloon current) {
     current.type -= damage;
   }
-  
+
   // radius around tower
   public boolean inRange(Bloon value) {
     float distance = dist(x, y, value.xCor, value.yCor);
