@@ -45,9 +45,25 @@ void attackBloons(Tower attacking) {
   }
 }
 
+public int findTower(int xCor, int yCor) {
+  int index = 0;
+  Tower current;
+  boolean done = false;
+  while (! done && index < towers.size()) {
+    current = towers.get(index);
+    if (current.mouseInside(xCor, yCor)) {
+      return index;
+    } else {
+      index++;
+    }
+  }
+  return -1;
+}
+
+
 void mouseClicked() {
   if (! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) {
-    towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 60, 50));
+    towers.add(new Tower(mouseX, mouseY, 1, 75,50, 100, 60));
   }
   if (bar.inSidebar(mouseX)) {
     type = bar.findButtonName(mouseX, mouseY);
@@ -56,5 +72,13 @@ void mouseClicked() {
       currentLevel.startAnimation();
       animate = true;
     }
+  }
+}
+
+void keyPressed() {
+  if (key == BACKSPACE) {
+    Tower removed = towers.get(findTower(mouseX,mouseY));
+    towers.remove(findTower(mouseX, mouseY));
+    money += removed.getCost();
   }
 }
