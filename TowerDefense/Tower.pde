@@ -12,7 +12,7 @@ public class Tower {
   public Tower(String towerType) {
     switch (towerType) {
     case "Basic":
-      towerSettings(mouseX, mouseY, 1, 75, 50, selected.money, 100, color(0));
+      towerSettings(mouseX, mouseY, 1, 75, 50, selected.money, 80, color(0));
       break;
     case "Advanced":
       towerSettings(mouseX, mouseY, 1, 100, 50, selected.money, 50, color(255));
@@ -20,6 +20,7 @@ public class Tower {
     }
   }
   
+  // sets the variables
   public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait, color c) {
     x = xcor;
     y = ycor;

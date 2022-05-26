@@ -5,6 +5,8 @@ public class Bloon {
   float speed;     // how quickly t changes
   float t;
   int reward;      // how much money player earns if bloon is defeated
+  int pointIndex;
+  int maxPointIndex;
 
   public Bloon(int type_, float t_) {
     type = type_;
@@ -13,6 +15,17 @@ public class Bloon {
     speed = 0.001 * (type + 1);       // go faster for higher types
     t = t_;
     reward = (type + 1) * 10;
+    pointIndex = 0;
+  }
+
+  public Bloon(int type_, float x, float y, int maxPointIndex_) {
+    type = type_;
+    xCor = x;
+    yCor = y;
+    speed = 0.001 * (type + 1);       // go faster for higher types
+    reward = (type + 1) * 10;
+    pointIndex = 1;
+    maxPointIndex = maxPointIndex_;
   }
 
   public void display() {
@@ -28,6 +41,10 @@ public class Bloon {
     return t;
   }
 
+  public float getSpeed() {
+    return speed;
+  }
+
   public int worth() {
     return reward;
   }
@@ -35,6 +52,14 @@ public class Bloon {
   public void hit(int damage) {
     type -= damage;
     speed -= 0.001;
+  }
+
+  public float getX() {
+    return xCor;
+  }
+
+  public float getY() {
+    return yCor;
   }
 
   public void setX(float x) {
@@ -45,7 +70,55 @@ public class Bloon {
     yCor = y;
   }
 
-  public boolean isPopped() {
-    return t > 1 || type < 0;
+  public void setNewX(int aimX, int constant) {
+    if (pointIndex % 2 != 1) {
+      return;
+    }
+    float newX = xCor + speed*3000*constant;
+    if (constant > 0){
+      if (newX > aimX) {
+        pointIndex++;
+      } else {
+        xCor = newX;
+      }
+    } else {
+      if (newX < aimX) {
+        pointIndex++;
+      } else {
+        xCor = newX;
+      }
+    }
   }
+
+  public void setNewY(int aimY, int constant, int index) {
+    if (index % 2 != 0) {
+      return;
+    }
+    float newY = yCor + speed*3000*constant;
+    if (constant > 0){
+      if (newY > aimY) {
+        pointIndex++;
+      } else {
+        yCor = newY;
+      }
+    } else {
+      if (newY < aimY) {
+        pointIndex++;
+      } else {
+        yCor = newY;
+      }
+    }
+}
+
+//public void incrementPointIndex() {
+//  pointIndex++;
+//}
+
+public int getPointIndex() {
+  return pointIndex;
+}
+
+public boolean isPopped() {
+  return t > 1 || type < 0 || pointIndex >= maxPointIndex;
+}
 }
