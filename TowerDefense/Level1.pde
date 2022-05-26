@@ -1,6 +1,6 @@
 public class Level1 extends Level{
   PImage mapImg;
-  int[][] points = {{0,296}, {445,296}, {296,131}, {294,131}, {294,566}, {145,566}, {145,405}, {565,405}, {566,236}, {679,236}, {679,508}, {400,height}};
+  int[][] points = {{0,296}, {445,296}, {296,131}, {294,131}, {294,566}, {145,566}, {145,405}, {565,405}, {566,236}, {679,236}, {679,512}, {400,512}, {400,height}};
   
   public Level1() {
     super();
@@ -9,8 +9,8 @@ public class Level1 extends Level{
   }
   
   public void startAnimation() {
-    for (int i=0; i<10; i++) {
-      bloons.add(new Bloon(0, (float) i * -0.08,points[0][0], points[0][1]));
+    for (int i=0; i<1; i++) {
+      bloons.add(new Bloon(0, (float) i * -0.08,points[0][0], points[0][1], points.length));
     }
   }
 
@@ -44,15 +44,16 @@ public class Level1 extends Level{
     int index;
     for (int i=0; i<bloons.size(); i++) {
       b = bloons.get(i);
+      text("pointIndex: "+b.getPointIndex(), 10, 80);
       if (! b.isPopped()) {
         b.move();
         index = b.getPointIndex();
         reference = points[index];
         b.setNewX(reference[0], findConstantX(index));
-        b.setNewY(reference[1], findConstantY(index));
+        b.setNewY(reference[1], findConstantY(index), index);
         b.display();
       } else {
-        if (b.getT() > 1) {      // decrease health if bloon went off map
+        if (b.getT() > 1 || b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
           health--;
         } else {                 // a tower popped it
           money += b.worth();
