@@ -1,13 +1,13 @@
 int MAP_WIDTH = 900;
+ArrayList<Tower> towers = new ArrayList<Tower>();
 
 int money;
 int health;
-Level currentLevel;
-boolean animate;
-ArrayList<Tower> towers = new ArrayList<Tower>();
 int currentBloon;
-Sidebar bar;
 String type;
+boolean animate;
+Sidebar bar;
+Level currentLevel;
 Button selected;
 
 void setup() {
