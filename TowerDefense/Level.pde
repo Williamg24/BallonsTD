@@ -15,8 +15,6 @@ public class Level {
   }
 
   public void display() {
-    text("Mouse x: " + mouseX, 0, 20);
-    text("Mouse y: " + mouseY, 0, 40);
     displayPath();
     displayBloons();
   }

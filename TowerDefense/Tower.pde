@@ -4,11 +4,23 @@ public class Tower {
   int delay;
   int damage;
   int tick;
-  float x;
-  float y;
+  int x;
+  int y;
   int Tsize;
+  color towerColor;
 
-  public Tower(float xcor, float ycor, int atk, int radius, int tsize, int money, int wait) {
+  public Tower(String towerType) {
+    switch (towerType) {
+    case "Basic":
+      towerSettings(mouseX, mouseY, 1, 75, 50, selected.money, 100, color(0));
+      break;
+    case "Advanced":
+      towerSettings(mouseX, mouseY, 1, 100, 50, selected.money, 50, color(255));
+      break;
+    }
+  }
+  
+  public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait, color c) {
     x = xcor;
     y = ycor;
     damage = atk;
@@ -17,6 +29,7 @@ public class Tower {
     delay = wait;
     tick = delay;      // tower can start attacking right away
     Tsize = tsize;
+    towerColor = c;
   }
 
   public void display() {
@@ -25,7 +38,7 @@ public class Tower {
       stroke(0);
       ellipse(x, y, range * 2, range * 2);
     }
-    fill(0);
+    fill(towerColor);
     ellipse(x, y, Tsize, Tsize);
     tick++;
   }
@@ -41,7 +54,7 @@ public class Tower {
   public void attack(Bloon current) {
     current.type -= damage;
   }
-  
+
   // radius around tower
   public boolean inRange(Bloon value) {
     float distance = dist(x, y, value.xCor, value.yCor);
