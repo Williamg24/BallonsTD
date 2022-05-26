@@ -36,6 +36,14 @@ public class Bloon {
     type -= damage;
     speed -= 0.001;
   }
+  
+  public float getX(float x) {
+    return xCor;
+  }
+
+  public float getY(float y) {
+    return yCor;
+  }
 
   public void setX(float x) {
     xCor = x;

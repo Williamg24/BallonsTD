@@ -20,6 +20,7 @@ public class Tower {
     }
   }
   
+  // sets the variables
   public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait, color c) {
     x = xcor;
     y = ycor;
