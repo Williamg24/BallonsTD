@@ -88,8 +88,11 @@ void mouseClicked() {
 void keyPressed() {
   // remove placed tower and refund money
   if (key == BACKSPACE) {
-    Tower removed = towers.get(findTower(mouseX, mouseY));
-    towers.remove(findTower(mouseX, mouseY));
-    money += removed.getCost();
+    int index = findTower(mouseX, mouseY);
+    if (index >= 0) {                        // only remove if tower exists
+      Tower removed = towers.get(index);
+      towers.remove(index);
+      money += removed.getCost();
+    }
   }
 }
