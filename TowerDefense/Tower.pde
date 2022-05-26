@@ -15,7 +15,7 @@ public class Tower {
       towerSettings(mouseX, mouseY, 1, 75, 50, selected.money, 80, color(0));
       break;
     case "Advanced":
-      towerSettings(mouseX, mouseY, 1, 100, 50, selected.money, 50, color(255));
+      towerSettings(mouseX, mouseY, 1, 100, 50, selected.money, 40, color(255));
       break;
     }
   }

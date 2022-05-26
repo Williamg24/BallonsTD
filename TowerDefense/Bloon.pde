@@ -1,3 +1,5 @@
+color[] colors = {#FF0000, #00FA00, #0000FF};
+
 public class Bloon {
   int type;
   float xCor;
@@ -16,6 +18,7 @@ public class Bloon {
     t = t_;
     reward = (type + 1) * 10;
     pointIndex = 0;
+    maxPointIndex = 1;               // greater than 0
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
@@ -29,7 +32,9 @@ public class Bloon {
   }
 
   public void display() {
-    fill(255, 0, 0);
+    //fill(255, 0, 0);
+    //println("display bloon");
+    fill(colors[type]);
     ellipse(xCor, yCor, 40, 40);
   }
 
@@ -75,7 +80,7 @@ public class Bloon {
       return;
     }
     float newX = xCor + speed*3000*constant;
-    if (constant > 0){
+    if (constant > 0) {
       if (newX > aimX) {
         pointIndex++;
       } else {
@@ -95,7 +100,7 @@ public class Bloon {
       return;
     }
     float newY = yCor + speed*3000*constant;
-    if (constant > 0){
+    if (constant > 0) {
       if (newY > aimY) {
         pointIndex++;
       } else {
@@ -108,17 +113,17 @@ public class Bloon {
         yCor = newY;
       }
     }
-}
+  }
 
-//public void incrementPointIndex() {
-//  pointIndex++;
-//}
+  //public void incrementPointIndex() {
+  //  pointIndex++;
+  //}
 
-public int getPointIndex() {
-  return pointIndex;
-}
+  public int getPointIndex() {
+    return pointIndex;
+  }
 
-public boolean isPopped() {
-  return t > 1 || type < 0 || pointIndex >= maxPointIndex;
-}
+  public boolean isPopped() {
+    return t > 1 || type < 0 || pointIndex >= maxPointIndex;
+  }
 }
