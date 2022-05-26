@@ -68,11 +68,6 @@ public int findTower(int xCor, int yCor) {
 void mouseClicked() {
   // only place tower if sufficient money for tower type selected and not on path
   if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selected != null) && (money >= selected.money)) {
-    //if (type.equals("Basic")) {
-    //  towers.add(new Tower(mouseX, mouseY, 1, 75, 50, selected.money, 100));
-    //} else if (type.equals("Advanced")) {
-    //  towers.add(new Tower(mouseX, mouseY, 1, 100, 50, selected.money, 50));
-    //}
     towers.add(new Tower(type));
     money -= selected.money;
   }
