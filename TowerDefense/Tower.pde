@@ -8,7 +8,7 @@ public class Tower {
   float y;
   int Tsize;
 
-  public Tower(float xcor, float ycor, int atk, int radius, int money, int wait, int tsize) {
+  public Tower(float xcor, float ycor, int atk, int radius, int tsize, int money, int wait) {
     x = xcor;
     y = ycor;
     damage = atk;
@@ -20,7 +20,7 @@ public class Tower {
   }
 
   public void display() {
-    if (mouseInside(mouseX, mouseY)){// && mousePressed) {
+    if (insideTower(mouseX, mouseY)) {// && mousePressed) {
       noFill();
       stroke(0);
       ellipse(x, y, range * 2, range * 2);
@@ -41,6 +41,7 @@ public class Tower {
   public void attack(Bloon current) {
     current.type -= damage;
   }
+  
   // radius around tower
   public boolean inRange(Bloon value) {
     float distance = dist(x, y, value.xCor, value.yCor);
@@ -62,12 +63,13 @@ public class Tower {
     return cost;
   }
 
-  public boolean mouseInside(int xCor, int yCor) {
+  // check if mouseinside tower
+  public boolean insideTower(int xCor, int yCor) {
     float d = dist(x, y, xCor, yCor);
     return d <= Tsize;
   }
-  
-  public int getTsize(){
+
+  public int getTsize() {
     return Tsize;
   }
 }

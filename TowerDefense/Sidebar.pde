@@ -6,7 +6,7 @@ public class Sidebar {
     buttons = new ArrayList<Button>();
     buttons.add(new Button("Basic", MAP_WIDTH + 20, 120, 100, 120, 28, 10));
     buttons.add(new Button("Advanced", MAP_WIDTH + 160, 120, 100, 120, 28, 20));
-    
+
     start = new Button("Start", MAP_WIDTH + 20, height-80, 250, 50, 10, 0);
   }
 
@@ -36,27 +36,28 @@ public class Sidebar {
     return buttons.get(index);
   }
 
+  // check if mouse inside Sidebar
   public boolean inSidebar(int x) {
     return (x >= MAP_WIDTH);
   }
 
-  String findButtonName(int x, int y) {
+  // finds button at mouse location
+  Button findButton(int x, int y) {
     int index = 0;
     Button b;
     boolean done = false;
     while (!done && index < buttons.size()) {
       b = bar.getButton(index);
-      if (b.isInside(x,y)){
-        return b.name;
-      }else{
+      if (b.isInside(x, y)) {
+        return b;
+      } else {
         index++;
       }
     }
     b = start;
-    if (b.isInside(x,y)){
-       return b.name;
+    if (b.isInside(x, y)) {
+      return b;
     }
-    return "not selcted";
+    return null;
   }
-
 }

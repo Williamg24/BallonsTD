@@ -17,6 +17,7 @@ public class Button {
     name = m;
   }
 
+  // buy menu icon for towers
   public void displayIcon() {
     fill(0);
     rect(xCor, yCor, wide, tall, radius);
@@ -24,15 +25,17 @@ public class Button {
     text("$" + money, xCor + wide / 4, yCor + tall - 3);
   }
 
+  // utility buttons like start, pause etc.
   public void display(color c) {
     fill(c);
-    rect(xCor, yCor, wide, tall,radius);
-    
+    rect(xCor, yCor, wide, tall, radius);
+
     fill(255);
     textSize(32);
     text(name, xCor+80, yCor+35);
   }
 
+  // check if mouse inside button
   boolean isInside(float x, float y) {
     return (x > xCor && x < xCor + wide && y > yCor && y < yCor + tall);
   }

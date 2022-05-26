@@ -8,6 +8,7 @@ ArrayList<Tower> towers = new ArrayList<Tower>();
 int currentBloon;
 Sidebar bar;
 String type;
+Button selected;
 
 void setup() {
   size(1200, 800);
@@ -16,6 +17,7 @@ void setup() {
   currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
+  money = 50;
 }
 
 void draw() {
@@ -30,6 +32,7 @@ void draw() {
   }
 }
 
+// deal damage to bloons in tower range
 void attackBloons(Tower attacking) {
   Bloon b;
   int i = 0;
@@ -45,16 +48,48 @@ void attackBloons(Tower attacking) {
   }
 }
 
-void mouseClicked() {
-  if (! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) {
-    towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 60, 50));
+// find Tower index that mouse is over
+public int findTower(int xCor, int yCor) {
+  int index = 0;
+  Tower current;
+  boolean done = false;
+  while (! done && index < towers.size()) {
+    current = towers.get(index);
+    if (current.insideTower(xCor, yCor)) {
+      return index;
+    } else {
+      index++;
+    }
   }
+  return -1;
+}
+
+
+void mouseClicked() {
+  // only place tower if sufficient money for tower type selected and not on path
+  if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selected != null) && (money >= selected.money)) {
+    towers.add(new Tower(mouseX, mouseY, 1, 75, 50, selected.money, 60));
+    money -= selected.money;
+  }
+  // select the type of tower
   if (bar.inSidebar(mouseX)) {
-    type = bar.findButtonName(mouseX, mouseY);
+    if (bar.findButton(mouseX, mouseY) != null) {
+      type = bar.findButton(mouseX, mouseY).name;
+      selected = bar.findButton(mouseX, mouseY);
+    }
     if (type.equals("Start") && ! animate) {
       //println("start the animation");
       currentLevel.startAnimation();
       animate = true;
     }
+  }
+}
+
+void keyPressed() {
+  // remove placed tower and refund money
+  if (key == BACKSPACE) {
+    Tower removed = towers.get(findTower(mouseX, mouseY));
+    towers.remove(findTower(mouseX, mouseY));
+    money += removed.getCost();
   }
 }
