@@ -33,3 +33,6 @@ Maya Mori: Minor fixes to Tower such as restrictions to its placement.
 
 5/25
 Maya Mori: Start button created and towers show range when user hovers on it.
+
+5/25
+William Guo: Complete selecting button method, works when interchanging between them.
