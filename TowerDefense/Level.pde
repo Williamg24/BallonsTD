@@ -3,12 +3,20 @@ public class Level {
   
   public Level() {
     bloons = new ArrayList<Bloon>();
+    //for (int i=0; i<10; i++) {
+    //  bloons.add(new Bloon(0, (float) i * -0.05));
+    //}
+  }
+  
+  public void startAnimation() {
     for (int i=0; i<10; i++) {
-      bloons.add(new Bloon(0, (float) i * -0.05));
+      bloons.add(new Bloon(0, (float) i * -0.08));
     }
   }
   
   public void display() {
+    text("Mouse x: " + mouseX,0, 20);
+    text("Mouse y: " + mouseY,0,40);
     displayPath();
     displayBloons();
   }
@@ -52,10 +60,11 @@ public class Level {
     return height/2;
   }
   
+  /*
   public Bloon getBloon(int index){
     return bloons.get(index);
   }
-  
+  */
   public int getSize(){
     return bloons.size();
   }

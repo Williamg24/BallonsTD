@@ -7,6 +7,7 @@ boolean animate;
 ArrayList<Tower> towers = new ArrayList<Tower>();
 int currentBloon;
 Sidebar bar;
+String type;
 
 void setup() {
   size(1200, 800);
@@ -14,6 +15,7 @@ void setup() {
   health = 5; 
   currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
+  animate = false;
 }
 
 void draw() {
@@ -45,6 +47,14 @@ void attackBloons(Tower attacking) {
 
 void mouseClicked() {
   if (! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) {
-    towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 60));
+    towers.add(new Tower(mouseX, mouseY, 1, 75, 100, 60, 50));
+  }
+  if (bar.inSidebar(mouseX)) {
+    type = bar.findButtonName(mouseX, mouseY);
+    if (type.equals("Start") && ! animate) {
+      //println("start the animation");
+      currentLevel.startAnimation();
+      animate = true;
+    }
   }
 }
