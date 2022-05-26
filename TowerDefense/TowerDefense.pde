@@ -8,6 +8,7 @@ ArrayList<Tower> towers = new ArrayList<Tower>();
 int currentBloon;
 Sidebar bar;
 String type;
+Button selected;
 
 void setup() {
   size(1200, 800);
@@ -16,6 +17,7 @@ void setup() {
   currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
+  money = 50;
 }
 
 void draw() {
@@ -45,6 +47,7 @@ void attackBloons(Tower attacking) {
   }
 }
 
+
 public int findTower(int xCor, int yCor) {
   int index = 0;
   Tower current;
@@ -62,11 +65,17 @@ public int findTower(int xCor, int yCor) {
 
 
 void mouseClicked() {
-  if (! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) {
-    towers.add(new Tower(mouseX, mouseY, 1, 75,50, 100, 60));
+  // only place tower if sufficient money for tower type selected and not on path
+  if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selected != null) && (money >= selected.money)){
+      towers.add(new Tower(mouseX, mouseY, 1, 75, 50, selected.money, 60));
+      money -= selected.money;
   }
+  // select the type of tower
   if (bar.inSidebar(mouseX)) {
-    type = bar.findButtonName(mouseX, mouseY);
+    if (bar.findButton(mouseX, mouseY) != null) {
+      type = bar.findButton(mouseX, mouseY).name;
+      selected = bar.findButton(mouseX, mouseY);
+    }
     if (type.equals("Start") && ! animate) {
       //println("start the animation");
       currentLevel.startAnimation();
@@ -76,8 +85,9 @@ void mouseClicked() {
 }
 
 void keyPressed() {
+  // remove placed tower and refund money
   if (key == BACKSPACE) {
-    Tower removed = towers.get(findTower(mouseX,mouseY));
+    Tower removed = towers.get(findTower(mouseX, mouseY));
     towers.remove(findTower(mouseX, mouseY));
     money += removed.getCost();
   }
