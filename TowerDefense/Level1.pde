@@ -21,7 +21,7 @@ public class Level1 extends Level{
   public void display() {
     displayPath();
     displayBloons();
-    text("bloons length "+bloons.size(),10,80);
+    text("bloons length "+bloons.size(),10,40);
   }
 
   public void displayPath() {
@@ -44,7 +44,8 @@ public class Level1 extends Level{
         b.display();
       } else {
         if (b.getT() > 1 || b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
-          health--;
+          health -= b.getDamage();
+          println(b.getDamage());
         } else {                 // a tower popped it
           money += b.worth();
         }

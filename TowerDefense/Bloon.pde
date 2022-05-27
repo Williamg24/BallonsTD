@@ -1,4 +1,5 @@
 color[] colors = {#FF0000, #00FA00, #0000FF};
+PImage bloonImage;
 
 public class Bloon {
   int type;
@@ -9,33 +10,40 @@ public class Bloon {
   int reward;      // how much money player earns if bloon is defeated
   int pointIndex;
   int maxPointIndex;
+  int damage;
 
   public Bloon(int type_, float t_) {
-    type = type_;
-    xCor = 0;
-    yCor = height/2;
-    speed = 0.001 * (type + 1);       // go faster for higher types
+    this(type_, 0, height/2,  1);
+    //type = type_;
+    //xCor = 0;
+    //yCor = height/2;
+    //speed = 0.001 * (type + 1);       // go faster for higher types
     t = t_;
-    reward = (type + 1) * 10;
-    pointIndex = 0;
-    maxPointIndex = 1;               // greater than 0
+    //reward = (type + 1) * 10;
+    //pointIndex = 0;
+    //maxPointIndex = 1;               // greater than 0
+    //damage = type + 1;
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
     type = type_;
     xCor = x;
     yCor = y;
-    speed = 0.001 * (type + 1);       // go faster for higher types
+    speed = 0.0012 * (type + 1);       // go faster for higher types
     reward = (type + 1) * 10;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
+    damage = type + 1;
   }
 
   public void display() {
     //fill(255, 0, 0);
     //println("display bloon");
-    fill(colors[type]);
-    ellipse(xCor, yCor, 40, 40);
+
+    //fill(colors[type]);
+    //ellipse(xCor, yCor, 40, 40);
+    getBloonType();
+    image(bloonImage, xCor - 18, yCor - 18, 35, 40);
   }
 
   public void move() {
@@ -54,9 +62,13 @@ public class Bloon {
     return reward;
   }
 
-  public void hit(int damage) {
-    type -= damage;
+  public void hit(int hitNum) {
+    type -= hitNum;
     speed -= 0.001;
+  }
+  
+  public int getDamage() {
+    return damage;
   }
 
   public float getX() {
@@ -125,5 +137,17 @@ public class Bloon {
 
   public boolean isPopped() {
     return t > 1 || type < 0 || pointIndex >= maxPointIndex;
+  }
+  
+  // different images corresponding to the bloon type
+  public void getBloonType() {
+    switch(type) {
+    case 0:
+      bloonImage = loadImage("Red_Bloon.png");
+      break;
+    case 1:
+      bloonImage = loadImage("Blue_Bloon.png");
+      break;
+    }
   }
 }
