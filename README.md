@@ -37,3 +37,6 @@ Maya Mori: Start button created and towers show range when user hovers on it.
 5/25
 William Guo: Complete selecting button method in sidebar. Created delete tower using backspace and refunds money, number of towers
 that can be placed limited based on current money.
+
+5/26
+Maya Mori: Created Level1 class which uses an image for the map and it has an separate path function.
