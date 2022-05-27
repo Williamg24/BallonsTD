@@ -1,4 +1,5 @@
 color[] colors = {#FF0000, #00FA00, #0000FF};
+PImage bloonImage;
 
 public class Bloon {
   int type;
@@ -37,8 +38,11 @@ public class Bloon {
   public void display() {
     //fill(255, 0, 0);
     //println("display bloon");
-    fill(colors[type]);
-    ellipse(xCor, yCor, 40, 40);
+
+    //fill(colors[type]);
+    //ellipse(xCor, yCor, 40, 40);
+    getBloonType();
+    image(bloonImage, xCor - 18, yCor - 18, 35, 40);
   }
 
   public void move() {
@@ -132,5 +136,17 @@ public class Bloon {
 
   public boolean isPopped() {
     return t > 1 || type < 0 || pointIndex >= maxPointIndex;
+  }
+  
+  // different images corresponding to the bloon type
+  public void getBloonType() {
+    switch(type) {
+    case 0:
+      bloonImage = loadImage("Red_Bloon.png");
+      break;
+    case 1:
+      bloonImage = loadImage("Blue_Bloon.png");
+      break;
+    }
   }
 }

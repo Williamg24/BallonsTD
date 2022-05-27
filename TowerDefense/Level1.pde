@@ -21,7 +21,7 @@ public class Level1 extends Level{
   public void display() {
     displayPath();
     displayBloons();
-    text("bloons length "+bloons.size(),10,80);
+    text("bloons length "+bloons.size(),10,40);
   }
 
   public void displayPath() {
