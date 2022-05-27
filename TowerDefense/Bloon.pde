@@ -20,7 +20,7 @@ public class Bloon {
     reward = (type + 1) * 10;
     pointIndex = 0;
     maxPointIndex = 1;        // greater than 0
-    getBloonType();
+    //getBloonType();
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
@@ -31,7 +31,7 @@ public class Bloon {
     reward = (type + 1) * 10;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
-    getBloonType();
+    //getBloonType();
   }
 
   public void display() {
@@ -40,6 +40,7 @@ public class Bloon {
 
     //fill(colors[type]);
     //ellipse(xCor, yCor, 40, 40);
+    getBloonType();
     image(bloonImage, xCor - 18, yCor - 18, 35, 40);
   }
 
