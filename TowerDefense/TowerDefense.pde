@@ -12,7 +12,7 @@ Button selected;
 
 void setup() {
   size(1200, 700);
-  currentLevel = new Level();
+  currentLevel = new Level1();
   health = 5; 
   currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
@@ -30,8 +30,8 @@ void draw() {
       attackBloons(t1);
     }
   }
-  text("mouseX: "+mouseX,10,20);
-  text("mouseY: "+mouseY,10,50);
+  //text("mouseX: "+mouseX,10,20);
+  //text("mouseY: "+mouseY,10,50);
 }
 
 // deal damage to bloons in tower range
