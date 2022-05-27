@@ -37,3 +37,6 @@ Maya Mori: Start button created and towers show range when user hovers on it.
 5/25
 William Guo: Complete selecting button method in sidebar. Created delete tower using backspace and refunds money, number of towers
 that can be placed limited based on current money.
+
+5/26
+William Guo: Started inserting images for different bloons based on it's type, can be displayed on map, working of switching between images. 
