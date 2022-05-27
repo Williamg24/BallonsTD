@@ -40,3 +40,6 @@ that can be placed limited based on current money.
 
 5/26
 Maya Mori: Created Level1 class which uses an image for the map and it has an separate path function.
+
+5/26
+William Guo: Started inserting images for different bloons based on it's type, can be displayed on map, working of switching between images.
