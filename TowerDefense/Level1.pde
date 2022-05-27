@@ -12,9 +12,9 @@ public class Level1 extends Level{
     for (int i=0; i<15; i++) {
       if (i % 5 == 0) {
         bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
-      } else {
+      }// else {
         bloons.add(new Bloon(0,points[0][0] - (float) i * 70, points[0][1], points.length));
-      }
+      //}
     }
   }
 
@@ -45,7 +45,7 @@ public class Level1 extends Level{
       } else {
         if (b.getT() > 1 || b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
           health -= b.getDamage();
-          println(b.getDamage());
+          //println(b.getDamage());
         } else {                 // a tower popped it
           money += b.worth();
         }
