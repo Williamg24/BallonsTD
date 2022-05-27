@@ -30,8 +30,8 @@ void draw() {
       attackBloons(t1);
     }
   }
-  text("mouseX: "+mouseX,10,20);
-  text("mouseY: "+mouseY,10,50);
+  //text("mouseX: "+mouseX,10,20);
+  //text("mouseY: "+mouseY,10,50);
 }
 
 // deal damage to bloons in tower range
@@ -79,7 +79,7 @@ void mouseClicked() {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
     }
-    if (type.equals("Start") && ! animate) {
+    if (type != null && type.equals("Start") && ! animate) {
       //println("start the animation");
       currentLevel.startAnimation();
       animate = true;
