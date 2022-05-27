@@ -131,7 +131,8 @@ public class Bloon {
   public boolean isPopped() {
     return t > 1 || type < 0 || pointIndex >= maxPointIndex;
   }
-
+  
+  // different images corresponding to the bloon type
   public void getBloonType() {
     switch(type) {
     case 0:
