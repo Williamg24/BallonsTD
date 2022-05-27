@@ -13,22 +13,23 @@ public class Bloon {
   int damage;
 
   public Bloon(int type_, float t_) {
-    type = type_;
-    xCor = 0;
-    yCor = height/2;
-    speed = 0.001 * (type + 1);       // go faster for higher types
+    this(type_, 0, height/2,  1);
+    //type = type_;
+    //xCor = 0;
+    //yCor = height/2;
+    //speed = 0.001 * (type + 1);       // go faster for higher types
     t = t_;
-    reward = (type + 1) * 10;
-    pointIndex = 0;
-    maxPointIndex = 1;               // greater than 0
-    damage = type + 1;
+    //reward = (type + 1) * 10;
+    //pointIndex = 0;
+    //maxPointIndex = 1;               // greater than 0
+    //damage = type + 1;
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
     type = type_;
     xCor = x;
     yCor = y;
-    speed = 0.001 * (type + 1);       // go faster for higher types
+    speed = 0.0012 * (type + 1);       // go faster for higher types
     reward = (type + 1) * 10;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
