@@ -36,7 +36,7 @@ public class Level1 extends Level{
       b = bloons.get(i);
       text("pointIndex: "+b.getPointIndex(), 10, 80);
       if (! b.isPopped()) {
-        b.move();
+        //b.move();
         index = b.getPointIndex();
         reference = points[index];
         b.setNewX(reference[0], findConstantX(index));
