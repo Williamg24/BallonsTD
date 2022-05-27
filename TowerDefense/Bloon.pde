@@ -9,6 +9,7 @@ public class Bloon {
   int reward;      // how much money player earns if bloon is defeated
   int pointIndex;
   int maxPointIndex;
+  int damage;
 
   public Bloon(int type_, float t_) {
     type = type_;
@@ -19,6 +20,7 @@ public class Bloon {
     reward = (type + 1) * 10;
     pointIndex = 0;
     maxPointIndex = 1;               // greater than 0
+    damage = type + 1;
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
@@ -29,6 +31,7 @@ public class Bloon {
     reward = (type + 1) * 10;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
+    damage = type + 1;
   }
 
   public void display() {
@@ -54,9 +57,13 @@ public class Bloon {
     return reward;
   }
 
-  public void hit(int damage) {
-    type -= damage;
+  public void hit(int hitNum) {
+    type -= hitNum;
     speed -= 0.001;
+  }
+  
+  public int getDamage() {
+    return damage;
   }
 
   public float getX() {
