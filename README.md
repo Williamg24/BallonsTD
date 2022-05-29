@@ -31,8 +31,7 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
   - Maya Mori: Created Level1 class which uses an image for the map and it has an separate path function.
   - William Guo: Started inserting images for different bloons based on it's type, can be displayed on map, working of switching between images.
 - ### 5/29
-  - William Guo: Worked on displaying images for towers on map as well as buttons. Highlights which button is selected and changes text color to indicate whether      
-    there's enough money to buy tower. 
+  - William Guo: Worked on displaying images for towers on map as well as buttons. Highlights which button is selected and changes text color to indicate whether           there's enough money to buy tower. 
 
 <!---
 05/20
