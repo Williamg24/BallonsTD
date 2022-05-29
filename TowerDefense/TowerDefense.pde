@@ -32,7 +32,7 @@ void draw() {
   }
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
-  text("frame rate: "+frameRate,10,100);
+  //text("frame rate: "+frameRate,10,100);
 }
 
 // deal damage to bloons in tower range

@@ -11,10 +11,20 @@ public class Level1 extends Level{
   public void startAnimation() {
     if (bloons.size() == 0) {
       for (int i=0; i<20; i++) {
-        if (i % 5 == 0) {
-          bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
-        }
-         bloons.add(new Bloon(0,points[0][0] - (float) i * 70, points[0][1], points.length));
+        //if (i % 5 == 0) {
+        //  bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
+        //}
+         bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
+      }
+    }
+  }
+  
+  public void sortBloons() {
+    Bloon b;
+    for (int i=1; i<bloons.size(); i++) {
+      b = bloons.get(i);
+      if (b.getType() > 0) {
+        swapOrder(i);
       }
     }
   }
@@ -31,7 +41,7 @@ public class Level1 extends Level{
     } else if (pIndex1 == pIndex2){
       int aimX = points[pIndex1][0];
       int aimY = points[pIndex1][1];
-      if (dist(b.getX(),b.getY(),aimX,aimY) > dist(prev.getX(),prev.getY(),aimX,aimY)) {
+      if (dist(b.getX(),b.getY(),aimX,aimY) < dist(prev.getX(),prev.getY(),aimX,aimY)) {
          bloons.remove(index);
          bloons.add(index-1,b);
       }
@@ -45,7 +55,7 @@ public class Level1 extends Level{
     } else {
       displayStillBloons();
     }
-    text("bloons length: "+bloons.size(),10,40);
+    //text("bloons length: "+bloons.size(),10,40);
   }
 
   public void displayPath() {
@@ -58,7 +68,7 @@ public class Level1 extends Level{
     int index;
     for (int i=0; i<bloons.size(); i++) {
       b = bloons.get(i);
-      text("pointIndex: "+b.getPointIndex(), 10, 80);
+      //text("pointIndex: "+b.getPointIndex(), 10, 80);
       if (! b.isPopped()) {
         //b.move();
         index = b.getPointIndex();
@@ -66,9 +76,9 @@ public class Level1 extends Level{
         b.setNewX(reference[0], findConstantX(index));
         b.setNewY(reference[1], findConstantY(index), index);
         
-        if (i > 0 && b.getType() > 0) {
-          swapOrder(i);
-        }
+        //if (i > 0 && b.getType() > 0) {
+        //  swapOrder(i);
+        //}
         b.display();
       } else {
         if (b.getT() > 1 || b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
@@ -81,6 +91,7 @@ public class Level1 extends Level{
         i--;
       }
     }
+    sortBloons();
   }
   
   public void displayStillBloons() {
@@ -88,7 +99,7 @@ public class Level1 extends Level{
     for (int i=0; i<bloons.size(); i++) {
       b = bloons.get(i);
       b.display();
-      text("pointIndex: "+b.getPointIndex(), 10, 80);
+      //text("pointIndex: "+b.getPointIndex(), 10, 80);
     }
   }
 
