@@ -32,7 +32,7 @@ void draw() {
   }
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
-  text("frame rate: "+frameRate,10,100);
+  //text("frame rate: "+frameRate,10,100);
 }
 
 // deal damage to bloons in tower range
@@ -80,10 +80,14 @@ void mouseClicked() {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
     }
-    if (type != null && type.equals("Start") && ! animate) {
-      //println("start the animation");
-      currentLevel.startAnimation();
-      animate = true;
+    if (type != null && type.equals("Start")) {
+      if (! animate) {
+        //println("start the animation");
+        currentLevel.startAnimation();
+        animate = true;
+      } else {
+        animate = false;
+      }
     }
   }
 }

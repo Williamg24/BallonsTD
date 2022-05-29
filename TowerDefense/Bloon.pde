@@ -21,12 +21,15 @@ public class Bloon {
     type = type_;
     xCor = x;
     yCor = y;
-    speed = 0.001 * (type + 1);       // go faster for higher types
+    speed = 0.001 + type * 0.0008;       // go faster for higher types
     reward = (type + 1) * 10;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
     damage = type + 1;
-    
+    loadBloonImage();
+  }
+  
+  public void loadBloonImage() {
     switch(type) {
     case 0:
       bloonImage = loadImage("Red_Bloon.png");
@@ -66,10 +69,15 @@ public class Bloon {
   public void hit(int hitNum) {
     type -= hitNum;
     speed -= 0.001;
+    loadBloonImage();
   }
   
   public int getDamage() {
     return damage;
+  }
+  
+  public int getType() {
+    return type;
   }
 
   public float getX() {
@@ -127,11 +135,7 @@ public class Bloon {
       }
     }
   }
-
-  //public void incrementPointIndex() {
-  //  pointIndex++;
-  //}
-
+  
   public int getPointIndex() {
     return pointIndex;
   }
