@@ -6,6 +6,8 @@ public class Button {
   float radius;
   int money;
   String name;
+  color c = 0;
+  color textColor;
 
   public Button(String m, float x, float y, float w, float t, float curve, int cost) {
     xCor = x;
@@ -19,9 +21,9 @@ public class Button {
 
   // buy menu icon for towers
   public void displayIcon() {
-    fill(0);
+    fill(c);
     rect(xCor, yCor, wide, tall, radius);
-    fill(255);
+    fill(textColor);
     text("$" + money, xCor + wide / 4, yCor + tall - 3);
   }
 
@@ -38,5 +40,17 @@ public class Button {
   // check if mouse inside button
   boolean isInside(float x, float y) {
     return (x > xCor && x < xCor + wide && y > yCor && y < yCor + tall);
+  }
+  
+  public void setColor(color x){
+    c = x;
+  }
+  
+  public void enoughMoney(int value){
+    if (money <= value){
+      textColor = color(124,252,0);
+    }else {
+      textColor = #ff0000;
+    }
   }
 }

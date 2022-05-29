@@ -10,8 +10,8 @@ public class Sidebar {
     start = new Button("Start", MAP_WIDTH + 20, height-80, 250, 50, 10, 0);
   }
 
-  public void display() {
-    fill(#b5651d);
+  public void display(int value) {
+    fill(#e08b3e);
     rect(MAP_WIDTH, 0, width-MAP_WIDTH, height);
 
     fill(0);
@@ -19,12 +19,13 @@ public class Sidebar {
     text("Money: "+money, MAP_WIDTH+20, 30);
     text("Health: "+health, MAP_WIDTH+20, 60);
     text("Tower Type: "+type, MAP_WIDTH+20, 90);
-    displayButtons();
+    displayButtons(value);
   }
 
-  public void displayButtons() {
+  public void displayButtons(int x) {
     for (Button b : buttons) {
       b.displayIcon();
+      b.enoughMoney(x);
     }
     if (animate) {
       start.display(color(70, 160, 40));      // dim button if already clicked

@@ -23,7 +23,7 @@ void setup() {
 void draw() {
   background(90, 190, 50);     // the "grass"
   currentLevel.display();
-  bar.display();
+  bar.display(money);
   for (Tower t1 : towers) {
     t1.display();
     if (t1.canAttack()) {
@@ -79,6 +79,7 @@ void mouseClicked() {
     if (bar.findButton(mouseX, mouseY) != null) {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
+      selected.setColor(#BEBEBE);
     }
     if (type != null && type.equals("Start")) {
       if (! animate) {
