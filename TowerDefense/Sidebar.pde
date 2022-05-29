@@ -5,7 +5,7 @@ public class Sidebar {
   public Sidebar() {
     buttons = new ArrayList<Button>();
     buttons.add(new Button("Basic", MAP_WIDTH + 20, 120, 100, 120, 28, 10));
-    buttons.add(new Button("Advanced", MAP_WIDTH + 160, 120, 100, 120, 28, 20));
+    buttons.add(new Button("Advanced", MAP_WIDTH + 140, 120, 100, 120, 28, 20));
 
     start = new Button("Start", MAP_WIDTH + 20, height-80, 250, 50, 10, 0);
   }
@@ -50,6 +50,7 @@ public class Sidebar {
     while (!done && index < buttons.size()) {
       b = bar.getButton(index);
       if (b.isInside(x, y)) {
+        b.setColor(#BEBEBE);
         return b;
       } else {
         index++;

@@ -79,7 +79,6 @@ void mouseClicked() {
     if (bar.findButton(mouseX, mouseY) != null) {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
-      selected.setColor(#BEBEBE);
     }
     if (type != null && type.equals("Start")) {
       if (! animate) {
