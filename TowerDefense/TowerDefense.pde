@@ -80,10 +80,14 @@ void mouseClicked() {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
     }
-    if (type != null && type.equals("Start") && ! animate) {
-      //println("start the animation");
-      currentLevel.startAnimation();
-      animate = true;
+    if (type != null && type.equals("Start")) {
+      if (! animate) {
+        //println("start the animation");
+        currentLevel.startAnimation();
+        animate = true;
+      } else {
+        animate = false;
+      }
     }
   }
 }

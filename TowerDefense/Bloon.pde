@@ -27,14 +27,6 @@ public class Bloon {
     maxPointIndex = maxPointIndex_;
     damage = type + 1;
     loadBloonImage();
-    //switch(type) {
-    //case 0:
-    //  bloonImage = loadImage("Red_Bloon.png");
-    //  break;
-    //case 1:
-    //  bloonImage = loadImage("Blue_Bloon.png");
-    //  break;
-    //}
   }
   
   public void loadBloonImage() {

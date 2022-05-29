@@ -9,24 +9,12 @@ public class Level1 extends Level{
   }
 
   public void startAnimation() {
-    for (int i=0; i<15; i++) {
-      if (i % 5 == 0) {
-        bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
-      }// else {
-        bloons.add(new Bloon(0,points[0][0] - (float) i * 70, points[0][1], points.length));
-      //}
-    }
-  }
-  
-  public void sortBloons() {
-    Bloon b;
-    Bloon prev;
-    for (int i = 1; i<bloons.size(); i++) {
-      b = bloons.get(i);
-      if (b.getType() > 0) {                  // maybe swap with previous bloon
-        swapOrder(i);
-        //prev = bloons.get(i-1);
-        //if (b.getPointIndex() > prev.getPointIndex() || )
+    if (bloons.size() == 0) {
+      for (int i=0; i<20; i++) {
+        if (i % 5 == 0) {
+          bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
+        }
+         bloons.add(new Bloon(0,points[0][0] - (float) i * 70, points[0][1], points.length));
       }
     }
   }
@@ -52,7 +40,11 @@ public class Level1 extends Level{
 
   public void display() {
     displayPath();
-    displayBloons();
+    if (animate) {
+      displayBloons();
+    } else {
+      displayStillBloons();
+    }
     text("bloons length: "+bloons.size(),10,40);
   }
 
@@ -88,6 +80,15 @@ public class Level1 extends Level{
         bloons.remove(i);
         i--;
       }
+    }
+  }
+  
+  public void displayStillBloons() {
+    Bloon b;
+    for (int i=0; i<bloons.size(); i++) {
+      b = bloons.get(i);
+      b.display();
+      text("pointIndex: "+b.getPointIndex(), 10, 80);
     }
   }
 
