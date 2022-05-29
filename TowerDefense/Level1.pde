@@ -1,13 +1,13 @@
 public class Level1 extends Level{
   PImage mapImg;
   int[][] points = {{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {568,405}, {568,236}, {679,236}, {679,512}, {400,512}, {400,height}};
-  
+
   public Level1() {
     super();
     mapImg = loadImage("Level1_map.jpg");
-    
+
   }
-  
+
   public void startAnimation() {
     for (int i=0; i<15; i++) {
       if (i % 5 == 0) {
@@ -17,11 +17,43 @@ public class Level1 extends Level{
       //}
     }
   }
+  
+  public void sortBloons() {
+    Bloon b;
+    Bloon prev;
+    for (int i = 1; i<bloons.size(); i++) {
+      b = bloons.get(i);
+      if (b.getType() > 0) {                  // maybe swap with previous bloon
+        swapOrder(i);
+        //prev = bloons.get(i-1);
+        //if (b.getPointIndex() > prev.getPointIndex() || )
+      }
+    }
+  }
+  
+  public void swapOrder(int index) {
+    Bloon b = bloons.get(index);
+    Bloon prev = bloons.get(index-1);
+    int pIndex1 = b.getPointIndex();
+    int pIndex2 = prev.getPointIndex();
+    
+    if (pIndex1 > pIndex2) {
+      bloons.remove(index);
+      bloons.add(index-1,b);
+    } else if (pIndex1 == pIndex2){
+      int aimX = points[pIndex1][0];
+      int aimY = points[pIndex1][1];
+      if (dist(b.getX(),b.getY(),aimX,aimY) > dist(prev.getX(),prev.getY(),aimX,aimY)) {
+         bloons.remove(index);
+         bloons.add(index-1,b);
+      }
+    }
+  }
 
   public void display() {
     displayPath();
     displayBloons();
-    text("bloons length "+bloons.size(),10,40);
+    text("bloons length: "+bloons.size(),10,40);
   }
 
   public void displayPath() {
@@ -41,6 +73,10 @@ public class Level1 extends Level{
         reference = points[index];
         b.setNewX(reference[0], findConstantX(index));
         b.setNewY(reference[1], findConstantY(index), index);
+        
+        if (i > 0 && b.getType() > 0) {
+          swapOrder(i);
+        }
         b.display();
       } else {
         if (b.getT() > 1 || b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
@@ -54,7 +90,7 @@ public class Level1 extends Level{
       }
     }
   }
-  
+
   // finds out if x should be increased or decreased
   public int findConstantX(int index) {
     if (points[index][0] - points[index-1][0] > 0) {
@@ -62,7 +98,7 @@ public class Level1 extends Level{
     }
     return -1;
   }
-  
+
   public int findConstantY(int index) {
     if (points[index][1] - points[index-1][1] > 0) {
        return 1;
@@ -73,5 +109,5 @@ public class Level1 extends Level{
   public boolean onPath(float x, float y) {
     return false;
   }
-  
+
 }

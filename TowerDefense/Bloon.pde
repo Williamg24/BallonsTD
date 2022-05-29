@@ -83,6 +83,10 @@ public class Bloon {
   public int getDamage() {
     return damage;
   }
+  
+  public int getType() {
+    return type;
+  }
 
   public float getX() {
     return xCor;
