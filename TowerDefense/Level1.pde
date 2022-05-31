@@ -117,8 +117,8 @@ public class Level1 extends Level{
     return -1;
   }
 
-  //public boolean onPath(float x, float y) {
-  //  return false;
-  //}
+  public boolean onPath(float x, float y) {
+    return false;
+  }
 
 }
