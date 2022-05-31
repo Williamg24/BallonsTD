@@ -18,7 +18,7 @@ public class Sidebar {
     textSize(22);
     text("Money: "+money, MAP_WIDTH+20, 30);
     text("Health: "+health, MAP_WIDTH+20, 60);
-    text("Tower Type: "+type, MAP_WIDTH+20, 90);
+    //text("Tower Type: "+type, MAP_WIDTH+20, 90);
     displayButtons(value);
   }
 

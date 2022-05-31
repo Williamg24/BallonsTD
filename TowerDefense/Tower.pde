@@ -23,7 +23,7 @@ public class Tower {
   }
 
   public void loadTopView() {
-    switch(cost){
+    switch(cost) {
     case 10:
       TopView = loadImage("TopView1.png");
       break;
@@ -54,7 +54,9 @@ public class Tower {
     }
     //fill(towerColor);
     //ellipse(x, y, Tsize, Tsize);
-    image(TopView,x - Tsize/2,y - Tsize/2,Tsize,Tsize);
+    if (TopView != null) {
+      image(TopView, x - Tsize/2, y - Tsize/2, Tsize, Tsize);
+    }
     tick++;
   }
 
