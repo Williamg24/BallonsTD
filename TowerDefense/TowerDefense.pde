@@ -3,7 +3,7 @@ ArrayList<Tower> towers = new ArrayList<Tower>();
 
 int money;
 int health;
-int currentBloon;
+//int currentBloon;
 String type;
 boolean animate;
 Sidebar bar;
@@ -14,7 +14,7 @@ void setup() {
   size(1200, 700);
   currentLevel = new Level1();
   health = 5;
-  currentBloon = currentLevel.getSize() - 1;
+  //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
   money = 50;
@@ -32,7 +32,7 @@ void draw() {
   }
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
-  text("frame rate: "+frameRate,10,100);
+  //text("frame rate: "+frameRate,10,100);
 }
 
 // deal damage to bloons in tower range
@@ -80,10 +80,13 @@ void mouseClicked() {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
     }
-    if (type != null && type.equals("Start") && ! animate) {
-      //println("start the animation");
-      currentLevel.startAnimation();
-      animate = true;
+    if (type != null && type.equals("Start")) {
+      if (! animate) {
+        currentLevel.startAnimation();
+        animate = true;
+      } else {
+        animate = false;
+      }
     }
   }
 }
