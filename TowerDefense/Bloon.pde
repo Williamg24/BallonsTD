@@ -73,7 +73,7 @@ public class Bloon {
   }
   
   public int getDamage() {
-    return damage;
+    return type+1;
   }
   
   public int getType() {
@@ -96,7 +96,7 @@ public class Bloon {
     yCor = y;
   }
 
-  public void setNewX(int aimX, int constant) {
+  public void setNewX(int aimX, int constant, int index) {
     if (pointIndex % 2 != 1) {
       return;
     }
