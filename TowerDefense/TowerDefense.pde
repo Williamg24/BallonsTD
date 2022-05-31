@@ -90,6 +90,7 @@ void mouseClicked() {
       }
     }
   }
+  updateButtons();
 }
 
 void keyPressed() {
@@ -100,6 +101,14 @@ void keyPressed() {
       Tower removed = towers.get(index);
       towers.remove(index);
       money += removed.getCost();
+    }
+  }
+}
+
+void updateButtons(){
+  for (Button b :bar.buttons){
+    if (b != selected){
+      b.setColor(0);
     }
   }
 }
