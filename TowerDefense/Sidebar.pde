@@ -1,6 +1,8 @@
 public class Sidebar {
   ArrayList<Button> buttons;
   Button start;
+  PImage moneypic = loadImage("money.png");
+  PImage hp = loadImage("HP.png");
 
   public Sidebar() {
     buttons = new ArrayList<Button>();
@@ -15,10 +17,17 @@ public class Sidebar {
     rect(MAP_WIDTH, 0, width-MAP_WIDTH, height);
 
     fill(0);
-    textSize(22);
-    text("Money: "+money, MAP_WIDTH+20, 30);
-    text("Health: "+health, MAP_WIDTH+20, 60);
+    textSize(45);
+    // Money Display
+    image(moneypic,MAP_WIDTH+20,3,60,60);
+    fill(#FFD700); // gold color for money text
+    text(": "+money, MAP_WIDTH+80, 50);
+    // HP Display
+    image(hp,MAP_WIDTH+20,60,60,60);
+    fill(#A91101); // red color for hp text
+    text(": "+health, MAP_WIDTH+80, 105);
     //text("Tower Type: "+type, MAP_WIDTH+20, 90);
+    textSize(23);
     displayButtons(value);
   }
 
