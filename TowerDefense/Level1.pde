@@ -5,7 +5,6 @@ public class Level1 extends Level{
   public Level1() {
     super();
     mapImg = loadImage("Level1_map.jpg");
-
   }
 
   public void startAnimation() {
@@ -73,8 +72,8 @@ public class Level1 extends Level{
         //b.move();
         index = b.getPointIndex();
         reference = points[index];
-        b.setNewX(reference[0], findConstantX(index));
-        b.setNewY(reference[1], findConstantY(index), index);
+        b.setNewX(reference[0], findConstantX(index),index);
+        b.setNewY(reference[1], findConstantY(index),index);
         
         //if (i > 0 && b.getType() > 0) {
         //  swapOrder(i);
