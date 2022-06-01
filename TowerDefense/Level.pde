@@ -60,7 +60,7 @@ public class Level {
     return height/2;
   }
 
-  public int getSize() {
-    return bloons.size();
-  }
+  //public int getSize() {
+  //  return bloons.size();
+  //}
 }

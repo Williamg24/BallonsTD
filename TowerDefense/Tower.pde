@@ -77,7 +77,7 @@ public class Tower {
     float distance = dist(x, y, value.xCor, value.yCor);
     return (distance <= range);
   }
-  public float getRange() {
+  public int getRange() {
     return range;
   }
 
@@ -85,7 +85,7 @@ public class Tower {
     return damage;
   }
 
-  public float getDelay() {
+  public int getDelay() {
     return delay;
   }
 
