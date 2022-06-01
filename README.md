@@ -30,12 +30,18 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
 - ### 5/26
   - Maya Mori: Created Level1 class which uses an image for the map and it has an separate path function.
   - William Guo: Started inserting images for different bloons based on it's type, can be displayed on map, working of switching between images.
+- ### 5/27
+  - Maya Mori: Worked on improving Bloon constructor, its animation and difficulty of Level 1.
 - ### 5/29
-  - William Guo: Worked on displaying images for towers on map as well as buttons. Highlights which button is selected and changes text color to indicate whether           there's enough money to buy tower. 
+  - William Guo: Worked on displaying images for towers on map as well as buttons. Highlights which button is selected and changes text color to indicate whether           there's enough money to buy tower.
+  - Maya Mori: Start button can pause the game and bloons are stored in order they appear in on map.
 - ### 5/30
-  - William Guo: Minor fixes for buttons and added more images for game display. Researching on image rotations and have towers face bloons when attacking. 
-- ## 5/31
-  - William Guo: Started on tower upgrades by creating new class called Upgrades and having menu pop up only when tower icon selected. 
+  - William Guo: Minor fixes for buttons and added more images for game display. Researching on image rotations and have towers face bloons when attacking.
+- ### 5/31
+  - William Guo: Started on tower upgrades by creating new class called Upgrades and having menu pop up only when tower icon selected.
+  - Maya Mori: Made some minor fixes including changing parameters to a function, updating player's health and a placeholder function.
+- ## 6/1
+ - Maya Mori: Wrote a function to detect if a point is on  the path for Level1.
 
 <!---
 05/20
@@ -73,6 +79,6 @@ Maya Mori: Created Level1 class which uses an image for the map and it has an se
 William Guo: Started inserting images for different bloons based on it's type, can be displayed on map, working of switching between images.
 
 5/29
-William Guo: Worked on displaying images for towers on map as well as buttons. Highlights which button is selected and changes text color to indicate whether there's enough money to buy tower. 
+William Guo: Worked on displaying images for towers on map as well as buttons. Highlights which button is selected and changes text color to indicate whether there's enough money to buy tower.
 
 -->

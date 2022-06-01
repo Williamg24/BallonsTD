@@ -22,7 +22,7 @@ public class Bloon {
     xCor = x;
     yCor = y;
     speed = 0.001 + type * 0.0008;       // go faster for higher types
-    reward = (type + 1) * 10;
+    reward = (type + 1) * 5;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
     damage = type + 1;
