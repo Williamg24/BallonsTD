@@ -45,6 +45,7 @@ public class Button {
     rect(xCor, yCor, wide, tall, radius);
     fill(0);
     text(name,xCor + wide / 2, height - 20);
+    noFill();
   }
 
   // utility buttons like start, pause etc.
