@@ -34,6 +34,8 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
   - William Guo: Worked on displaying images for towers on map as well as buttons. Highlights which button is selected and changes text color to indicate whether           there's enough money to buy tower. 
 - ### 5/30
   - William Guo: Minor fixes for buttons and added more images for game display. Researching on image rotations and have towers face bloons when attacking. 
+- ## 5/31
+  - William Guo: Started on tower upgrades by creating new class called Upgrades and having menu pop up only when tower icon selected. 
 
 <!---
 05/20

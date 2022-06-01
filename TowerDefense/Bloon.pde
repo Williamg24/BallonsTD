@@ -28,7 +28,7 @@ public class Bloon {
     damage = type + 1;
     loadBloonImage();
   }
-  
+
   public void loadBloonImage() {
     switch(type) {
     case 0:
@@ -71,11 +71,11 @@ public class Bloon {
     speed -= 0.001;
     loadBloonImage();
   }
-  
+
   public int getDamage() {
     return type+1;
   }
-  
+
   public int getType() {
     return type;
   }
@@ -97,7 +97,7 @@ public class Bloon {
   }
 
   public void setNewX(int aimX, int constant, int index) {
-    if (pointIndex % 2 != 1) {
+    if (index % 2 != 1) {
       return;
     }
     float newX = xCor + speed*3000*constant;
@@ -135,7 +135,7 @@ public class Bloon {
       }
     }
   }
-  
+
   public int getPointIndex() {
     return pointIndex;
   }
