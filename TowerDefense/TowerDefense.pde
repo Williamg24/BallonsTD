@@ -27,7 +27,7 @@ void draw() {
   bar.display(money);
   for (Tower t1 : towers) {
     t1.display();
-    if (t1.canAttack()) {
+    if (t1.canAttack() && animate) {
       attackBloons(t1);
     }
   }
@@ -88,7 +88,7 @@ void mouseClicked() {
     if (bar.findButton(mouseX, mouseY) != null && bar.findButton(mouseX, mouseY) != selected) {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
-    } else {
+    } else if (selected != null){
       selected.setColor(0);
       selected = null;
     }
