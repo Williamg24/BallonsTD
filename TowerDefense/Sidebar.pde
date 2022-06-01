@@ -9,7 +9,7 @@ public class Sidebar {
     buttons.add(new Button("Basic", MAP_WIDTH + 20, 120, 100, 120, 28, 10));
     buttons.add(new Button("Advanced", MAP_WIDTH + 140, 120, 100, 120, 28, 20));
 
-    start = new Button("Start", MAP_WIDTH + 20, height-80, 250, 50, 10, 0);
+    start = new Button("Start", MAP_WIDTH + 20, 260, 250, 50, 10, 0);
   }
 
   public void display(int value) {

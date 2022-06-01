@@ -1,4 +1,4 @@
-public class Button {
+public class Button { //<>//
   PImage towerImage; 
   float xCor;
   float yCor;
@@ -12,7 +12,7 @@ public class Button {
 
   public Button(String m, float x, float y, float w, float t, float curve, int cost) {
     xCor = x;
-    yCor = y; //<>//
+    yCor = y;
     wide = w;
     tall = t;
     radius = curve;
@@ -37,15 +37,20 @@ public class Button {
     rect(xCor, yCor, wide, tall, radius);
     fill(textColor);
     text("$" + money, xCor + wide / 4, yCor + tall - 3);
-    image(towerImage,xCor + wide/11,yCor + tall/8,80,80);
+    image(towerImage, xCor + wide/11, yCor + tall/8, 80, 80);
   }
-  
+
   // displays for upgrades
-  public void displayUpgrades(){
-    rect(xCor, yCor, wide, tall, radius);
+  public void displayUpgrades() {
+    stroke(0);
+    fill(255);
+    rect(MAP_WIDTH, height - 80, wide, tall, radius);
     fill(0);
-    text(name,xCor + wide / 2, height - 20);
-    noFill();
+    text(name, MAP_WIDTH + wide / 3, height - 20);
+    fill(255);
+    rect(MAP_WIDTH + wide, height - 80, wide, tall, radius);
+    fill(0);
+    text(name, MAP_WIDTH  + wide + wide/3, height - 20);
   }
 
   // utility buttons like start, pause etc.
