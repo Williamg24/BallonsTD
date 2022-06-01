@@ -76,9 +76,12 @@ void mouseClicked() {
   }
   // select the type of tower
   if (bar.inSidebar(mouseX)) {
-    if (bar.findButton(mouseX, mouseY) != null) {
+    if (bar.findButton(mouseX, mouseY) != null && bar.findButton(mouseX,mouseY) != selected) {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
+    }else if (bar.findButton(mouseX,mouseY) == selected){
+      selected.setColor(0);
+      selected = null;
     }
     if (type != null && type.equals("Start")) {
       if (! animate) {
