@@ -30,6 +30,14 @@ void draw() {
       attackBloons(t1);
     }
   }
+  
+  for (int x = 0; x<width; x++) {
+    for (int y = 0; y<height; y++) {
+      if (currentLevel.onPath(x,y)) {
+        ellipse(x,y,1,1);
+      }
+    }
+  }
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
   //text("frame rate: "+frameRate,10,100);

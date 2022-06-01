@@ -6,7 +6,7 @@ public class Level1 extends Level{
   public Level1() {
     super();
     mapImg = loadImage("Level1_map.jpg");
-    pathWidth = 30;
+    pathWidth = 50;
   }
 
   public void startAnimation() {
@@ -123,6 +123,10 @@ public class Level1 extends Level{
     if (points[rect][0] == points[rect+1][0]) {
       if (x > points[rect][0] - pathWidth/2 && x < points[rect][0] + pathWidth/2) {
         return (y > min(points[rect][1], points[rect+1][1]) && y < max(points[rect][1], points[rect+1][1]));
+      }
+    } else {
+      if (y > points[rect][1] - pathWidth/2 && y < points[rect][1] + pathWidth/2) {
+        return (x > min(points[rect][0], points[rect+1][0]) && x < max(points[rect][0], points[rect+1][0]));
       }
     }
     return false;
