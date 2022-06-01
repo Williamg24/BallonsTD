@@ -39,6 +39,13 @@ public class Button {
     text("$" + money, xCor + wide / 4, yCor + tall - 3);
     image(towerImage,xCor + wide/11,yCor + tall/8,80,80);
   }
+  
+  // displays for upgrades
+  public void displayUpgrades(){
+    rect(xCor, yCor, wide, tall, radius);
+    fill(0);
+    text(name,xCor + wide / 2, height - 20);
+  }
 
   // utility buttons like start, pause etc.
   public void display(color c) {

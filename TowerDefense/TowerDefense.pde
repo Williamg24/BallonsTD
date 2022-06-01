@@ -9,6 +9,7 @@ boolean animate;
 Sidebar bar;
 Level currentLevel;
 Button selected;
+Upgrades test;
 
 void setup() {
   size(1200, 700);
@@ -30,6 +31,14 @@ void draw() {
       attackBloons(t1);
     }
   }
+
+  // testing upgrades pop up
+  if (selected != null) {
+    test = new Upgrades(selected);
+    test.display();
+  }
+
+
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
   //text("frame rate: "+frameRate,10,100);
@@ -76,10 +85,10 @@ void mouseClicked() {
   }
   // select the type of tower
   if (bar.inSidebar(mouseX)) {
-    if (bar.findButton(mouseX, mouseY) != null && bar.findButton(mouseX,mouseY) != selected) {
+    if (bar.findButton(mouseX, mouseY) != null && bar.findButton(mouseX, mouseY) != selected) {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
-    }else if (bar.findButton(mouseX,mouseY) == selected){
+    } else {
       selected.setColor(0);
       selected = null;
     }
@@ -107,9 +116,9 @@ void keyPressed() {
   }
 }
 
-void updateButtons(){
-  for (Button b :bar.buttons){
-    if (b != selected){
+void updateButtons() {
+  for (Button b : bar.buttons) {
+    if (b != selected) {
       b.setColor(0);
     }
   }
