@@ -11,6 +11,8 @@ Level currentLevel;
 Button selected;
 Upgrades test;
 
+Button Upgradetest;
+
 void setup() {
   size(1200, 700);
   currentLevel = new Level1();
@@ -37,6 +39,7 @@ void draw() {
     test = new Upgrades(selected);
     test.display();
   }
+  
   
   // visual test for onPath
   //fill(100,30,100,150);
@@ -111,6 +114,17 @@ void mouseClicked() {
       }
     }
   }
+  
+  // test for upgrade menu
+  if (test != null && test.inMenu(mouseX,mouseY)){
+    println(test.inMenu(mouseX,mouseY));
+    if (test.selectUpgrade(mouseX, mouseY) != null){
+      Upgradetest = test.selectUpgrade(mouseX, mouseY);
+      Upgradetest.setColor(#BEBEBE);
+    }
+  }
+  
+  
   updateButtons();
 }
 
