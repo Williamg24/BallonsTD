@@ -4,8 +4,9 @@ public class Level1 extends Level {
   int pathWidth;
   int levelNum;
   int[][][] levelPoints = {{{0, height/2}, {MAP_WIDTH, height/2}}, 
-    {{0, 296}, {445, 296}, {445, 129}, {294, 129}, {294, 566}, {145, 566}, {145, 405}, {572, 405}, {572, 236}, {679, 236}, {679, 512}, {400, 512}, {400, height}},
-    {{745, 0}, {745, 136}, {727, 169}, {683, 187}, {628, 164}, {571, 121}, {523, 98}, {442, 93}, {334, 120}}};//, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, }};
+    {{0, 296}, {445, 296}, {445, 129}, {294, 129}, {294, 566}, {145, 566}, {145, 405}, {572, 405}, {572, 236}, {679, 236}, {679, 512}, {400, 512}, {400, height}}, 
+    {{745, 0}, {745, 136}, {727, 169}, {683, 187}, {628, 164}, {571, 121}, {523, 98}, {442, 90}, {334, 120}, {281, 160}, {235, 222}, {207, 290}, {198, 365}, 
+     {213, 450}, {259, 530}, {313, 579}, {380, 618}, {474, 628}, {554, 606}, {629, 559}, {653, 523}, {643, 498}, {620, 479}}};
 
   public Level1(int[][] points_, String imageName) {
     super();
@@ -72,12 +73,12 @@ public class Level1 extends Level {
     } else {
       displayStillBloons();
     }
-    
-    //fill(150,0,0);
-    //noStroke();
-    //for (int[] point: points) {
-    //  ellipse(point[0], point[1], 4,4);
-    //}
+
+    fill(200, 0, 0);
+    noStroke();
+    for (int[] point : points) {
+      ellipse(point[0], point[1], 4, 4);
+    }
     //text("bloons length: "+bloons.size(),10,40);
   }
 
@@ -99,8 +100,10 @@ public class Level1 extends Level {
         if (! b.setNewCoord(reference)) {
           b.increasePointIndex();
           index = b.getPointIndex();
-          reference = points[index];
-          b.setNewCoord(reference);
+          if (index < points.length) {
+            reference = points[index];
+            b.setNewCoord(reference);
+          }
         }
         //b.setNewX(reference[0], findConstantX(index),index);
         //b.setNewY(reference[1], findConstantY(index),index);
@@ -109,7 +112,8 @@ public class Level1 extends Level {
         //  swapOrder(i);
         //}
         b.display();
-      } else {
+      }
+      if (b.isPopped()) {
         if (b.getT() > 1 || b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
           health -= b.getDamage();
           //println(b.getDamage());
