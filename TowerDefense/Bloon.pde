@@ -115,6 +115,27 @@ public class Bloon {
       }
     }
   }
+  
+  
+  // returns if position was changed or not
+  public boolean setNewCoord(int[] aim) {
+    float fracToCover = speed * 3000 / dist(xCor, yCor, aim[0], aim[1]);
+    float newX = xCor + fracToCover * (aim[0] - xCor);
+    float newY = yCor + fracToCover * (aim[1] - yCor);
+    
+    if (dist(xCor, yCor, newX, newY) > dist(xCor, yCor, aim[0], aim[1])) {
+      //pointIndex++;
+      return false;
+    } else {
+      xCor = newX;
+      yCor = newY;
+      return true;
+    }
+  }
+  
+  public void increasePointIndex() {
+    pointIndex++;
+  }
 
   public void setNewY(int aimY, int constant, int index) {
     if (index % 2 != 0) {
