@@ -1,10 +1,12 @@
 public class Level1 extends Level{
   PImage mapImg;
-  int[][] points = {{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {568,405}, {568,236}, {679,236}, {679,512}, {400,512}, {400,height}};
+  int[][] points = {{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {572,405}, {572,236}, {679,236}, {679,512}, {400,512}, {400,height}};
+  int pathWidth;
 
   public Level1() {
     super();
     mapImg = loadImage("Level1_map.jpg");
+    pathWidth = 50;
   }
 
   public void startAnimation() {
@@ -116,8 +118,28 @@ public class Level1 extends Level{
     }
     return -1;
   }
+  
+  // checks if (x,y) is on the path from rect to rect+1
+  private boolean inRectangle(float x, float y, int rect) {
+    //fill(100,30,100,50);
+    if (points[rect][0] == points[rect+1][0]) {
+      if (x > points[rect][0] - pathWidth/2 && x < points[rect][0] + pathWidth/2) {
+        return (y > min(points[rect][1], points[rect+1][1]) - pathWidth/2 && y < max(points[rect][1], points[rect+1][1]) + pathWidth/2);
+      }
+    } else {
+      if (y > points[rect][1] - pathWidth/2 && y < points[rect][1] + pathWidth/2) {
+        return (x > min(points[rect][0], points[rect+1][0]) - pathWidth/2 && x < max(points[rect][0], points[rect+1][0]) + pathWidth/2);
+      }
+    }
+    return false;
+  }
 
   public boolean onPath(float x, float y) {
+    for (int i = 0; i<points.length-1; i++) {
+      if (inRectangle(x,y,i)) {
+        return true;
+      }
+    }
     return false;
   }
 
