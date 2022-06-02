@@ -1,11 +1,21 @@
 public class Level1 extends Level{
   PImage mapImg;
-  int[][] points = {{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {572,405}, {572,236}, {679,236}, {679,512}, {400,512}, {400,height}};
+  int[][] points;// = {{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {572,405}, {572,236}, {679,236}, {679,512}, {400,512}, {400,height}};
   int pathWidth;
+  int levelNum;
+  int[][][] levelPoints = {{{0}}, {{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {572,405}, {572,236}, {679,236}, {679,512}, {400,512}, {400,height}}};
 
-  public Level1() {
+  public Level1(int[][] points_, String imageName) {
     super();
-    mapImg = loadImage("Level1_map.jpg");
+    points = points_;
+    mapImg = loadImage(imageName);
+    pathWidth = 50;
+  }
+  
+  public Level1(int levelType) {
+    levelNum = levelType;
+    points = levelPoints[levelNum];
+    mapImg = loadImage("Level"+levelNum+"_map.jpg");
     pathWidth = 50;
   }
 
