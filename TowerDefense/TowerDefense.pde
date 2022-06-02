@@ -12,7 +12,7 @@ Button selected;
 
 void setup() {
   size(1200, 700);
-  currentLevel = new Level1(1);//(new int[][]{{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {572,405}, {572,236}, {679,236}, {679,512}, {400,512}, {400,height}}, "Level1_map.jpg");
+  currentLevel = new Level1(2);//(new int[][]{{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {572,405}, {572,236}, {679,236}, {679,512}, {400,512}, {400,height}}, "Level1_map.jpg");
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();

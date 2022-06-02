@@ -1,9 +1,11 @@
-public class Level1 extends Level{
+public class Level1 extends Level {
   PImage mapImg;
   int[][] points;// = {{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {572,405}, {572,236}, {679,236}, {679,512}, {400,512}, {400,height}};
   int pathWidth;
   int levelNum;
-  int[][][] levelPoints = {{{0}}, {{0,296}, {445,296}, {445,129}, {294,129}, {294,566}, {145,566}, {145,405}, {572,405}, {572,236}, {679,236}, {679,512}, {400,512}, {400,height}}};
+  int[][][] levelPoints = {{{0, height/2}, {MAP_WIDTH, height/2}}, 
+    {{0, 296}, {445, 296}, {445, 129}, {294, 129}, {294, 566}, {145, 566}, {145, 405}, {572, 405}, {572, 236}, {679, 236}, {679, 512}, {400, 512}, {400, height}},
+    {{745, 0}, {745, 136}, {727, 169}, {683, 187}, {628, 164}, {544, 107}, {442, 93}, {334, 120}}};//, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, {, }, }};
 
   public Level1(int[][] points_, String imageName) {
     super();
@@ -11,7 +13,7 @@ public class Level1 extends Level{
     mapImg = loadImage(imageName);
     pathWidth = 50;
   }
-  
+
   public Level1(int levelType) {
     levelNum = levelType;
     points = levelPoints[levelNum];
@@ -25,11 +27,15 @@ public class Level1 extends Level{
         //if (i % 5 == 0) {
         //  bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
         //}
-         bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
+        if (points[0][0] == 0) {
+          bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
+        } else {
+          bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
+        }
       }
     }
   }
-  
+
   public void sortBloons() {
     Bloon b;
     for (int i=1; i<bloons.size(); i++) {
@@ -39,22 +45,22 @@ public class Level1 extends Level{
       }
     }
   }
-  
+
   public void swapOrder(int index) {
     Bloon b = bloons.get(index);
     Bloon prev = bloons.get(index-1);
     int pIndex1 = b.getPointIndex();
     int pIndex2 = prev.getPointIndex();
-    
+
     if (pIndex1 > pIndex2) {
       bloons.remove(index);
-      bloons.add(index-1,b);
-    } else if (pIndex1 == pIndex2){
+      bloons.add(index-1, b);
+    } else if (pIndex1 == pIndex2) {
       int aimX = points[pIndex1][0];
       int aimY = points[pIndex1][1];
-      if (dist(b.getX(),b.getY(),aimX,aimY) < dist(prev.getX(),prev.getY(),aimX,aimY)) {
-         bloons.remove(index);
-         bloons.add(index-1,b);
+      if (dist(b.getX(), b.getY(), aimX, aimY) < dist(prev.getX(), prev.getY(), aimX, aimY)) {
+        bloons.remove(index);
+        bloons.add(index-1, b);
       }
     }
   }
@@ -65,6 +71,12 @@ public class Level1 extends Level{
       displayBloons();
     } else {
       displayStillBloons();
+    }
+    
+    fill(255,0,0);
+    noStroke();
+    for (int[] point: points) {
+      ellipse(point[0], point[1], 4,4);
     }
     //text("bloons length: "+bloons.size(),10,40);
   }
@@ -90,7 +102,7 @@ public class Level1 extends Level{
         }
         //b.setNewX(reference[0], findConstantX(index),index);
         //b.setNewY(reference[1], findConstantY(index),index);
-        
+
         //if (i > 0 && b.getType() > 0) {
         //  swapOrder(i);
         //}
@@ -108,7 +120,7 @@ public class Level1 extends Level{
     }
     sortBloons();
   }
-  
+
   public void displayStillBloons() {
     Bloon b;
     for (int i=0; i<bloons.size(); i++) {
@@ -118,21 +130,21 @@ public class Level1 extends Level{
     }
   }
 
-  // finds out if x should be increased or decreased
-  public int findConstantX(int index) {
-    if (points[index][0] - points[index-1][0] > 0) {
-       return 1;
-    }
-    return -1;
-  }
+  //// finds out if x should be increased or decreased
+  //public int findConstantX(int index) {
+  //  if (points[index][0] - points[index-1][0] > 0) {
+  //     return 1;
+  //  }
+  //  return -1;
+  //}
 
-  public int findConstantY(int index) {
-    if (points[index][1] - points[index-1][1] > 0) {
-       return 1;
-    }
-    return -1;
-  }
-  
+  //public int findConstantY(int index) {
+  //  if (points[index][1] - points[index-1][1] > 0) {
+  //     return 1;
+  //  }
+  //  return -1;
+  //}
+
   // checks if (x,y) is on the path from rect to rect+1
   private boolean inRectangle(float x, float y, int rect) {
     //fill(100,30,100,50);
@@ -150,11 +162,10 @@ public class Level1 extends Level{
 
   public boolean onPath(float x, float y) {
     for (int i = 0; i<points.length-1; i++) {
-      if (inRectangle(x,y,i)) {
+      if (inRectangle(x, y, i)) {
         return true;
       }
     }
     return false;
   }
-
 }

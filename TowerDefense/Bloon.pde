@@ -96,25 +96,25 @@ public class Bloon {
     yCor = y;
   }
 
-  public void setNewX(int aimX, int constant, int index) {
-    if (index % 2 != 1) {
-      return;
-    }
-    float newX = xCor + speed*3000*constant;
-    if (constant > 0) {
-      if (newX > aimX) {
-        pointIndex++;
-      } else {
-        xCor = newX;
-      }
-    } else {
-      if (newX < aimX) {
-        pointIndex++;
-      } else {
-        xCor = newX;
-      }
-    }
-  }
+  //public void setNewX(int aimX, int constant, int index) {
+  //  if (index % 2 != 1) {
+  //    return;
+  //  }
+  //  float newX = xCor + speed*3000*constant;
+  //  if (constant > 0) {
+  //    if (newX > aimX) {
+  //      pointIndex++;
+  //    } else {
+  //      xCor = newX;
+  //    }
+  //  } else {
+  //    if (newX < aimX) {
+  //      pointIndex++;
+  //    } else {
+  //      xCor = newX;
+  //    }
+  //  }
+  //}
   
   
   // returns if position was changed or not
@@ -123,7 +123,7 @@ public class Bloon {
     float newX = xCor + fracToCover * (aim[0] - xCor);
     float newY = yCor + fracToCover * (aim[1] - yCor);
     
-    if (dist(xCor, yCor, newX, newY) > dist(xCor, yCor, aim[0], aim[1])) {
+    if (dist(xCor, yCor, newX, newY) > dist(xCor, yCor, aim[0], aim[1])) {    // if new position overshoots the target coordinates
       //pointIndex++;
       return false;
     } else {
@@ -137,25 +137,25 @@ public class Bloon {
     pointIndex++;
   }
 
-  public void setNewY(int aimY, int constant, int index) {
-    if (index % 2 != 0) {
-      return;
-    }
-    float newY = yCor + speed*3000*constant;
-    if (constant > 0) {
-      if (newY > aimY) {
-        pointIndex++;
-      } else {
-        yCor = newY;
-      }
-    } else {
-      if (newY < aimY) {
-        pointIndex++;
-      } else {
-        yCor = newY;
-      }
-    }
-  }
+  //public void setNewY(int aimY, int constant, int index) {
+  //  if (index % 2 != 0) {
+  //    return;
+  //  }
+  //  float newY = yCor + speed*3000*constant;
+  //  if (constant > 0) {
+  //    if (newY > aimY) {
+  //      pointIndex++;
+  //    } else {
+  //      yCor = newY;
+  //    }
+  //  } else {
+  //    if (newY < aimY) {
+  //      pointIndex++;
+  //    } else {
+  //      yCor = newY;
+  //    }
+  //  }
+  //}
 
   public int getPointIndex() {
     return pointIndex;
