@@ -31,6 +31,11 @@ public class Button { //<>//
       break;
     }
   }
+  
+  public boolean isTower() {
+    return money > 0;
+  }
+  
   // buy menu icon for towers
   public void displayIcon() {
     fill(c);

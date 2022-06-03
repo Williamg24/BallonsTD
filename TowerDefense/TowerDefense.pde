@@ -10,6 +10,7 @@ Sidebar bar;
 Level currentLevel;
 Button selected;
 Upgrades menu;
+Button selectedTower;
 
 Button upgradePath;
 String upgradename;
@@ -36,7 +37,8 @@ void draw() {
   }
 
   // testing upgrades pop up
-  if (selected != null) {
+  //if (selected != null) {
+   if (selectedTower != null) {
     menu = new Upgrades(selected);
     menu.display();
   } else {
@@ -49,16 +51,16 @@ void draw() {
    }
    */
 
-  // visual test for onPath
-  fill(100,30,100,150);
-  noStroke();
-  for (int x = 0; x<width; x++) {
-    for (int y = 0; y<height; y++) {
-      if (currentLevel.onPath(x,y)) {
-        ellipse(x,y,1,1);
-      }
-    }
-  }
+  //// visual test for onPath
+  //fill(100,30,100,150);
+  //noStroke();
+  //for (int x = 0; x<width; x++) {
+  //  for (int y = 0; y<height; y++) {
+  //    if (currentLevel.onPath(x,y)) {
+  //      ellipse(x,y,1,1);
+  //    }
+  //  }
+  //}
 
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
@@ -116,6 +118,9 @@ void mouseClicked() {
     } else if (selected != null) {
       selected.setColor(0);
       selected = null;
+      if (selected.isTower()) {
+        selectedTower = selected;
+      }
     }
 
     if (selected != null && type.equals("Start")) {
