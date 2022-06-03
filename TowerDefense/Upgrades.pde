@@ -31,6 +31,22 @@ public class Upgrades {
   }
   
   boolean inMenu(int x, int y){
-    return (x >= MAP_WIDTH && y > height - 80);
+    return ((x >= MAP_WIDTH) && (y >= height - 80));
+  }
+  
+  Button selectUpgrade(int x, int y){
+    int index = 0;
+    Button b;
+    boolean done = false;
+    while (!done && index < upgradePaths.size()) {
+      b = bar.getButton(index);
+      if (b.isInside(x, y)) {
+        //b.setColor(#BEBEBE);
+        return b;
+      } else {
+        index++;
+      }
+    }
+    return null;
   }
 }
