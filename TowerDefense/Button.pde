@@ -47,13 +47,9 @@ public class Button { //<>//
     rect(xCor,yCor, wide, tall, radius);
     fill(0);
     textSize(30);
-    text(name, xCor + wide / 4, height - 20);
-    /*
-    fill(255);
-    rect(MAP_WIDTH + wide, height - 80, wide, tall, radius);
-    fill(0);
-    text(name, MAP_WIDTH  + wide + wide/3, height - 20);
-    */
+    text(name, xCor + wide / 4, height - 50);
+    textSize(23);
+    text("$" + money,xCor + wide / 3, height - 20);
   }
 
   // utility buttons like start, pause etc.

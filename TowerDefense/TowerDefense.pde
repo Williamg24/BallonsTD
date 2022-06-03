@@ -9,9 +9,9 @@ boolean animate;
 Sidebar bar;
 Level currentLevel;
 Button selected;
-Upgrades test;
+Upgrades menu;
 
-Button Upgradetest;
+Button upgradePath;
 String upgradename;
 
 void setup() {
@@ -37,9 +37,17 @@ void draw() {
 
   // testing upgrades pop up
   if (selected != null) {
-    test = new Upgrades(selected);
-    test.display();
+    menu = new Upgrades(selected);
+    menu.display();
+  } else {
+    menu = null;
   }
+
+  /*
+  if (MouseInMenu()){
+   menu.display();
+   }
+   */
 
   // visual test for onPath
   //fill(100,30,100,150);
@@ -55,7 +63,10 @@ void draw() {
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
   //text("frame rate: "+frameRate,10,100);
-  text("Upgrade path: "+upgradename,10,100);
+  text("Upgrade path: "+upgradename, 10, 50);
+  text("selected button: "+selected, 10, 100);
+
+  updateButtons();
 }
 
 // deal damage to bloons in tower range
@@ -106,6 +117,7 @@ void mouseClicked() {
       selected.setColor(0);
       selected = null;
     }
+
     if (type != null && type.equals("Start")) {
       if (! animate) {
         currentLevel.startAnimation();
@@ -117,16 +129,16 @@ void mouseClicked() {
   }
 
   // test for upgrade menu
-  if (test != null && test.inMenu(mouseX, mouseY)) {
-    if (test.selectUpgrade(mouseX, mouseY) != Upgradetest) {
-      upgradename = test.selectUpgrade(mouseX, mouseY).name;
-      Upgradetest = test.selectUpgrade(mouseX, mouseY);
-      Upgradetest.setColor(#BEBEBE);
+  if (menu != null && menu.inMenu(mouseX, mouseY)) {
+    if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
+      upgradePath = menu.selectUpgrade(mouseX, mouseY);
+      upgradename = upgradePath.name;
+      if (money >= upgradePath.money) {
+        money -= upgradePath.money;
+      }
+      //upgradePath.setColor(#BEBEBE);
     }
   }
-
-
-  updateButtons();
 }
 
 void keyPressed() {
@@ -148,3 +160,9 @@ void updateButtons() {
     }
   }
 }
+
+/*
+boolean MouseInMenu(){
+ return (menu != null && (mouseX >= MAP_WIDTH) && (mouseY >= height - 80));
+ }
+ */
