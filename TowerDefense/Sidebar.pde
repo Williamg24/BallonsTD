@@ -42,10 +42,11 @@ public class Sidebar {
       start.display(color(90, 190, 50));
     }
   }
+  /*
   public Button getButton(int index) {
     return buttons.get(index);
   }
-
+*/
   // check if mouse inside Sidebar
   public boolean inSidebar(int x) {
     return (x >= MAP_WIDTH);
@@ -57,7 +58,7 @@ public class Sidebar {
     Button b;
     boolean done = false;
     while (!done && index < buttons.size()) {
-      b = bar.getButton(index);
+      b = bar.buttons.get(index);
       if (b.isInside(x, y)) {
         b.setColor(#BEBEBE);
         return b;
