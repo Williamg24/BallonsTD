@@ -12,7 +12,7 @@ Button selected;
 
 void setup() {
   size(1200, 700);
-  currentLevel = new Level1();
+  currentLevel = new Level1(1);
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();

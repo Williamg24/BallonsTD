@@ -40,8 +40,10 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
 - ### 5/31
   - William Guo: Started on tower upgrades by creating new class called Upgrades and having menu pop up only when tower icon selected.
   - Maya Mori: Made some minor fixes including changing parameters to a function, updating player's health and a placeholder function.
-- ## 6/1
- - Maya Mori: Wrote a function to detect if a point is on  the path for Level1.
+- ### 6/1
+  - Maya Mori: Wrote a function to detect if a point is on  the path for Level1.
+- ### 6/2
+  - Maya Mori: Started displaying and the path for Level 2 and updating the onPath function to work on straight and curved paths.
 
 <!---
 05/20
