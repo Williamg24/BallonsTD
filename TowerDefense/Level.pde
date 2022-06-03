@@ -12,7 +12,7 @@ public class Level {
     for (int i=0; i<10; i++) {
       bloons.add(new Bloon(0, (float) i * -0.08));
     }
-    println("animation started!");
+    //println("animation started!");
   }
 
   public void display() {
@@ -60,7 +60,7 @@ public class Level {
     return height/2;
   }
 
-  public int getSize() {
-    return bloons.size();
-  }
+  //public int getSize() {
+  //  return bloons.size();
+  //}
 }

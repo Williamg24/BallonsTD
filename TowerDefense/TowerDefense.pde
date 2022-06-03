@@ -3,18 +3,22 @@ ArrayList<Tower> towers = new ArrayList<Tower>();
 
 int money;
 int health;
-int currentBloon;
+//int currentBloon;
 String type;
 boolean animate;
 Sidebar bar;
 Level currentLevel;
 Button selected;
+Upgrades menu;
+
+Button upgradePath;
+String upgradename;
 
 void setup() {
   size(1200, 700);
-  currentLevel = new Level();
-  health = 5; 
-  currentBloon = currentLevel.getSize() - 1;
+  currentLevel = new Level1(1);
+  health = 5;
+  //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
   money = 50;
@@ -23,15 +27,46 @@ void setup() {
 void draw() {
   background(90, 190, 50);     // the "grass"
   currentLevel.display();
-  bar.display();
+  bar.display(money);
   for (Tower t1 : towers) {
     t1.display();
-    if (t1.canAttack()) {
+    if (t1.canAttack() && animate) {
       attackBloons(t1);
     }
   }
-  text("mouseX: "+mouseX,10,20);
-  text("mouseY: "+mouseY,10,50);
+
+  // testing upgrades pop up
+  if (selected != null) {
+    menu = new Upgrades(selected);
+    menu.display();
+  } else {
+    menu = null;
+  }
+
+  /*
+  if (MouseInMenu()){
+   menu.display();
+   }
+   */
+
+  // visual test for onPath
+  //fill(100,30,100,150);
+  //noStroke();
+  //for (int x = 0; x<width; x++) {
+  //  for (int y = 0; y<height; y++) {
+  //    if (currentLevel.onPath(x,y)) {
+  //      ellipse(x,y,1,1);
+  //    }
+  //  }
+  //}
+
+  //text("mouseX: "+mouseX,10,20);
+  //text("mouseY: "+mouseY,10,50);
+  //text("frame rate: "+frameRate,10,100);
+  text("Upgrade path: "+upgradename, 10, 50);
+  text("selected button: "+selected, 10, 100);
+
+  updateButtons();
 }
 
 // deal damage to bloons in tower range
@@ -75,14 +110,33 @@ void mouseClicked() {
   }
   // select the type of tower
   if (bar.inSidebar(mouseX)) {
-    if (bar.findButton(mouseX, mouseY) != null) {
+    if (bar.findButton(mouseX, mouseY) != null && bar.findButton(mouseX, mouseY) != selected) {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
+    } else if (selected != null) {
+      selected.setColor(0);
+      selected = null;
     }
-    if (type.equals("Start") && ! animate) {
-      //println("start the animation");
-      currentLevel.startAnimation();
-      animate = true;
+
+    if (selected != null && type.equals("Start")) {
+      if (! animate) {
+        currentLevel.startAnimation();
+        animate = true;
+      } else {
+        animate = false;
+      }
+    }
+  }
+
+  // test for upgrade menu
+  if (menu != null && menu.inMenu(mouseX, mouseY)) {
+    if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
+      upgradePath = menu.selectUpgrade(mouseX, mouseY);
+      upgradename = upgradePath.name;
+      if (money >= upgradePath.money) {
+        money -= upgradePath.money;
+      }
+      //upgradePath.setColor(#BEBEBE);
     }
   }
 }
@@ -98,3 +152,17 @@ void keyPressed() {
     }
   }
 }
+
+void updateButtons() {
+  for (Button b : bar.buttons) {
+    if (b != selected) {
+      b.setColor(0);
+    }
+  }
+}
+
+/*
+boolean MouseInMenu(){
+ return (menu != null && (mouseX >= MAP_WIDTH) && (mouseY >= height - 80));
+ }
+ */

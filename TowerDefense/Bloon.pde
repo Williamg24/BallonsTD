@@ -9,33 +9,45 @@ public class Bloon {
   int reward;      // how much money player earns if bloon is defeated
   int pointIndex;
   int maxPointIndex;
+  int damage;
+  PImage bloonImage;
 
   public Bloon(int type_, float t_) {
-    type = type_;
-    xCor = 0;
-    yCor = height/2;
-    speed = 0.001 * (type + 1);       // go faster for higher types
+    this(type_, 0, height/2,  1);
     t = t_;
-    reward = (type + 1) * 10;
-    pointIndex = 0;
-    maxPointIndex = 1;               // greater than 0
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
     type = type_;
     xCor = x;
     yCor = y;
-    speed = 0.001 * (type + 1);       // go faster for higher types
-    reward = (type + 1) * 10;
+    speed = 0.001 + type * 0.0008;       // go faster for higher types
+    reward = (type + 1) * 5;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
+    damage = type + 1;
+    loadBloonImage();
+  }
+
+  public void loadBloonImage() {
+    switch(type) {
+    case 0:
+      bloonImage = loadImage("Red_Bloon.png");
+      break;
+    case 1:
+      bloonImage = loadImage("Blue_Bloon.png");
+      break;
+    }
   }
 
   public void display() {
     //fill(255, 0, 0);
     //println("display bloon");
-    fill(colors[type]);
-    ellipse(xCor, yCor, 40, 40);
+
+    //fill(colors[type]);
+    //ellipse(xCor, yCor, 40, 40);
+    //getBloonType();
+    image(bloonImage, xCor - 18, yCor - 18, 35, 40);
   }
 
   public void move() {
@@ -54,9 +66,18 @@ public class Bloon {
     return reward;
   }
 
-  public void hit(int damage) {
-    type -= damage;
+  public void hit(int hitNum) {
+    type -= hitNum;
     speed -= 0.001;
+    loadBloonImage();
+  }
+
+  public int getDamage() {
+    return type+1;
+  }
+
+  public int getType() {
+    return type;
   }
 
   public float getX() {
@@ -75,48 +96,65 @@ public class Bloon {
     yCor = y;
   }
 
-  public void setNewX(int aimX, int constant) {
-    if (pointIndex % 2 != 1) {
-      return;
-    }
-    float newX = xCor + speed*3000*constant;
-    if (constant > 0) {
-      if (newX > aimX) {
-        pointIndex++;
-      } else {
-        xCor = newX;
-      }
+  //public void setNewX(int aimX, int constant, int index) {
+  //  if (index % 2 != 1) {
+  //    return;
+  //  }
+  //  float newX = xCor + speed*3000*constant;
+  //  if (constant > 0) {
+  //    if (newX > aimX) {
+  //      pointIndex++;
+  //    } else {
+  //      xCor = newX;
+  //    }
+  //  } else {
+  //    if (newX < aimX) {
+  //      pointIndex++;
+  //    } else {
+  //      xCor = newX;
+  //    }
+  //  }
+  //}
+  
+  
+  // returns if position was changed or not
+  public boolean setNewCoord(int[] aim) {
+    float fracToCover = speed * 3000 / dist(xCor, yCor, aim[0], aim[1]);
+    float newX = xCor + fracToCover * (aim[0] - xCor);
+    float newY = yCor + fracToCover * (aim[1] - yCor);
+    
+    if (dist(xCor, yCor, newX, newY) > dist(xCor, yCor, aim[0], aim[1])) {    // if new position overshoots the target coordinates
+      //pointIndex++;
+      return false;
     } else {
-      if (newX < aimX) {
-        pointIndex++;
-      } else {
-        xCor = newX;
-      }
+      xCor = newX;
+      yCor = newY;
+      return true;
     }
   }
-
-  public void setNewY(int aimY, int constant, int index) {
-    if (index % 2 != 0) {
-      return;
-    }
-    float newY = yCor + speed*3000*constant;
-    if (constant > 0) {
-      if (newY > aimY) {
-        pointIndex++;
-      } else {
-        yCor = newY;
-      }
-    } else {
-      if (newY < aimY) {
-        pointIndex++;
-      } else {
-        yCor = newY;
-      }
-    }
+  
+  public void increasePointIndex() {
+    pointIndex++;
   }
 
-  //public void incrementPointIndex() {
-  //  pointIndex++;
+  //public void setNewY(int aimY, int constant, int index) {
+  //  if (index % 2 != 0) {
+  //    return;
+  //  }
+  //  float newY = yCor + speed*3000*constant;
+  //  if (constant > 0) {
+  //    if (newY > aimY) {
+  //      pointIndex++;
+  //    } else {
+  //      yCor = newY;
+  //    }
+  //  } else {
+  //    if (newY < aimY) {
+  //      pointIndex++;
+  //    } else {
+  //      yCor = newY;
+  //    }
+  //  }
   //}
 
   public int getPointIndex() {

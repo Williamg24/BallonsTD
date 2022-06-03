@@ -8,6 +8,7 @@ public class Tower {
   int y;
   int Tsize;
   color towerColor;
+  PImage TopView; 
 
   public Tower(String towerType) {
     switch (towerType) {
@@ -18,8 +19,20 @@ public class Tower {
       towerSettings(mouseX, mouseY, 1, 100, 50, selected.money, 40, color(255));
       break;
     }
+    loadTopView();
   }
-  
+
+  public void loadTopView() {
+    switch(cost) {
+    case 10:
+      TopView = loadImage("TopView1.png");
+      break;
+    case 20:
+      TopView = loadImage("TopView2.png");
+      break;
+    }
+  }
+
   // sets the variables
   public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait, color c) {
     x = xcor;
@@ -39,8 +52,11 @@ public class Tower {
       stroke(0);
       ellipse(x, y, range * 2, range * 2);
     }
-    fill(towerColor);
-    ellipse(x, y, Tsize, Tsize);
+    //fill(towerColor);
+    //ellipse(x, y, Tsize, Tsize);
+    if (TopView != null) {
+      image(TopView, x - Tsize/2, y - Tsize/2, Tsize, Tsize);
+    }
     tick++;
   }
 
@@ -61,7 +77,7 @@ public class Tower {
     float distance = dist(x, y, value.xCor, value.yCor);
     return (distance <= range);
   }
-  public float getRange() {
+  public int getRange() {
     return range;
   }
 
@@ -69,7 +85,7 @@ public class Tower {
     return damage;
   }
 
-  public float getDelay() {
+  public int getDelay() {
     return delay;
   }
 
