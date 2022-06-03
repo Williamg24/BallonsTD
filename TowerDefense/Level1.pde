@@ -164,23 +164,44 @@ public class Level1 extends Level {
   //}
 
   // checks if (x,y) is on the path from rect to rect+1
-  private boolean inRectangle(float x, float y, int rect) {
-    //fill(100,30,100,50);
-    if (points[rect][0] == points[rect+1][0]) {
-      if (x > points[rect][0] - pathWidth/2 && x < points[rect][0] + pathWidth/2) {
-        return (y > min(points[rect][1], points[rect+1][1]) - pathWidth/2 && y < max(points[rect][1], points[rect+1][1]) + pathWidth/2);
-      }
-    } else {
-      if (y > points[rect][1] - pathWidth/2 && y < points[rect][1] + pathWidth/2) {
-        return (x > min(points[rect][0], points[rect+1][0]) - pathWidth/2 && x < max(points[rect][0], points[rect+1][0]) + pathWidth/2);
-      }
+  //private boolean inRectangle(float x, float y, int rect) {
+  //  //fill(100,30,100,50);
+  //  if (points[rect][0] == points[rect+1][0]) {
+  //    if (x > points[rect][0] - pathWidth/2 && x < points[rect][0] + pathWidth/2) {
+  //      return (y > min(points[rect][1], points[rect+1][1]) - pathWidth/2 && y < max(points[rect][1], points[rect+1][1]) + pathWidth/2);
+  //    }
+  //  } else {
+  //    if (y > points[rect][1] - pathWidth/2 && y < points[rect][1] + pathWidth/2) {
+  //      return (x > min(points[rect][0], points[rect+1][0]) - pathWidth/2 && x < max(points[rect][0], points[rect+1][0]) + pathWidth/2);
+  //    }
+  //  }
+  //  return false;
+  //}
+  
+  private boolean inRectangle2(float x, float y, int pointIndex) {
+    int[] point1, point2;
+    //if (points[index][0] < points[index+1][0]) {
+      point1 = points[pointIndex];
+      point2 = points[pointIndex+1];
+    //} else {
+    //  point1 = points[index+1];
+    //  point2 = points[index];
+    //}
+    float d1, d2, pathLength;
+    d1 = dist(point1[0], point1[1], x, y);
+    d2 = dist(point2[0], point2[1], x, y);
+    pathLength = dist(point1[0], point1[1], point2[0], point2[1]);
+    if (sqrt(d1 * d1 - pow(pathWidth/2,2)) + sqrt(d2 * d2 - pow(pathWidth/2,2)) > pathLength) {
+      return false;
     }
-    return false;
+    
+    
+    return true;
   }
 
   public boolean onPath(float x, float y) {
     for (int i = 0; i<points.length-1; i++) {
-      if (inRectangle(x, y, i)) {
+      if (inRectangle2(x, y, i)) {
         return true;
       }
     }

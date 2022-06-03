@@ -12,7 +12,7 @@ Button selected;
 
 void setup() {
   size(1200, 700);
-  currentLevel = new Level1(2);
+  currentLevel = new Level1(1);
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
@@ -32,15 +32,15 @@ void draw() {
   }
 
   // visual test for onPath
-  fill(100,30,100,150);
-  noStroke();
-  for (int x = 0; x<width; x++) {
-    for (int y = 0; y<height; y++) {
-      if (currentLevel.onPath(x,y)) {
-        ellipse(x,y,1,1);
-      }
-    }
-  }
+  //fill(100,30,100,150);
+  //noStroke();
+  //for (int x = 0; x<width; x++) {
+  //  for (int y = 0; y<height; y++) {
+  //    if (currentLevel.onPath(x,y)) {
+  //      ellipse(x,y,1,1);
+  //    }
+  //  }
+  //}
 
 
   //text("mouseX: "+mouseX,10,20);
