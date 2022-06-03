@@ -12,6 +12,7 @@ Button selected;
 Upgrades test;
 
 Button Upgradetest;
+String upgradename;
 
 void setup() {
   size(1200, 700);
@@ -39,8 +40,7 @@ void draw() {
     test = new Upgrades(selected);
     test.display();
   }
-  
-  
+
   // visual test for onPath
   //fill(100,30,100,150);
   //noStroke();
@@ -55,6 +55,7 @@ void draw() {
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
   //text("frame rate: "+frameRate,10,100);
+  text("Upgrade path: "+upgradename,10,100);
 }
 
 // deal damage to bloons in tower range
@@ -101,7 +102,7 @@ void mouseClicked() {
     if (bar.findButton(mouseX, mouseY) != null && bar.findButton(mouseX, mouseY) != selected) {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
-    } else if (selected != null){
+    } else if (selected != null) {
       selected.setColor(0);
       selected = null;
     }
@@ -114,17 +115,17 @@ void mouseClicked() {
       }
     }
   }
-  
+
   // test for upgrade menu
-  if (test != null && test.inMenu(mouseX,mouseY)){
-    println(test.inMenu(mouseX,mouseY));
-    if (test.selectUpgrade(mouseX, mouseY) != null){
+  if (test != null && test.inMenu(mouseX, mouseY)) {
+    if (test.selectUpgrade(mouseX, mouseY) != Upgradetest) {
+      upgradename = test.selectUpgrade(mouseX, mouseY).name;
       Upgradetest = test.selectUpgrade(mouseX, mouseY);
       Upgradetest.setColor(#BEBEBE);
     }
   }
-  
-  
+
+
   updateButtons();
 }
 

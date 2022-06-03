@@ -39,7 +39,7 @@ public class Upgrades {
     Button b;
     boolean done = false;
     while (!done && index < upgradePaths.size()) {
-      b = bar.getButton(index);
+      b = test.upgradePaths.get(index);
       if (b.isInside(x, y)) {
         //b.setColor(#BEBEBE);
         return b;
