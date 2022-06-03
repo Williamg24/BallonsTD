@@ -118,7 +118,7 @@ void mouseClicked() {
       selected = null;
     }
 
-    if (type != null && type.equals("Start")) {
+    if (selected != null && type.equals("Start")) {
       if (! animate) {
         currentLevel.startAnimation();
         animate = true;
