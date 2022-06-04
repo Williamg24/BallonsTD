@@ -13,7 +13,7 @@ Upgrade menu;
 Button selectedTower;
 
 Button upgradePath;
-String upgradename;
+String upgradeName;
 ArrayList<Upgrade> upgrades;
 
 void setup() {
@@ -69,7 +69,7 @@ void draw() {
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
   //text("frame rate: "+frameRate,10,100);
-  text("Upgrade path: "+upgradename, 10, 50);
+  text("Upgrade path: "+upgradeName, 10, 50);
   text("selected button: "+selected, 10, 100);
   if (selectedTower != null){
     text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
@@ -157,12 +157,24 @@ void mouseClicked() {
   if (menu != null && menu.inMenu(mouseX, mouseY)) {
     if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
       upgradePath = menu.selectUpgrade(mouseX, mouseY);
-      upgradename = upgradePath.name;
+      upgradeName = upgradePath.name;
       if (money >= upgradePath.money) {
         money -= upgradePath.money;
+        switch (upgradeName) {
+          case "Range":
+            towerData[menu.getTowerType()][1] += 20;
+            break;
+        }
+        updateTowers();
       }
       //upgradePath.setColor(#BEBEBE);
     }
+  }
+}
+
+void updateTowers() {
+  for (Tower t: towers) {
+    t.update();
   }
 }
 

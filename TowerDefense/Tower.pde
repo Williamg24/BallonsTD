@@ -1,3 +1,4 @@
+// damage, range, delay
 int[][]towerData ={{1, 75, 80}, {1, 100, 40}};
 
 public class Tower {
@@ -16,13 +17,21 @@ public class Tower {
   public Tower(String towerType) {
     switch (towerType) {
     case "Basic":
-      towerSettings(mouseX, mouseY, 1, 75, 50, selected.money, 80, color(0));
+      type = 0;
+      towerSettings(mouseX, mouseY, 1, 75, 50, 10, 80, color(0));
       break;
     case "Advanced":
-      towerSettings(mouseX, mouseY, 1, 100, 50, selected.money, 40, color(255));
+      type = 1;
+      towerSettings(mouseX, mouseY, 1, 100, 50, 20, 40, color(255));
       break;
     }
     loadTopView();
+  }
+  
+  public void update() {
+    damage = towerData[type][0];
+    range = towerData[type][1];
+    delay = towerData[type][2];
   }
 
   public void loadTopView() {
