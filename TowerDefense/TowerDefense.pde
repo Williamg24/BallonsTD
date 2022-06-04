@@ -9,11 +9,12 @@ boolean animate;
 Sidebar bar;
 Level currentLevel;
 Button selected;
-Upgrades menu;
+Upgrade menu;
 Button selectedTower;
 
 Button upgradePath;
 String upgradename;
+ArrayList<Upgrade> upgrades;
 
 void setup() {
   size(1200, 700);
@@ -22,7 +23,10 @@ void setup() {
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
-  money = 50;
+  money = 500;
+  upgrades = new ArrayList<Upgrade>();
+  upgrades.add(new Upgrade("Basic"));
+  upgrades.add(new Upgrade("Advanced"));
 }
 
 void draw() {
@@ -39,7 +43,7 @@ void draw() {
   // testing upgrades pop up
   //if (selected != null) {
    if (selectedTower != null) {
-    menu = new Upgrades(selected);
+    menu = upgrades.get(selectedTower.getTowerNum());//new Upgrade(selected);
     menu.display();
   } else {
     menu = null;
@@ -67,6 +71,9 @@ void draw() {
   //text("frame rate: "+frameRate,10,100);
   text("Upgrade path: "+upgradename, 10, 50);
   text("selected button: "+selected, 10, 100);
+  if (selectedTower != null){
+    text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
+  }
 
   updateButtons();
 }
@@ -115,12 +122,16 @@ void mouseClicked() {
     if (bar.findButton(mouseX, mouseY) != null && bar.findButton(mouseX, mouseY) != selected) {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
+      if (selected.isTower()) {
+        if (selectedTower == null) {
+          selectedTower = selected;
+        } else {
+          selectedTower = null;
+        }
+      }
     } else if (selected != null) {
       selected.setColor(0);
       selected = null;
-      if (selected.isTower()) {
-        selectedTower = selected;
-      }
     }
 
     if (selected != null && type.equals("Start")) {

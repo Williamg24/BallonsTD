@@ -1,3 +1,5 @@
+int[][]towerData ={{1, 75, 80}, {1, 100, 40}};
+
 public class Tower {
   int cost;
   int range;
@@ -8,7 +10,8 @@ public class Tower {
   int y;
   int Tsize;
   color towerColor;
-  PImage TopView; 
+  PImage TopView;
+  int type;
 
   public Tower(String towerType) {
     switch (towerType) {
