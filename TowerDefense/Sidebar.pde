@@ -1,13 +1,13 @@
 public class Sidebar {
-  ArrayList<Button> buttons;
+  ArrayList<Button> towers;
   Button start;
   PImage moneypic = loadImage("money.png");
   PImage hp = loadImage("HP.png");
 
   public Sidebar() {
-    buttons = new ArrayList<Button>();
-    buttons.add(new Button("Basic", MAP_WIDTH + 20, 120, 100, 120, 28, 10));
-    buttons.add(new Button("Advanced", MAP_WIDTH + 140, 120, 100, 120, 28, 20));
+    towers = new ArrayList<Button>();
+    towers.add(new Button("Basic", MAP_WIDTH + 20, 120, 100, 120, 28, 10));
+    towers.add(new Button("Advanced", MAP_WIDTH + 140, 120, 100, 120, 28, 20));
 
     start = new Button("Start", MAP_WIDTH + 20, 260, 250, 50, 10, 0);
   }
@@ -32,7 +32,7 @@ public class Sidebar {
   }
 
   public void displayButtons(int x) {
-    for (Button b : buttons) {
+    for (Button b : towers) {
       b.displayIcon();
       b.enoughMoney(x);
     }
@@ -44,7 +44,7 @@ public class Sidebar {
   }
   /*
   public Button getButton(int index) {
-    return buttons.get(index);
+    return towers.get(index);
   }
 */
   // check if mouse inside Sidebar
@@ -57,10 +57,10 @@ public class Sidebar {
     int index = 0;
     Button b;
     boolean done = false;
-    while (!done && index < buttons.size()) {
-      b = bar.buttons.get(index);
+    while (!done && index < towers.size()) {
+      b = bar.towers.get(index);
       if (b.isInside(x, y)) {
-        b.setColor(#BEBEBE);
+        //b.setColor(#BEBEBE);
         return b;
       } else {
         index++;

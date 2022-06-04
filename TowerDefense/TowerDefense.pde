@@ -43,7 +43,7 @@ void draw() {
   // testing upgrades pop up
   //if (selected != null) {
    if (selectedTower != null) {
-    menu = upgrades.get(selectedTower.getTowerNum());//new Upgrade(selected);
+    //menu = upgrades.get(selectedTower.getTowerNum());//new Upgrade(selected);
     menu.display();
   } else {
     menu = null;
@@ -74,8 +74,9 @@ void draw() {
   if (selectedTower != null){
     text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
   }
+  text("selectedTower"+selectedTower, 10, 180);
 
-  updateButtons();
+  //updateButtons();
 }
 
 // deal damage to bloons in tower range
@@ -113,9 +114,9 @@ public int findTower(int xCor, int yCor) {
 
 void mouseClicked() {
   // only place tower if sufficient money for tower type selected and not on path
-  if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selected != null) && (money >= selected.money)) {
-    towers.add(new Tower(type));
-    money -= selected.money;
+  if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
+    towers.add(new Tower(selectedTower.name));
+    money -= selectedTower.money;
   }
   // select the type of tower
   if (bar.inSidebar(mouseX)) {
@@ -123,14 +124,22 @@ void mouseClicked() {
       type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
       if (selected.isTower()) {
-        if (selectedTower == null) {
-          selectedTower = selected;
-        } else {
+        if (selectedTower == selected) {
+          selected.setColor(color(0));
           selectedTower = null;
+        } else {
+          if (selectedTower != null) {
+            selectedTower.setColor(color(0));
+          }
+          selectedTower = selected;
+          selected.setColor(#BEBEBE);
+          menu = upgrades.get(selectedTower.getTowerNum());
         }
+        //updateButtons();
+        
       }
     } else if (selected != null) {
-      selected.setColor(0);
+      //selected.setColor(0);
       selected = null;
     }
 
@@ -169,13 +178,13 @@ void keyPressed() {
   }
 }
 
-void updateButtons() {
-  for (Button b : bar.buttons) {
-    if (b != selected) {
-      b.setColor(0);
-    }
-  }
-}
+//void updateButtons() {
+//  for (Button b : bar.towers) {
+//    if (b == selectedTower) {
+//      b.setColor(#BEBEBE);
+//    }
+//  }
+//}
 
 /*
 boolean MouseInMenu(){
