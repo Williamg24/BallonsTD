@@ -9,6 +9,7 @@ public class Button { //<>//
   String name;
   color c = 45;
   color textColor;
+  int towerNum;
 
   public Button(String m, float x, float y, float w, float t, float curve, int cost) {
     xCor = x;
@@ -18,19 +19,32 @@ public class Button { //<>//
     radius = curve;
     money = cost;
     name = m;
-    loadTowerImage();
+    setupTower();
   }
 
-  public void loadTowerImage() {
+  public void setupTower() {
     switch (money) {
     case 10:
       towerImage = loadImage("Tower1.png");
+      towerNum = 0;
       break;
     case 20:
       towerImage= loadImage("Tower2.png");
+      towerNum = 1;
       break;
+    default:
+      towerNum = -1;
     }
   }
+  
+  public boolean isTower() {
+    return towerNum >= 0;
+  }
+  
+  public int getTowerNum() {
+    return towerNum;
+  }
+  
   // buy menu icon for towers
   public void displayIcon() {
     fill(c);

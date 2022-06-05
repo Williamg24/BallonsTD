@@ -9,19 +9,24 @@ boolean animate;
 Sidebar bar;
 Level currentLevel;
 Button selected;
-Upgrades menu;
+Upgrade menu;
+Button selectedTower;
 
 Button upgradePath;
-String upgradename;
+String upgradeName;
+ArrayList<Upgrade> upgrades;
 
 void setup() {
   size(1200, 700);
-  currentLevel = new Level1(1);
+  currentLevel = new Level1(2);
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
-  money = 50;
+  money = 500;
+  upgrades = new ArrayList<Upgrade>();
+  upgrades.add(new Upgrade("Basic"));
+  upgrades.add(new Upgrade("Advanced"));
 }
 
 void draw() {
@@ -36,8 +41,9 @@ void draw() {
   }
 
   // testing upgrades pop up
-  if (selected != null) {
-    menu = new Upgrades(selected);
+  //if (selected != null) {
+   if (selectedTower != null) {
+    //menu = upgrades.get(selectedTower.getTowerNum());//new Upgrade(selected);
     menu.display();
   } else {
     menu = null;
@@ -49,7 +55,7 @@ void draw() {
    }
    */
 
-  // visual test for onPath
+  //// visual test for onPath
   //fill(100,30,100,150);
   //noStroke();
   //for (int x = 0; x<width; x++) {
@@ -63,10 +69,14 @@ void draw() {
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
   //text("frame rate: "+frameRate,10,100);
-  text("Upgrade path: "+upgradename, 10, 50);
+  text("Upgrade path: "+upgradeName, 10, 50);
   text("selected button: "+selected, 10, 100);
+  if (selectedTower != null){
+    text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
+  }
+  text("selectedTower: "+selectedTower, 10, 180);
 
-  updateButtons();
+  //updateButtons();
 }
 
 // deal damage to bloons in tower range
@@ -103,22 +113,40 @@ public int findTower(int xCor, int yCor) {
 
 
 void mouseClicked() {
+  //println("mouse clicked");
   // only place tower if sufficient money for tower type selected and not on path
-  if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selected != null) && (money >= selected.money)) {
-    towers.add(new Tower(type));
-    money -= selected.money;
+  if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
+    towers.add(new Tower(selectedTower.name));
+    money -= selectedTower.money;
   }
   // select the type of tower
   if (bar.inSidebar(mouseX)) {
-    if (bar.findButton(mouseX, mouseY) != null && bar.findButton(mouseX, mouseY) != selected) {
-      type = bar.findButton(mouseX, mouseY).name;
+    if (bar.findButton(mouseX, mouseY) != null) {// && bar.findButton(mouseX, mouseY) != selected) {
+      //type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
+      //println(selected.name);
+      if (selected.isTower()) {
+        if (selected.equals(selectedTower)) {
+          selectedTower.setColor(color(0));
+          selected = null;
+          selectedTower = null;
+        } else {
+          if (selectedTower != null) {
+            selectedTower.setColor(color(0));
+          }
+          selectedTower = selected;
+          selected.setColor(#BEBEBE);
+          menu = upgrades.get(selectedTower.getTowerNum());
+        }
+        //updateButtons();
+        
+      }
     } else if (selected != null) {
-      selected.setColor(0);
+      //selected.setColor(0);
       selected = null;
     }
 
-    if (selected != null && type.equals("Start")) {
+    if (selected != null && selected.name.equals("Start")){//type.equals("Start")) {
       if (! animate) {
         currentLevel.startAnimation();
         animate = true;
@@ -130,14 +158,27 @@ void mouseClicked() {
 
   // test for upgrade menu
   if (menu != null && menu.inMenu(mouseX, mouseY)) {
-    if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
+    //if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
       upgradePath = menu.selectUpgrade(mouseX, mouseY);
-      upgradename = upgradePath.name;
+      upgradeName = upgradePath.name;
       if (money >= upgradePath.money) {
         money -= upgradePath.money;
+        switch (upgradeName) {
+          case "Range":
+            towerData[menu.getTowerType()][1] += 20;
+            //println(Arrays.deepToString(towerData));
+            break;
+        }
+        updateTowers();            // changes values for all towers, not just new ones
       }
       //upgradePath.setColor(#BEBEBE);
-    }
+    //}
+  }
+}
+
+void updateTowers() {
+  for (Tower t: towers) {
+    t.update();
   }
 }
 
@@ -153,13 +194,13 @@ void keyPressed() {
   }
 }
 
-void updateButtons() {
-  for (Button b : bar.buttons) {
-    if (b != selected) {
-      b.setColor(0);
-    }
-  }
-}
+//void updateButtons() {
+//  for (Button b : bar.towers) {
+//    if (b == selectedTower) {
+//      b.setColor(#BEBEBE);
+//    }
+//  }
+//}
 
 /*
 boolean MouseInMenu(){

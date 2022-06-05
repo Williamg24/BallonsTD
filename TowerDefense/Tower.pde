@@ -1,3 +1,6 @@
+// damage, range, delay
+int[][]towerData ={{1, 75, 80}, {1, 100, 40}};
+
 public class Tower {
   int cost;
   int range;
@@ -7,44 +10,69 @@ public class Tower {
   int x;
   int y;
   int Tsize;
-  color towerColor;
-  PImage TopView; 
+  //color towerColor;
+  PImage TopView;
+  int type;
 
   public Tower(String towerType) {
+    //println(Arrays.deepToString(towerData));
     switch (towerType) {
     case "Basic":
-      towerSettings(mouseX, mouseY, 1, 75, 50, selected.money, 80, color(0));
+      type = 0;
+      towerSettings(mouseX, mouseY, 50, 10);
       break;
     case "Advanced":
-      towerSettings(mouseX, mouseY, 1, 100, 50, selected.money, 40, color(255));
+      type = 1;
+      towerSettings(mouseX, mouseY, 50, 20);
       break;
     }
+    
     loadTopView();
+  }
+  
+  public void update() {
+    damage = towerData[type][0];
+    range = towerData[type][1];
+    delay = towerData[type][2];
   }
 
   public void loadTopView() {
-    switch(cost) {
-    case 10:
-      TopView = loadImage("TopView1.png");
-      break;
-    case 20:
-      TopView = loadImage("TopView2.png");
-      break;
-    }
+    //println("TopView" + (type+1) + ".png");
+    TopView = loadImage("TopView" + (type+1) + ".png");
+    //switch(type) {
+    //case 1:
+    //  TopView = loadImage("TopView1.png");
+    //  break;
+    //case 2:
+    //  TopView = loadImage("TopView2.png");
+    //  break;
+    //}
   }
-
+  
   // sets the variables
-  public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait, color c) {
+  public void towerSettings(int xcor, int ycor, int tsize, int money) {
     x = xcor;
     y = ycor;
-    damage = atk;
-    range = radius;
+    damage = towerData[type][0];
+    range = towerData[type][1];
     cost = money;
-    delay = wait;
+    delay = towerData[type][2];
     tick = delay;      // tower can start attacking right away
     Tsize = tsize;
-    towerColor = c;
   }
+
+  //// sets the variables
+  //public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait, color c) {
+  //  x = xcor;
+  //  y = ycor;
+  //  damage = atk;
+  //  range = radius;
+  //  cost = money;
+  //  delay = wait;
+  //  tick = delay;      // tower can start attacking right away
+  //  Tsize = tsize;
+  //  towerColor = c;
+  //}
 
   public void display() {
     if (insideTower(mouseX, mouseY)) {// && mousePressed) {

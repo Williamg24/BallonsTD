@@ -45,6 +45,11 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
 - ### 6/2
   - Maya Mori: Started displaying and the path for Level 2 and updating the onPath function to work on straight and curved paths.
   - William Guo: Minor fixes for upgrade and animation. Completed select upgrade and decrease money based on the upgrade path selected.
+- ### 6/3
+  - Maya Mori: Made the array of points look better and started working on storing which tower the user can upgrade.
+- ### 6/4
+  - Maya Mori: User can select towers to upgrade and update their range if necessary.
+  
 <!---
 05/20
 Maya Mori: I finished the Level class and worked on the Bloon class. Bloons move along a path and are destroyed once they reach the end.
