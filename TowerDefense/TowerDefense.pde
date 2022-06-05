@@ -74,7 +74,7 @@ void draw() {
   if (selectedTower != null){
     text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
   }
-  text("selectedTower"+selectedTower, 10, 180);
+  text("selectedTower: "+selectedTower, 10, 180);
 
   //updateButtons();
 }
@@ -113,6 +113,7 @@ public int findTower(int xCor, int yCor) {
 
 
 void mouseClicked() {
+  //println("mouse clicked");
   // only place tower if sufficient money for tower type selected and not on path
   if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
     towers.add(new Tower(selectedTower.name));
@@ -120,12 +121,14 @@ void mouseClicked() {
   }
   // select the type of tower
   if (bar.inSidebar(mouseX)) {
-    if (bar.findButton(mouseX, mouseY) != null && bar.findButton(mouseX, mouseY) != selected) {
-      type = bar.findButton(mouseX, mouseY).name;
+    if (bar.findButton(mouseX, mouseY) != null) {// && bar.findButton(mouseX, mouseY) != selected) {
+      //type = bar.findButton(mouseX, mouseY).name;
       selected = bar.findButton(mouseX, mouseY);
+      //println(selected.name);
       if (selected.isTower()) {
-        if (selectedTower == selected) {
-          selected.setColor(color(0));
+        if (selected.equals(selectedTower)) {
+          selectedTower.setColor(color(0));
+          selected = null;
           selectedTower = null;
         } else {
           if (selectedTower != null) {
@@ -143,7 +146,7 @@ void mouseClicked() {
       selected = null;
     }
 
-    if (selected != null && type.equals("Start")) {
+    if (selected != null && selected.name.equals("Start")){//type.equals("Start")) {
       if (! animate) {
         currentLevel.startAnimation();
         animate = true;
@@ -155,7 +158,7 @@ void mouseClicked() {
 
   // test for upgrade menu
   if (menu != null && menu.inMenu(mouseX, mouseY)) {
-    if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
+    //if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
       upgradePath = menu.selectUpgrade(mouseX, mouseY);
       upgradeName = upgradePath.name;
       if (money >= upgradePath.money) {
@@ -163,12 +166,13 @@ void mouseClicked() {
         switch (upgradeName) {
           case "Range":
             towerData[menu.getTowerType()][1] += 20;
+            //println(Arrays.deepToString(towerData));
             break;
         }
-        updateTowers();
+        updateTowers();            // changes values for all towers, not just new ones
       }
       //upgradePath.setColor(#BEBEBE);
-    }
+    //}
   }
 }
 

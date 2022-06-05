@@ -94,11 +94,11 @@ public class Level1 extends Level {
     }
 
     // displays points
-    fill(200, 0, 0);
-    noStroke();
-    for (int[] point : points) {
-      ellipse(point[0], point[1], 4, 4);
-    }
+    //fill(200, 0, 0);
+    //noStroke();
+    //for (int[] point : points) {
+    //  ellipse(point[0], point[1], 4, 4);
+    //}
     //text("bloons length: "+bloons.size(),10,40);
   }
 

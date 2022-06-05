@@ -10,21 +10,23 @@ public class Tower {
   int x;
   int y;
   int Tsize;
-  color towerColor;
+  //color towerColor;
   PImage TopView;
   int type;
 
   public Tower(String towerType) {
+    //println(Arrays.deepToString(towerData));
     switch (towerType) {
     case "Basic":
       type = 0;
-      towerSettings(mouseX, mouseY, 1, 75, 50, 10, 80, color(0));
+      towerSettings(mouseX, mouseY, 50, 10);
       break;
     case "Advanced":
       type = 1;
-      towerSettings(mouseX, mouseY, 1, 100, 50, 20, 40, color(255));
+      towerSettings(mouseX, mouseY, 50, 20);
       break;
     }
+    
     loadTopView();
   }
   
@@ -35,28 +37,42 @@ public class Tower {
   }
 
   public void loadTopView() {
-    switch(cost) {
-    case 10:
-      TopView = loadImage("TopView1.png");
-      break;
-    case 20:
-      TopView = loadImage("TopView2.png");
-      break;
-    }
+    //println("TopView" + (type+1) + ".png");
+    TopView = loadImage("TopView" + (type+1) + ".png");
+    //switch(type) {
+    //case 1:
+    //  TopView = loadImage("TopView1.png");
+    //  break;
+    //case 2:
+    //  TopView = loadImage("TopView2.png");
+    //  break;
+    //}
   }
-
+  
   // sets the variables
-  public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait, color c) {
+  public void towerSettings(int xcor, int ycor, int tsize, int money) {
     x = xcor;
     y = ycor;
-    damage = atk;
-    range = radius;
+    damage = towerData[type][0];
+    range = towerData[type][1];
     cost = money;
-    delay = wait;
+    delay = towerData[type][2];
     tick = delay;      // tower can start attacking right away
     Tsize = tsize;
-    towerColor = c;
   }
+
+  //// sets the variables
+  //public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait, color c) {
+  //  x = xcor;
+  //  y = ycor;
+  //  damage = atk;
+  //  range = radius;
+  //  cost = money;
+  //  delay = wait;
+  //  tick = delay;      // tower can start attacking right away
+  //  Tsize = tsize;
+  //  towerColor = c;
+  //}
 
   public void display() {
     if (insideTower(mouseX, mouseY)) {// && mousePressed) {
