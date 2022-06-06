@@ -1,8 +1,6 @@
 import java.util.*;
 
-
-
-int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}},     // Level 0, stright path
+int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}}, // Level 0, stright path
   // Level 1
   {{0, 296}, {445, 296}, {445, 129}, {294, 129}, {294, 566}, {145, 566}, {145, 405}, {572, 405}, {572, 236}, {679, 236}, {679, 512}, {400, 512}, {400, 700}}, 
   // Level 2
@@ -17,12 +15,12 @@ public class Level1 extends Level {
   int pathWidth;
   int levelNum;
 
-  public Level1(int[][] points_, String imageName) {
-    super();
-    points = points_;
-    mapImg = loadImage(imageName);
-    pathWidth = 50;
-  }
+  //public Level1(int[][] points_, String imageName) {
+  //  super();
+  //  points = points_;
+  //  mapImg = loadImage(imageName);
+  //  pathWidth = 50;
+  //}
 
   public Level1(int levelType) {
     levelNum = levelType;
@@ -43,15 +41,42 @@ public class Level1 extends Level {
 
   public void startAnimation() {
     if (bloons.size() == 0) {
-      for (int i=0; i<20; i++) {
-        //if (i % 5 == 0) {
-        //  bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
-        //}
-        if (points[0][0] == 0) {
-          bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
-        } else {
-          bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
+      switch (round) {
+      case 0:
+        for (int i=0; i<25; i++) {
+          if (points[0][0] == 0) {
+            bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
+          } else {
+            bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
+          }
         }
+        break;
+      case 1:
+        for (int i=0; i<20; i++) {
+          if (i % 5 == 0) {
+            if (points[0][0] == 0) {
+            bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
+            } else {
+              bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
+            }
+          }
+          if (points[0][0] == 0) {
+            bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
+          } else {
+            bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
+          }
+        }
+        break;
+      case 2:
+        for (int i=0; i<20; i++) {
+          if (points[0][0] == 0) {
+            bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
+          } else {
+            bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
+          }
+        }
+        break;
+      //case 3:
       }
     }
   }
@@ -64,6 +89,10 @@ public class Level1 extends Level {
         swapOrder(i);
       }
     }
+  }
+  
+  public int getType() {
+    return levelNum;
   }
 
   public void swapOrder(int index) {
@@ -91,6 +120,11 @@ public class Level1 extends Level {
       displayBloons();
     } else {
       displayStillBloons();
+    }
+
+    if (bloons.size() == 0 && animate && round < 3) {
+      round++;
+      startAnimation();
     }
 
     // displays points
@@ -125,12 +159,6 @@ public class Level1 extends Level {
             b.setNewCoord(reference);
           }
         }
-        //b.setNewX(reference[0], findConstantX(index),index);
-        //b.setNewY(reference[1], findConstantY(index),index);
-
-        //if (i > 0 && b.getType() > 0) {
-        //  swapOrder(i);
-        //}
         b.display();
       }
       if (b.isPopped()) {
@@ -160,10 +188,10 @@ public class Level1 extends Level {
   private boolean inPathRegion(float x, float y, int pointIndex) {
     int[] point1, point2;
     float d1, d2, pathLength;
-    
+
     point1 = points[pointIndex];
     point2 = points[pointIndex+1];
-    
+
     d1 = dist(point1[0], point1[1], x, y);
     d2 = dist(point2[0], point2[1], x, y);
     pathLength = dist(point1[0], point1[1], point2[0], point2[1]);           // distance between the 2 points defining the path
