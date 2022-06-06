@@ -21,7 +21,6 @@ ArrayList<Upgrade> upgrades;
 void setup() {
   MODE = 0;
   size(1200, 700);
-  currentLevel = new Level1(levelselected);
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
@@ -30,15 +29,19 @@ void setup() {
   upgrades = new ArrayList<Upgrade>();
   upgrades.add(new Upgrade("Basic"));
   upgrades.add(new Upgrade("Advanced"));
+  currentLevel = new Level1(1);
+  /*
+  Notes for debugging: Beacuse setup is predetermined before the mode switches, the map doesn't change 
+  when the map is selected 
+  */
 }
 
-void draw() {  
+void draw() { 
   switch(MODE) {
-    case 0:
+  case 0:
     startScreen();
     break;
-
-    case 1:
+  case 1:
     playScreen();
     break;
   }
@@ -60,12 +63,11 @@ void startScreen() {
   text("SELECT A MAP TO BEGIN", 150, 125);
   /*
   for (Button b : map_select) {
-    b.display(255);
-  }
-  */
-  image(MAP1,50,200,525,425);
-  image(MAP2,625,200,525,425);
-  
+   b.display(255);
+   }
+   */
+  image(MAP1, 50, 200, 525, 425);
+  image(MAP2, 625, 200, 525, 425);
 }
 
 void playScreen() {
@@ -123,7 +125,20 @@ void gameOverScreen() {
   text("GAME OVER", 300, 340);
   textSize(50);
   text("Click to Restart", 400, 400);
+  restart();
+}
+
+void restart(){
+  MODE = 0;
   health = 5;
+  //currentBloon = currentLevel.getSize() - 1;
+  animate = false;
+  money = 500;
+  upgrades.clear();
+  upgrades.add(new Upgrade("Basic"));
+  upgrades.add(new Upgrade("Advanced"));
+  currentLevel = new Level1(1);
+  towers.clear();
 }
 
 // deal damage to bloons in tower range
@@ -160,17 +175,19 @@ public int findTower(int xCor, int yCor) {
 
 void mouseClicked() {
   if (MODE == 0) {
-    
+
     //selecting level
-    if (mouseX >= 50 && mouseX <= 575 && mouseY >= 200 && mouseY <= 625){
+    if (mouseX >= 50 && mouseX <= 575 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 1;
-    }else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625){
+    } else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 2;
     }
     print(levelselected);
-    
-    if (levelselected > 0){
+
+    if (levelselected > 0) {
       MODE = 1;
+    } else {
+      MODE = 0;
     }
   } else if (MODE == 2) {
     MODE = 0;
