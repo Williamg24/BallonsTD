@@ -36,34 +36,36 @@ public class Button { //<>//
       towerNum = -1;
     }
   }
-  
+
   public boolean isTower() {
     return towerNum >= 0;
   }
-  
+
   public int getTowerNum() {
     return towerNum;
   }
-  
+
   // buy menu icon for towers
   public void displayIcon() {
     fill(c);
     rect(xCor, yCor, wide, tall, radius);
     fill(textColor);
     text("$" + money, xCor + wide / 4, yCor + tall - 3);
-    image(towerImage, xCor + wide/11, yCor + tall/8, 80, 80);
+    if (towerImage != null) {
+      image(towerImage, xCor + wide/11, yCor + tall/8, 80, 80);
+    }
   }
 
   // displays for upgrades
   public void displayUpgrades() {
     stroke(0);
     fill(255);
-    rect(xCor,yCor, wide, tall, radius);
+    rect(xCor, yCor, wide, tall, radius);
     fill(0);
     textSize(30);
     text(name, xCor + wide / 4, height - 50);
     textSize(23);
-    text("$" + money,xCor + wide / 3, height - 20);
+    text("$" + money, xCor + wide / 3, height - 20);
   }
 
   // utility buttons like start, pause etc.
