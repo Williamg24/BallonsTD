@@ -2,7 +2,7 @@ import java.util.*;
 
 
 
-int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}},     // Level 0, stright path
+int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}}, // Level 0, stright path
   // Level 1
   {{0, 296}, {445, 296}, {445, 129}, {294, 129}, {294, 566}, {145, 566}, {145, 405}, {572, 405}, {572, 236}, {679, 236}, {679, 512}, {400, 512}, {400, 700}}, 
   // Level 2
@@ -103,7 +103,9 @@ public class Level1 extends Level {
   }
 
   public void displayPath() {
-    image(mapImg, 0, 0, MAP_WIDTH, height);
+    if (mapImg != null) {
+      image(mapImg, 0, 0, MAP_WIDTH, height);
+    }
   }
 
   public void displayBloons() {
@@ -160,10 +162,10 @@ public class Level1 extends Level {
   private boolean inPathRegion(float x, float y, int pointIndex) {
     int[] point1, point2;
     float d1, d2, pathLength;
-    
+
     point1 = points[pointIndex];
     point2 = points[pointIndex+1];
-    
+
     d1 = dist(point1[0], point1[1], x, y);
     d2 = dist(point2[0], point2[1], x, y);
     pathLength = dist(point1[0], point1[1], point2[0], point2[1]);           // distance between the 2 points defining the path

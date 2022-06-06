@@ -1,5 +1,6 @@
 int MAP_WIDTH = 900;
 ArrayList<Tower> towers = new ArrayList<Tower>();
+//ArrayList<Button> map_select = new ArrayList<Button>();
 
 int MODE;
 int money;
@@ -20,7 +21,7 @@ ArrayList<Upgrade> upgrades;
 void setup() {
   MODE = 0;
   size(1200, 700);
-  currentLevel = new Level1(1);
+  currentLevel = new Level1(levelselected);
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
@@ -49,18 +50,22 @@ void draw() {
 }
 
 void startScreen() {
-  ArrayList<Button> map_select = new ArrayList<Button>();
-  map_select.add(new Button("MAP 1",100,200,450,400,0,0));
-  map_select.add(new Button("MAP 1",650,200,450,400,0,0));
+  //map_select.add(new Button("MAP 1",50,200,525,425,0,0));
+  //map_select.add(new Button("MAP 1",625,200,525,425,0,0));
   PImage MAP1 = loadImage("Level1_map.jpg");
   PImage MAP2 = loadImage("Level2_map.jpg");
   background(0);
   fill(255);
   textSize(75);
   text("SELECT A MAP TO BEGIN", 150, 125);
+  /*
   for (Button b : map_select) {
-      b.display(255);
+    b.display(255);
   }
+  */
+  image(MAP1,50,200,525,425);
+  image(MAP2,625,200,525,425);
+  
 }
 
 void playScreen() {
@@ -153,10 +158,20 @@ public int findTower(int xCor, int yCor) {
   return -1;
 }
 
-
 void mouseClicked() {
   if (MODE == 0) {
-    MODE = 1;
+    
+    //selecting level
+    if (mouseX >= 50 && mouseX <= 575 && mouseY >= 200 && mouseY <= 625){
+      levelselected = 1;
+    }else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625){
+      levelselected = 2;
+    }
+    print(levelselected);
+    
+    if (levelselected > 0){
+      MODE = 1;
+    }
   } else if (MODE == 2) {
     MODE = 0;
   } else {
