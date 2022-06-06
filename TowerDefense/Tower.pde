@@ -1,4 +1,5 @@
 // damage, range, delay
+int[][]originalStats = {{1, 75, 80}, {1, 100, 40}};
 int[][]towerData ={{1, 75, 80}, {1, 100, 40}};
 
 public class Tower {

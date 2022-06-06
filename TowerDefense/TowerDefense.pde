@@ -36,7 +36,7 @@ void setup() {
   */
 }
 
-void draw() { 
+void draw() {
   switch(MODE) {
   case 0:
     startScreen();
@@ -139,6 +139,7 @@ void restart(){
   upgrades.add(new Upgrade("Advanced"));
   currentLevel = new Level1(1);
   towers.clear();
+  towerData = Arrays.copyOf(originalStats,originalStats.length);
 }
 
 // deal damage to bloons in tower range
