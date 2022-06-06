@@ -18,7 +18,7 @@ ArrayList<Upgrade> upgrades;
 
 void setup() {
   size(1200, 700);
-  currentLevel = new Level1(2);
+  currentLevel = new Level1(1);
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
@@ -75,8 +75,21 @@ void draw() {
     text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
   }
   text("selectedTower: "+selectedTower, 10, 180);
-
   //updateButtons();
+  
+  
+  if (health < 0){
+    gameOverScreen();
+  }
+}
+
+void gameOverScreen(){
+  background(0);
+  fill(255);
+  textSize(100);
+  text("GAME OVER", 300, 340);
+  textSize(50);
+  text("Click to Restart", 400, 400); 
 }
 
 // deal damage to bloons in tower range
