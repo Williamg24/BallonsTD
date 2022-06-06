@@ -32,8 +32,8 @@ void setup() {
   currentLevel = new Level1(1);
   /*
   Notes for debugging: Beacuse setup is predetermined before the mode switches, the map doesn't change 
-  when the map is selected 
-  */
+   when the map is selected 
+   */
 }
 
 void draw() { 
@@ -129,7 +129,7 @@ void gameOverScreen() {
   restart();
 }
 
-void restart(){
+void restart() {
   MODE = 0;
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
@@ -183,14 +183,13 @@ void mouseClicked() {
     } else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 2;
     }
-    
-    print(levelselected);
 
+    print(levelselected);
     if (levelselected > 0) {
       MODE = 1;
-    } else {
-      MODE = 0;
-    }
+    }// else {
+    //  MODE = 0;
+    //}
   } else if (MODE == 2) {
     MODE = 0;
   } else {
@@ -200,63 +199,123 @@ void mouseClicked() {
       towers.add(new Tower(selectedTower.name));
       money -= selectedTower.money;
     }
-    // select the type of tower
     if (bar.inSidebar(mouseX)) {
-      if (bar.findButton(mouseX, mouseY) != null) {// && bar.findButton(mouseX, mouseY) != selected) {
-        //type = bar.findButton(mouseX, mouseY).name;
-        selected = bar.findButton(mouseX, mouseY);
-        //println(selected.name);
-        if (selected.isTower()) {
-          if (selected.equals(selectedTower)) {
-            selectedTower.setColor(color(0));
-            selected = null;
-            selectedTower = null;
-          } else {
-            if (selectedTower != null) {
-              selectedTower.setColor(color(0));
-            }
-            selectedTower = selected;
-            selected.setColor(#BEBEBE);
-            menu = upgrades.get(selectedTower.getTowerNum());
-          }
-          //updateButtons();
-        }
-      } else if (selected != null) {
-        //selected.setColor(0);
-        selected = null;
-      }
+      checkTowers();
+    }
+    checkForUpgrades();
 
-      if (selected != null && selected.name.equals("Start")) {//type.equals("Start")) {
-        if (! animate) {
-          currentLevel.startAnimation();
-          animate = true;
-        } else {
-          animate = false;
-        }
+    if (selected != null && selected.name.equals("Start")) {//type.equals("Start")) {
+      if (! animate) {
+        currentLevel.startAnimation();
+        animate = true;
+      } else {
+        animate = false;
       }
     }
+    //// select the type of tower
+    //if (bar.inSidebar(mouseX)) {
+    //  if (bar.findButton(mouseX, mouseY) != null) {// && bar.findButton(mouseX, mouseY) != selected) {
+    //    //type = bar.findButton(mouseX, mouseY).name;
+    //    selected = bar.findButton(mouseX, mouseY);
+    //    //println(selected.name);
+    //    if (selected.isTower()) {
+    //      if (selected.equals(selectedTower)) {
+    //        selectedTower.setColor(color(0));
+    //        selected = null;
+    //        selectedTower = null;
+    //      } else {
+    //        if (selectedTower != null) {
+    //          selectedTower.setColor(color(0));
+    //        }
+    //        selectedTower = selected;
+    //        selected.setColor(#BEBEBE);
+    //        menu = upgrades.get(selectedTower.getTowerNum());
+    //      }
+    //      //updateButtons();
+    //    }
+    //  } else if (selected != null) {
+    //    //selected.setColor(0);
+    //    selected = null;
+    //  }
 
-    // test for upgrade menu
-    if (menu != null && menu.inMenu(mouseX, mouseY)) {
-      //if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
-      upgradePath = menu.selectUpgrade(mouseX, mouseY);
-      upgradeName = upgradePath.name;
-      if (money >= upgradePath.money) {
-        money -= upgradePath.money;
-        switch (upgradeName) {
-        case "Range":
-          towerData[menu.getTowerType()][1] += 20;
-          //println(Arrays.deepToString(towerData));
-          break;
-         case "ATK Speed":
-           towerData[menu.getTowerType()][2] *= 0.8;
-           break;
-        }
-        updateTowers();            // changes values for all towers, not just new ones
+    //  if (selected != null && selected.name.equals("Start")) {//type.equals("Start")) {
+    //    if (! animate) {
+    //      currentLevel.startAnimation();
+    //      animate = true;
+    //    } else {
+    //      animate = false;
+    //    }
+    //  }
+    //}
+
+    //// test for upgrade menu
+    //if (menu != null && menu.inMenu(mouseX, mouseY)) {
+    //  //if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
+    //  upgradePath = menu.selectUpgrade(mouseX, mouseY);
+    //  upgradeName = upgradePath.name;
+    //  if (money >= upgradePath.money) {
+    //    money -= upgradePath.money;
+    //    switch (upgradeName) {
+    //    case "Range":
+    //      towerData[menu.getTowerType()][1] += 20;
+    //      //println(Arrays.deepToString(towerData));
+    //      break;
+    //    case "ATK Speed":
+    //      towerData[menu.getTowerType()][2] *= 0.8;
+    //      break;
+    //    }
+    //    updateTowers();            // changes values for all towers, not just new ones
+    //  }
+    //  //upgradePath.setColor(#BEBEBE);
+    //  //}
+    //}
+  }
+}
+
+// select the type of tower
+void checkTowers() {
+  selected = bar.findButton(mouseX, mouseY);
+  if (selected != null && selected.isTower()) {// && bar.findButton(mouseX, mouseY) != selected) {
+    //println(selected.name);
+    if (selected.equals(selectedTower)) {
+      selectedTower.setColor(color(0));
+      selected = null;
+      selectedTower = null;
+    } else {
+      if (selectedTower != null) {
+        selectedTower.setColor(color(0));
       }
-      //upgradePath.setColor(#BEBEBE);
-      //}
+      selectedTower = selected;
+      selected.setColor(#BEBEBE);
+      menu = upgrades.get(selectedTower.getTowerNum());
     }
+  } else if (selected != null) {
+    //selected.setColor(0);
+    selected = null;
+  }
+}
+
+void checkForUpgrades() {
+  // test for upgrade menu
+  if (menu != null && menu.inMenu(mouseX, mouseY)) {
+    //if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
+    upgradePath = menu.selectUpgrade(mouseX, mouseY);
+    upgradeName = upgradePath.name;
+    if (money >= upgradePath.money) {
+      money -= upgradePath.money;
+      switch (upgradeName) {
+      case "Range":
+        towerData[menu.getTowerType()][1] += 20;
+        //println(Arrays.deepToString(towerData));
+        break;
+      case "ATK Speed":
+        towerData[menu.getTowerType()][2] *= 0.8;
+        break;
+      }
+      updateTowers();            // changes values for all towers, not just new ones
+    }
+    //upgradePath.setColor(#BEBEBE);
+    //}
   }
 }
 

@@ -1,5 +1,3 @@
-color[] colors = {#FF0000, #00FA00, #0000FF};
-
 public class Bloon {
   int type;
   float xCor;
@@ -95,27 +93,6 @@ public class Bloon {
   public void setY(float y) {
     yCor = y;
   }
-
-  //public void setNewX(int aimX, int constant, int index) {
-  //  if (index % 2 != 1) {
-  //    return;
-  //  }
-  //  float newX = xCor + speed*3000*constant;
-  //  if (constant > 0) {
-  //    if (newX > aimX) {
-  //      pointIndex++;
-  //    } else {
-  //      xCor = newX;
-  //    }
-  //  } else {
-  //    if (newX < aimX) {
-  //      pointIndex++;
-  //    } else {
-  //      xCor = newX;
-  //    }
-  //  }
-  //}
-  
   
   // returns if position was changed or not
   public boolean setNewCoord(int[] aim) {
@@ -136,26 +113,6 @@ public class Bloon {
   public void increasePointIndex() {
     pointIndex++;
   }
-
-  //public void setNewY(int aimY, int constant, int index) {
-  //  if (index % 2 != 0) {
-  //    return;
-  //  }
-  //  float newY = yCor + speed*3000*constant;
-  //  if (constant > 0) {
-  //    if (newY > aimY) {
-  //      pointIndex++;
-  //    } else {
-  //      yCor = newY;
-  //    }
-  //  } else {
-  //    if (newY < aimY) {
-  //      pointIndex++;
-  //    } else {
-  //      yCor = newY;
-  //    }
-  //  }
-  //}
 
   public int getPointIndex() {
     return pointIndex;
