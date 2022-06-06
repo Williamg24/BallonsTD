@@ -49,7 +49,8 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
   - Maya Mori: Made the array of points look better and started working on storing which tower the user can upgrade.
 - ### 6/4
   - Maya Mori: User can select towers to upgrade and update their range if necessary.
-  
+- ### 6/5
+  - William Guo: Created both a start screen and end screen. So far, everything resets except tower stats when user plays again.
 <!---
 05/20
 Maya Mori: I finished the Level class and worked on the Bloon class. Bloons move along a path and are destroyed once they reach the end.
