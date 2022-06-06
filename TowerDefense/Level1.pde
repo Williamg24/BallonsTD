@@ -15,12 +15,12 @@ public class Level1 extends Level {
   int pathWidth;
   int levelNum;
 
-  public Level1(int[][] points_, String imageName) {
-    super();
-    points = points_;
-    mapImg = loadImage(imageName);
-    pathWidth = 50;
-  }
+  //public Level1(int[][] points_, String imageName) {
+  //  super();
+  //  points = points_;
+  //  mapImg = loadImage(imageName);
+  //  pathWidth = 50;
+  //}
 
   public Level1(int levelType) {
     levelNum = levelType;
@@ -44,9 +44,6 @@ public class Level1 extends Level {
       switch (round) {
       case 0:
         for (int i=0; i<25; i++) {
-          //if (i % 5 == 0) {
-          //  bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
-          //}
           if (points[0][0] == 0) {
             bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
           } else {
@@ -72,9 +69,6 @@ public class Level1 extends Level {
         break;
       case 2:
         for (int i=0; i<20; i++) {
-          //if (i % 5 == 0) {
-          //  bloons.add(new Bloon(1,points[0][0] - (float) i * 70, points[0][1], points.length));
-          //}
           if (points[0][0] == 0) {
             bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
           } else {
@@ -95,6 +89,10 @@ public class Level1 extends Level {
         swapOrder(i);
       }
     }
+  }
+  
+  public int getType() {
+    return levelNum;
   }
 
   public void swapOrder(int index) {

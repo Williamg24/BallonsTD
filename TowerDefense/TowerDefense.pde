@@ -10,10 +10,11 @@ int round;
 String type;
 boolean animate;
 Sidebar bar;
-Level currentLevel;
+Level1 currentLevel;
 Button selected;
 Upgrade menu;
 Button selectedTower;
+Button menuButton;
 
 Button upgradePath;
 String upgradeName;
@@ -35,15 +36,18 @@ void setup() {
   Notes for debugging: Beacuse setup is predetermined before the mode switches, the map doesn't change 
    when the map is selected 
    */
+  menuButton = new Button("Menu", width - 60, 30, 40, 40, 5, 0);
 }
 
 void draw() { 
+  text("currentLevel: "+currentLevel.getType(), height-20, 10);
   switch(MODE) {
   case 0:
     startScreen();
     break;
   case 1:
     playScreen();
+    menuButton.display(color(0, 0, 255));
     break;
   }
   //background(90, 190, 50);     // the "grass"
@@ -117,7 +121,7 @@ void playScreen() {
     text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
   }
   text("selectedTower: "+selectedTower, 10, 180);
-  text("Round: "+round,10,210);
+  text("Round: "+round, 10, 210);
   //updateButtons();
 }
 
@@ -179,20 +183,18 @@ public int findTower(int xCor, int yCor) {
 
 void mouseClicked() {
   if (MODE == 0) {
-
     //selecting level
     if (mouseX >= 50 && mouseX <= 575 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 1;
     } else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 2;
     }
-    
-    currentLevel = new Level1(levelselected);
-    round = 0;
 
-    print(levelselected);
+    println(levelselected);
     if (levelselected > 0) {
       MODE = 1;
+      currentLevel = new Level1(levelselected);
+      round = 0;
     }// else {
     //  MODE = 0;
     //}
@@ -219,6 +221,14 @@ void mouseClicked() {
         animate = false;
       }
     }
+
+    if (menuButton.isInside(mouseX, mouseY)) {
+      MODE = 0;
+      round = 0;
+      animate = false;
+      towers.clear();
+      //currentLevel = null;
+    }
   }
 }
 
@@ -239,8 +249,8 @@ void checkTowers() {
       menu = upgrades.get(selectedTower.getTowerNum());
     }
   }// else if (selected != null) {
-    //selected.setColor(0);
-    //selected = null;
+  //selected.setColor(0);
+  //selected = null;
   //}
 }
 

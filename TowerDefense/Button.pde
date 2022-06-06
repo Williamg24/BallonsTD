@@ -1,4 +1,4 @@
-public class Button { //<>//
+public class Button { //<>// //<>//
   PImage towerImage; 
   float xCor;
   float yCor;
@@ -70,10 +70,13 @@ public class Button { //<>//
   public void display(color c) {
     fill(c);
     rect(xCor, yCor, wide, tall, radius);
-
-    fill(255);
-    textSize(32);
-    text(name, xCor+80, yCor+35);
+  
+  
+    if (name.equals("Start")){
+      fill(255);
+      textSize(32);
+      text(name, xCor+80, yCor+35);
+    }
   }
 
   // check if mouse inside button
