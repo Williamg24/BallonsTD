@@ -6,6 +6,7 @@ int MODE;
 int money;
 int health;
 int levelselected;
+int round;
 String type;
 boolean animate;
 Sidebar bar;
@@ -21,7 +22,7 @@ ArrayList<Upgrade> upgrades;
 void setup() {
   MODE = 0;
   size(1200, 700);
-  health = 5;
+  health = 500;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
@@ -116,6 +117,7 @@ void playScreen() {
     text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
   }
   text("selectedTower: "+selectedTower, 10, 180);
+  text("Round: "+round,10,210);
   //updateButtons();
 }
 
@@ -130,6 +132,7 @@ void gameOverScreen() {
 }
 
 void restart() {
+  round = 0;
   MODE = 0;
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
@@ -183,6 +186,9 @@ void mouseClicked() {
     } else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 2;
     }
+    
+    currentLevel = new Level1(levelselected);
+    round = 0;
 
     print(levelselected);
     if (levelselected > 0) {
@@ -193,6 +199,7 @@ void mouseClicked() {
   } else if (MODE == 2) {
     MODE = 0;
   } else {
+    selected = bar.findButton(mouseX, mouseY);
     //println("mouse clicked");
     // only place tower if sufficient money for tower type selected and not on path
     if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
@@ -212,69 +219,11 @@ void mouseClicked() {
         animate = false;
       }
     }
-    //// select the type of tower
-    //if (bar.inSidebar(mouseX)) {
-    //  if (bar.findButton(mouseX, mouseY) != null) {// && bar.findButton(mouseX, mouseY) != selected) {
-    //    //type = bar.findButton(mouseX, mouseY).name;
-    //    selected = bar.findButton(mouseX, mouseY);
-    //    //println(selected.name);
-    //    if (selected.isTower()) {
-    //      if (selected.equals(selectedTower)) {
-    //        selectedTower.setColor(color(0));
-    //        selected = null;
-    //        selectedTower = null;
-    //      } else {
-    //        if (selectedTower != null) {
-    //          selectedTower.setColor(color(0));
-    //        }
-    //        selectedTower = selected;
-    //        selected.setColor(#BEBEBE);
-    //        menu = upgrades.get(selectedTower.getTowerNum());
-    //      }
-    //      //updateButtons();
-    //    }
-    //  } else if (selected != null) {
-    //    //selected.setColor(0);
-    //    selected = null;
-    //  }
-
-    //  if (selected != null && selected.name.equals("Start")) {//type.equals("Start")) {
-    //    if (! animate) {
-    //      currentLevel.startAnimation();
-    //      animate = true;
-    //    } else {
-    //      animate = false;
-    //    }
-    //  }
-    //}
-
-    //// test for upgrade menu
-    //if (menu != null && menu.inMenu(mouseX, mouseY)) {
-    //  //if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
-    //  upgradePath = menu.selectUpgrade(mouseX, mouseY);
-    //  upgradeName = upgradePath.name;
-    //  if (money >= upgradePath.money) {
-    //    money -= upgradePath.money;
-    //    switch (upgradeName) {
-    //    case "Range":
-    //      towerData[menu.getTowerType()][1] += 20;
-    //      //println(Arrays.deepToString(towerData));
-    //      break;
-    //    case "ATK Speed":
-    //      towerData[menu.getTowerType()][2] *= 0.8;
-    //      break;
-    //    }
-    //    updateTowers();            // changes values for all towers, not just new ones
-    //  }
-    //  //upgradePath.setColor(#BEBEBE);
-    //  //}
-    //}
   }
 }
 
 // select the type of tower
 void checkTowers() {
-  selected = bar.findButton(mouseX, mouseY);
   if (selected != null && selected.isTower()) {// && bar.findButton(mouseX, mouseY) != selected) {
     //println(selected.name);
     if (selected.equals(selectedTower)) {
@@ -289,10 +238,10 @@ void checkTowers() {
       selected.setColor(#BEBEBE);
       menu = upgrades.get(selectedTower.getTowerNum());
     }
-  } else if (selected != null) {
+  }// else if (selected != null) {
     //selected.setColor(0);
-    selected = null;
-  }
+    //selected = null;
+  //}
 }
 
 void checkForUpgrades() {
