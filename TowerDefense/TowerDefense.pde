@@ -53,10 +53,10 @@ void draw() {
 }
 
 void startScreen() {
+    PImage MAP1 = loadImage("Level1_map.jpg");
+  PImage MAP2 = loadImage("Level2_map.jpg");
   //map_select.add(new Button("MAP 1",50,200,525,425,0,0));
   //map_select.add(new Button("MAP 1",625,200,525,425,0,0));
-  PImage MAP1 = loadImage("Level1_map.jpg");
-  PImage MAP2 = loadImage("Level2_map.jpg");
   background(0);
   fill(255);
   textSize(75);
@@ -183,7 +183,8 @@ void mouseClicked() {
     } else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 2;
     }
-    print(levelselected);
+    currentLevel = new Level1(levelselected);
+    //print(levelselected);
 
     if (levelselected > 0) {
       MODE = 1;
