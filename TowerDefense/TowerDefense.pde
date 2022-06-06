@@ -36,18 +36,17 @@ void setup() {
   Notes for debugging: Beacuse setup is predetermined before the mode switches, the map doesn't change 
    when the map is selected 
    */
-  menuButton = new Button("Menu", width - 60, 30, 40, 40, 5, 0);
+  menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
 }
 
 void draw() { 
-  text("currentLevel: "+currentLevel.getType(), height-20, 10);
   switch(MODE) {
   case 0:
     startScreen();
     break;
   case 1:
     playScreen();
-    menuButton.display(color(0, 0, 255));
+    menuButton.display(color(50, 150, 200));
     break;
   }
   //background(90, 190, 50);     // the "grass"
@@ -55,6 +54,8 @@ void draw() {
     gameOverScreen();
     MODE = 2;
   }
+  //text("currentLevel: "+currentLevel.getType(), 10, height-30);
+  //text("MODE: "+MODE, 10, height-10);
 }
 
 void startScreen() {
@@ -227,6 +228,7 @@ void mouseClicked() {
       round = 0;
       animate = false;
       towers.clear();
+      levelselected = 0;
       //currentLevel = null;
     }
   }
