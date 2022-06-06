@@ -1,5 +1,10 @@
 import java.util.*;
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 06bc8562fddaff544a33dd881e9819a3f88ebea2
 int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}}, // Level 0, stright path
   // Level 1
   {{0, 296}, {445, 296}, {445, 129}, {294, 129}, {294, 566}, {145, 566}, {145, 405}, {572, 405}, {572, 236}, {679, 236}, {679, 512}, {400, 512}, {400, 700}}, 
@@ -137,7 +142,9 @@ public class Level1 extends Level {
   }
 
   public void displayPath() {
-    image(mapImg, 0, 0, MAP_WIDTH, height);
+    if (mapImg != null) {
+      image(mapImg, 0, 0, MAP_WIDTH, height);
+    }
   }
 
   public void displayBloons() {
