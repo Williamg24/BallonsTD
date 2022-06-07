@@ -122,10 +122,8 @@ public class Tower {
   public int getTsize() {
     return Tsize;
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> 3f285fcfc18692a84f7f72a3c60e120d1f2d1329
+// need img so that only faces bloons in range of it instead of across whole map
   void faceBloon(Bloon b) {
     if (b != null) {
       pushMatrix();
