@@ -54,7 +54,7 @@ void draw() {
 }
 
 void startScreen() {
-    PImage MAP1 = loadImage("Level1_map.jpg");
+  PImage MAP1 = loadImage("Level1_map.jpg");
   PImage MAP2 = loadImage("Level2_map.jpg");
   //map_select.add(new Button("MAP 1",50,200,525,425,0,0));
   //map_select.add(new Button("MAP 1",625,200,525,425,0,0));
@@ -87,12 +87,6 @@ void playScreen() {
   } else {
     menu = null;
   }
-
-  /*
-  if (MouseInMenu()){
-   menu.display();
-   }
-   */
 
   //// visual test for onPath
   //fill(100,30,100,150);

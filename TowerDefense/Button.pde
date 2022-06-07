@@ -63,7 +63,7 @@ public class Button { //<>// //<>//
     rect(xCor, yCor, wide, tall, radius);
     fill(0);
     textSize(30);
-    text(name, xCor + wide / 4, height - 50);
+    text(name, xCor + wide / 5, height - 50);
     textSize(23);
     text("$" + money, xCor + wide / 3, height - 20);
   }
