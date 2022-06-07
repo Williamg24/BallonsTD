@@ -31,6 +31,7 @@ void setup() {
   upgrades.add(new Upgrade("Basic"));
   upgrades.add(new Upgrade("Advanced"));
   currentLevel = new Level1(1);
+  round = 0;
 }
 
 

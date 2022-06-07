@@ -86,17 +86,23 @@ public class Bloon {
     return yCor;
   }
 
-  public void setX(float x) {
-    xCor = x;
-  }
+  //public void setX(float x) {
+  //  xCor = x;
+  //}
 
-  public void setY(float y) {
-    yCor = y;
-  }
+  //public void setY(float y) {
+  //  yCor = y;
+  //}
   
   // returns if position was changed or not
   public boolean setNewCoord(int[] aim) {
-    float fracToCover = speed * 3000 / dist(xCor, yCor, aim[0], aim[1]);
+    float fracToCover;
+    if (dist(xCor, yCor, aim[0], aim[1]) != 0) {
+      fracToCover = speed * 3000 / dist(xCor, yCor, aim[0], aim[1]);
+    } else {
+      return false;
+    }
+    text(fracToCover,10,height-30);
     float newX = xCor + fracToCover * (aim[0] - xCor);
     float newY = yCor + fracToCover * (aim[1] - yCor);
     

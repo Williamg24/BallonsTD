@@ -43,7 +43,7 @@ public class Level1 extends Level {
     if (bloons.size() == 0) {
       switch (round) {
       case 0:
-        for (int i=0; i<25; i++) {
+        for (int i=0; i<5; i++) {
           if (points[0][0] == 0) {
             bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
           } else {
@@ -115,6 +115,12 @@ public class Level1 extends Level {
   }
 
   public void display() {
+    if (bloons.size() == 0 && animate && round < 3) {
+      displayPath();
+      round++;
+      startAnimation();
+    }
+    
     displayPath();
     if (animate) {
       displayBloons();
@@ -122,18 +128,20 @@ public class Level1 extends Level {
       displayStillBloons();
     }
 
-    if (bloons.size() == 0 && animate && round < 3) {
-      round++;
-      startAnimation();
-    }
-
     // displays points
-    //fill(200, 0, 0);
-    //noStroke();
-    //for (int[] point : points) {
-    //  ellipse(point[0], point[1], 4, 4);
-    //}
-    //text("bloons length: "+bloons.size(),10,40);
+    fill(200, 0, 0);
+    noStroke();
+    for (int[] point : points) {
+      ellipse(point[0], point[1], 4, 4);
+    }
+    
+    Bloon b;
+    textSize(20);
+    for (int i=0; i<bloons.size(); i++) {
+      b = bloons.get(i);
+      text(b+" Coords: "+b.xCor+","+b.yCor,30,40+20*i);
+    }
+    text("bloons length: "+bloons.size(),10,40);
   }
 
   public void displayPath() {
@@ -173,8 +181,17 @@ public class Level1 extends Level {
         bloons.remove(i);
         i--;
       }
+      textSize(20);
+      //text("Coords: "+b.xCor+","+b.yCor,30,40+20*i);
+      //fill(0);
+      //ellipse(b.xCor, b.yCor, 10,10);
+    }
+    
+    for (Bloon l:bloons) {
+      ellipse(l.xCor, l.yCor, 10,10);
     }
     sortBloons();
+    
   }
 
   public void displayStillBloons() {

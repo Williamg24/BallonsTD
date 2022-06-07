@@ -17,7 +17,7 @@ public class Level {
 
   public void display() {
     displayPath();
-    displayBloons();
+    //displayBloons();
   }
 
   public void displayPath() {
@@ -26,27 +26,27 @@ public class Level {
     rect(0, height/2 - 40, MAP_WIDTH, 80);
   }
 
-  public void displayBloons() {
-    //println("displayBloons");
-    Bloon b;
-    for (int i=0; i<bloons.size(); i++) {
-      b = bloons.get(i);
-      if (! b.isPopped()) {
-        b.move();
-        b.setX(pathFunctionX(b.getT()));
-        b.setY(pathFunctionY(b.getT()));
-        b.display();
-      } else {
-        if (b.getT() > 1) {      // decrease health if bloon went off map
-          health--;
-        } else {                 // a tower popped it
-          money += b.worth();
-        }
-        bloons.remove(i);
-        i--;
-      }
-    }
-  }
+  //public void displayBloons() {
+  //  //println("displayBloons");
+  //  Bloon b;
+  //  for (int i=0; i<bloons.size(); i++) {
+  //    b = bloons.get(i);
+  //    if (! b.isPopped()) {
+  //      b.move();
+  //      b.setX(pathFunctionX(b.getT()));
+  //      b.setY(pathFunctionY(b.getT()));
+  //      b.display();
+  //    } else {
+  //      if (b.getT() > 1) {      // decrease health if bloon went off map
+  //        health--;
+  //      } else {                 // a tower popped it
+  //        money += b.worth();
+  //      }
+  //      bloons.remove(i);
+  //      i--;
+  //    }
+  //  }
+  //}
 
   public float pathFunctionX(float t) {
     return t * MAP_WIDTH;
