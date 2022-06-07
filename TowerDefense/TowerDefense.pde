@@ -64,7 +64,7 @@ void startScreen() {
   text("SELECT A MAP TO BEGIN", 150, 125);
   image(MAP1, 50, 200, 525, 425);
   image(MAP2, 625, 200, 525, 425);
-   //when the map is selected 
+  //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
 }
 
@@ -75,6 +75,7 @@ void playScreen() {
   for (Tower t1 : towers) {
     t1.display();
     if (t1.canAttack() && animate) {
+      t1.faceBloon(t1.firstInRange(t1));
       attackBloons(t1);
     }
   }
@@ -110,7 +111,7 @@ void playScreen() {
   //text("selectedTower: "+selectedTower, 10, 180);
   textSize(40);
   fill(#E3242B);
-  text("Round:"+(round + 1) + "/3", MAP_WIDTH - 225,50);
+  text("Round:"+(round + 1) + "/3", MAP_WIDTH - 225, 50);
   //updateButtons();
 }
 
@@ -124,7 +125,7 @@ void gameOverScreen() {
   restart();
 }
 
-void restart(){
+void restart() {
   round = 0;
   MODE = 0;
   health = 5;
@@ -136,7 +137,7 @@ void restart(){
   upgrades.add(new Upgrade("Advanced"));
   currentLevel = new Level1(1);
   towers.clear();
-  towerData = Arrays.copyOf(originalStats,originalStats.length);
+  towerData = Arrays.copyOf(originalStats, originalStats.length);
   selected = null;
 }
 

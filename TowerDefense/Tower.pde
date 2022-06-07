@@ -14,6 +14,7 @@ public class Tower {
   //color towerColor;
   PImage TopView;
   int type;
+  float angle;
 
   public Tower(String towerType) {
     //println(Arrays.deepToString(towerData));
@@ -27,10 +28,10 @@ public class Tower {
       towerSettings(mouseX, mouseY, 50, 20);
       break;
     }
-    
+
     loadTopView();
   }
-  
+
   public void update() {
     damage = towerData[type][0];
     range = towerData[type][1];
@@ -49,7 +50,7 @@ public class Tower {
     //  break;
     //}
   }
-  
+
   // sets the variables
   public void towerSettings(int xcor, int ycor, int tsize, int money) {
     x = xcor;
@@ -62,19 +63,6 @@ public class Tower {
     Tsize = tsize;
   }
 
-  //// sets the variables
-  //public void towerSettings(int xcor, int ycor, int atk, int radius, int tsize, int money, int wait, color c) {
-  //  x = xcor;
-  //  y = ycor;
-  //  damage = atk;
-  //  range = radius;
-  //  cost = money;
-  //  delay = wait;
-  //  tick = delay;      // tower can start attacking right away
-  //  Tsize = tsize;
-  //  towerColor = c;
-  //}
-
   public void display() {
     if (insideTower(mouseX, mouseY)) {// && mousePressed) {
       noFill();
@@ -85,6 +73,9 @@ public class Tower {
     //ellipse(x, y, Tsize, Tsize);
     if (TopView != null) {
       image(TopView, x - Tsize/2, y - Tsize/2, Tsize, Tsize);
+      for (Tower t1 : towers) {
+        faceBloon(firstInRange(t1));
+      }
     }
     tick++;
   }
@@ -130,5 +121,32 @@ public class Tower {
 
   public int getTsize() {
     return Tsize;
+  }
+
+  void faceBloon(Bloon b) {
+    if (b != null) {
+      pushMatrix();
+      angle = atan2(x-b.xCor, y-b.yCor);
+      translate(x, y);
+      rotate(-angle-HALF_PI);
+      fill(255,0,0);
+      rect(0, 0, 50, 2);
+      popMatrix();
+    }
+  }
+
+  Bloon firstInRange(Tower t) {
+    Bloon b;
+    int i = 0;
+    boolean done = false;
+    while (i < currentLevel.bloons.size() && ! done) {
+      b = currentLevel.bloons.get(i);
+      if (t.inRange(b)) {
+        done = true;
+        return b;
+      }
+      i++;
+    }
+    return null;
   }
 }
