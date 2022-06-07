@@ -30,12 +30,12 @@ public class Upgrade {
     switch(towerName) {
     case "Basic":
       upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
-      upgradePaths.add(new Button("ATK", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
+      upgradePaths.add(new Button("Atk Spd", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
       towerType = 0;
       break;
     case "Advanced":
       upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
-      upgradePaths.add(new Button("ATK", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
+      upgradePaths.add(new Button("Atk Spd", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
       towerType = 1;
       break;
     }
