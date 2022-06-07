@@ -14,6 +14,7 @@ public class Tower {
   //color towerColor;
   PImage TopView;
   int type;
+  float angle;
 
   public Tower(String towerType) {
     //println(Arrays.deepToString(towerData));
@@ -130,5 +131,31 @@ public class Tower {
 
   public int getTsize() {
     return Tsize;
+  }
+  void faceBloon(Bloon b) {
+    if (b != null) {
+      pushMatrix();
+      angle = atan2(x-b.xCor, y-b.yCor);
+      translate(x, y);
+      rotate(-angle-HALF_PI);
+      fill(255,0,0);
+      rect(0, 0, 50, 2);
+      popMatrix();
+    }
+  }
+
+  Bloon firstInRange(Tower t) {
+    Bloon b;
+    int i = 0;
+    boolean done = false;
+    while (i < currentLevel.bloons.size() && ! done) {
+      b = currentLevel.bloons.get(i);
+      if (t.inRange(b)) {
+        done = true;
+        return b;
+      }
+      i++;
+    }
+    return null;
   }
 }

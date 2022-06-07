@@ -75,6 +75,7 @@ void playScreen() {
   for (Tower t1 : towers) {
     t1.display();
     if (t1.canAttack() && animate) {
+      t1.faceBloon(t1.firstInRange(t1));
       attackBloons(t1);
     }
   }
