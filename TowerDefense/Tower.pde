@@ -1,6 +1,6 @@
 // damage, range, delay
-int[][]originalStats = {{1, 75, 80}, {1, 100, 40}};
-int[][]towerData ={{1, 75, 80}, {1, 100, 40}};
+int[][]originalStats = {{1, 75, 40}, {1, 100, 25}};
+int[][]towerData ={{1, 75, 40}, {1, 100, 25}};
 
 public class Tower {
   int cost;
@@ -73,9 +73,9 @@ public class Tower {
     //ellipse(x, y, Tsize, Tsize);
     if (TopView != null) {
       image(TopView, x - Tsize/2, y - Tsize/2, Tsize, Tsize);
-      for (Tower t1 : towers) {
-        faceBloon(firstInRange(t1));
-      }
+      //for (Tower t1 : towers) {
+      //  faceBloon(firstInRange(t1));
+      //}
     }
     tick++;
   }

@@ -254,6 +254,7 @@ void checkForUpgrades() {
     upgradeName = upgradePath.name;
     if (money >= upgradePath.money) {
       money -= upgradePath.money;
+      upgradePath.money += 10;
       switch (upgradeName) {
       case "Range":
         towerData[menu.getTowerType()][1] += 20;
