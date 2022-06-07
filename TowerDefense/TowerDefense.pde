@@ -1,15 +1,11 @@
 int MAP_WIDTH = 900;
 ArrayList<Tower> towers = new ArrayList<Tower>();
-//ArrayList<Button> map_select = new ArrayList<Button>();
 
 int MODE;
 int money;
 int health;
 int levelselected;
-<<<<<<< HEAD
-=======
 int round;
->>>>>>> 06bc8562fddaff544a33dd881e9819a3f88ebea2
 String type;
 boolean animate;
 Sidebar bar;
@@ -26,11 +22,7 @@ ArrayList<Upgrade> upgrades;
 void setup() {
   MODE = 0;
   size(1200, 700);
-<<<<<<< HEAD
-  health = 5;
-=======
-  health = 500;
->>>>>>> 06bc8562fddaff544a33dd881e9819a3f88ebea2
+  health = 100;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
@@ -39,52 +31,8 @@ void setup() {
   upgrades.add(new Upgrade("Basic"));
   upgrades.add(new Upgrade("Advanced"));
   currentLevel = new Level1(1);
-  /*
-  Notes for debugging: Beacuse setup is predetermined before the mode switches, the map doesn't change 
-<<<<<<< HEAD
-  when the map is selected 
-  */
 }
 
-void draw() {
-  switch(MODE) {
-  case 0:
-    startScreen();
-    break;
-  case 1:
-    playScreen();
-    break;
-  }
-  //background(90, 190, 50);     // the "grass"
-  if (health < 0) {
-    gameOverScreen();
-    MODE = 2;
-  }
-}
-
-void startScreen() {
-    PImage MAP1 = loadImage("Level1_map.jpg");
-  PImage MAP2 = loadImage("Level2_map.jpg");
-  //map_select.add(new Button("MAP 1",50,200,525,425,0,0));
-  //map_select.add(new Button("MAP 1",625,200,525,425,0,0));
-  background(0);
-  fill(255);
-  textSize(75);
-  text("SELECT A MAP TO BEGIN", 150, 125);
-  /*
-  for (Button b : map_select) {
-   b.display(255);
-   }
-   */
-  image(MAP1, 50, 200, 525, 425);
-  image(MAP2, 625, 200, 525, 425);
-}
-
-=======
-   when the map is selected 
-   */
-  menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
-}
 
 void draw() { 
   switch(MODE) {
@@ -106,24 +54,20 @@ void draw() {
 }
 
 void startScreen() {
+    PImage MAP1 = loadImage("Level1_map.jpg");
+  PImage MAP2 = loadImage("Level2_map.jpg");
   //map_select.add(new Button("MAP 1",50,200,525,425,0,0));
   //map_select.add(new Button("MAP 1",625,200,525,425,0,0));
-  PImage MAP1 = loadImage("Level1_map.jpg");
-  PImage MAP2 = loadImage("Level2_map.jpg");
   background(0);
   fill(255);
   textSize(75);
   text("SELECT A MAP TO BEGIN", 150, 125);
-  /*
-  for (Button b : map_select) {
-   b.display(255);
-   }
-   */
   image(MAP1, 50, 200, 525, 425);
   image(MAP2, 625, 200, 525, 425);
+   //when the map is selected 
+  menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
 }
 
->>>>>>> 06bc8562fddaff544a33dd881e9819a3f88ebea2
 void playScreen() {
   currentLevel.display();
   //println();
@@ -164,16 +108,15 @@ void playScreen() {
   //text("mouseX: "+mouseX,10,20);
   //text("mouseY: "+mouseY,10,50);
   //text("frame rate: "+frameRate,10,100);
-  text("Upgrade path: "+upgradeName, 10, 50);
-  text("selected button: "+selected, 10, 100);
-  if (selectedTower != null) {
-    text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
-  }
-  text("selectedTower: "+selectedTower, 10, 180);
-<<<<<<< HEAD
-=======
-  text("Round: "+round, 10, 210);
->>>>>>> 06bc8562fddaff544a33dd881e9819a3f88ebea2
+  //text("Upgrade path: "+upgradeName, 10, 50);
+  //text("selected button: "+selected, 10, 100);
+  //if (selectedTower != null) {
+  //  text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
+  //}
+  //text("selectedTower: "+selectedTower, 10, 180);
+  textSize(40);
+  fill(#E3242B);
+  text("Round:"+(round + 1) + "/3", MAP_WIDTH - 225,50);
   //updateButtons();
 }
 
@@ -187,12 +130,8 @@ void gameOverScreen() {
   restart();
 }
 
-<<<<<<< HEAD
 void restart(){
-=======
-void restart() {
   round = 0;
->>>>>>> 06bc8562fddaff544a33dd881e9819a3f88ebea2
   MODE = 0;
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
@@ -203,10 +142,8 @@ void restart() {
   upgrades.add(new Upgrade("Advanced"));
   currentLevel = new Level1(1);
   towers.clear();
-<<<<<<< HEAD
   towerData = Arrays.copyOf(originalStats,originalStats.length);
-=======
->>>>>>> 06bc8562fddaff544a33dd881e9819a3f88ebea2
+  selected = null;
 }
 
 // deal damage to bloons in tower range
@@ -243,90 +180,12 @@ public int findTower(int xCor, int yCor) {
 
 void mouseClicked() {
   if (MODE == 0) {
-<<<<<<< HEAD
-
-=======
->>>>>>> 06bc8562fddaff544a33dd881e9819a3f88ebea2
     //selecting level
     if (mouseX >= 50 && mouseX <= 575 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 1;
     } else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 2;
     }
-<<<<<<< HEAD
-    currentLevel = new Level1(levelselected);
-    //print(levelselected);
-
-    if (levelselected > 0) {
-      MODE = 1;
-    } else {
-      MODE = 0;
-    }
-  } else if (MODE == 2) {
-    MODE = 0;
-  } else {
-    //println("mouse clicked");
-    // only place tower if sufficient money for tower type selected and not on path
-    if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
-      towers.add(new Tower(selectedTower.name));
-      money -= selectedTower.money;
-    }
-    // select the type of tower
-    if (bar.inSidebar(mouseX)) {
-      if (bar.findButton(mouseX, mouseY) != null) {// && bar.findButton(mouseX, mouseY) != selected) {
-        //type = bar.findButton(mouseX, mouseY).name;
-        selected = bar.findButton(mouseX, mouseY);
-        //println(selected.name);
-        if (selected.isTower()) {
-          if (selected.equals(selectedTower)) {
-            selectedTower.setColor(color(0));
-            selected = null;
-            selectedTower = null;
-          } else {
-            if (selectedTower != null) {
-              selectedTower.setColor(color(0));
-            }
-            selectedTower = selected;
-            selected.setColor(#BEBEBE);
-            menu = upgrades.get(selectedTower.getTowerNum());
-          }
-          //updateButtons();
-        }
-      } else if (selected != null) {
-        //selected.setColor(0);
-        selected = null;
-      }
-
-      if (selected != null && selected.name.equals("Start")) {//type.equals("Start")) {
-        if (! animate) {
-          currentLevel.startAnimation();
-          animate = true;
-        } else {
-          animate = false;
-        }
-      }
-    }
-
-    // test for upgrade menu
-    if (menu != null && menu.inMenu(mouseX, mouseY)) {
-      //if (menu.selectUpgrade(mouseX, mouseY) != upgradePath) {
-      upgradePath = menu.selectUpgrade(mouseX, mouseY);
-      upgradeName = upgradePath.name;
-      if (money >= upgradePath.money) {
-        money -= upgradePath.money;
-        switch (upgradeName) {
-        case "Range":
-          towerData[menu.getTowerType()][1] += 20;
-          //println(Arrays.deepToString(towerData));
-          break;
-        }
-        updateTowers();            // changes values for all towers, not just new ones
-      }
-      //upgradePath.setColor(#BEBEBE);
-      //}
-    }
-=======
-
     println(levelselected);
     if (levelselected > 0) {
       MODE = 1;
@@ -413,7 +272,6 @@ void checkForUpgrades() {
     }
     //upgradePath.setColor(#BEBEBE);
     //}
->>>>>>> 06bc8562fddaff544a33dd881e9819a3f88ebea2
   }
 }
 
@@ -434,17 +292,3 @@ void keyPressed() {
     }
   }
 }
-
-//void updateButtons() {
-//  for (Button b : bar.towers) {
-//    if (b == selectedTower) {
-//      b.setColor(#BEBEBE);
-//    }
-//  }
-//}
-
-/*
-boolean MouseInMenu(){
- return (menu != null && (mouseX >= MAP_WIDTH) && (mouseY >= height - 80));
- }
- */
