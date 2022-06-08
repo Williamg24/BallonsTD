@@ -34,7 +34,7 @@ void setup() {
   currentLevel = new Level(1);
   round = 0;
   
-  println("hi");
+  //rprintln("hi");
 }
 
 
@@ -117,7 +117,7 @@ void playScreen() {
   //text("selectedTower: "+selectedTower, 10, 180);
   textSize(40);
   fill(#E3242B);
-  text("Round:"+(round + 1) + "/3", MAP_WIDTH - 225, 50);
+  text("Round:"+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 225, 50);
   //updateButtons();
 }
 

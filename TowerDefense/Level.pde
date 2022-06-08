@@ -8,6 +8,8 @@ int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}}, // Level 0, stright p
     {208, 430}, {235, 496}, {259, 530}, {313, 579}, {380, 618}, {474, 628}, {554, 606}, {629, 559}, {653, 523}, {643, 498}, {620, 479}, {588, 485}, {534, 524}, {461, 539}, 
     {400, 531}, {335, 495}, {297, 436}, {279, 372}, {285, 316}, {312, 255}, {351, 213}, {404, 183}, {471, 173}, {494, 190}, {501, 214}, {499, 238}, {484, 253}, 
   {443, 263}, {400, 282}, {371, 314}, {362, 358}, {380, 412}, {420, 447}, {468, 455}, {515, 435}, {540, 400}, {555, 372}, {586, 360}, {MAP_WIDTH, 360}}};
+  
+int[][] bloonTypesInRound = {{20,0,0}, {35,0,0}, {25,5,0}, {35,18,0}, {5,27,0}};
 
 public class Level {
   PImage mapImg;
@@ -40,53 +42,48 @@ public class Level {
 
   public void startAnimation() {
     if (bloons.size() == 0) {
-      switch (round) {
-      case 0:
-        //for (int i=0; i<25; i++) {
-        //  if (points[0][0] == 0) {
-        //    bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
-        //  } else {
-        //    bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
-        //  }
-        //}
-        println("round 1");
-        addBloons(25,0,0);
-        break;
-      case 1:
-        //for (int i=0; i<20; i++) {
-        //  if (i % 5 == 0) {
-        //    if (points[0][0] == 0) {
-        //      bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
-        //    } else {
-        //      bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
-        //    }
-        //  }
-        //  if (points[0][0] == 0) {
-        //    bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
-        //  } else {
-        //    bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
-        //  }
-        //}
-        addBloons(20,5,0);
-        break;
-      case 2:
-        for (int i=0; i<20; i++) {
-          if (points[0][0] == 0) {
-            bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
-          } else {
-            bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
-          }
-        }
-        break;
-        //case 3:
-      }
+      addBloons();
+      //switch (round) {
+      //case 0:
+      //  //println("round 1");
+      //  addBloons(25,0,0);
+      //  break;
+      //case 1:
+      //  //for (int i=0; i<20; i++) {
+      //  //  if (i % 5 == 0) {
+      //  //    if (points[0][0] == 0) {
+      //  //      bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
+      //  //    } else {
+      //  //      bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
+      //  //    }
+      //  //  }
+      //  //  if (points[0][0] == 0) {
+      //  //    bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
+      //  //  } else {
+      //  //    bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
+      //  //  }
+      //  //}
+      //  addBloons(20,5,0);
+      //  break;
+      //case 2:
+      //  for (int i=0; i<20; i++) {
+      //    if (points[0][0] == 0) {
+      //      bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
+      //    } else {
+      //      bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
+      //    }
+      //  }
+      //  break;
+      //  //case 3:
+      //}
     }
   }
 
   // adds the corresponding number of bloons evenly spread out
-  public void addBloons(int reds, int blues, int greens) {
-    int[] bloonNums = {reds, blues, greens};
-    int maxBloons= max(reds, blues, greens);
+  public void addBloons(){//int reds, int blues, int greens) {
+    int[] bloonNums = bloonTypesInRound[round];//{reds, blues, greens};
+    
+    int maxBloons= max(bloonNums);//reds, blues, greens);
     
     int[] mods = new int[3];
     
@@ -97,7 +94,7 @@ public class Level {
         mods[i] = maxBloons+1;
       }
     }
-    println(Arrays.toString(mods));
+    //println(Arrays.toString(mods));
     
     for (int j=0; j<maxBloons; j++) {
       float[] coords;
@@ -149,7 +146,7 @@ public class Level {
   }
 
   public void display() {
-    if (bloons.size() == 0 && animate && round < 3) {
+    if (bloons.size() == 0 && animate && round < bloonTypesInRound.length - 1) {
       displayPath();
       round++;
       startAnimation();
