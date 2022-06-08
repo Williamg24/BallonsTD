@@ -9,7 +9,7 @@ int round;
 String type;
 boolean animate;
 Sidebar bar;
-Level1 currentLevel;
+Level currentLevel;
 Button selected;
 Upgrade menu;
 Button selectedTower;
@@ -31,7 +31,7 @@ void setup() {
   upgrades = new ArrayList<Upgrade>();
   upgrades.add(new Upgrade("Basic"));
   upgrades.add(new Upgrade("Advanced"));
-  currentLevel = new Level1(1);
+  currentLevel = new Level(1);
   round = 0;
 }
 
@@ -139,7 +139,7 @@ void restart() {
   upgrades.clear();
   upgrades.add(new Upgrade("Basic"));
   upgrades.add(new Upgrade("Advanced"));
-  currentLevel = new Level1(1);
+  currentLevel = new Level(1);
   towers.clear();
   towerData = Arrays.copyOf(originalStats, originalStats.length);
   selected = null;
@@ -188,7 +188,7 @@ void mouseClicked() {
     println(levelselected);
     if (levelselected > 0) {
       MODE = 1;
-      currentLevel = new Level1(levelselected);
+      currentLevel = new Level(levelselected);
       round = 0;
     }// else {
     //  MODE = 0;
