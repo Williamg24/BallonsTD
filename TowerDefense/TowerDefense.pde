@@ -22,7 +22,8 @@ ArrayList<Upgrade> upgrades;
 
 void setup() {
   size(1200, 700);
-  MODE = 0;
+  //MODE = 0;
+  MODE = 1;
   health = 100;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
@@ -31,8 +32,10 @@ void setup() {
   upgrades = new ArrayList<Upgrade>();
   upgrades.add(new Upgrade("Basic"));
   upgrades.add(new Upgrade("Advanced"));
-  currentLevel = new Level(1);
+  currentLevel = new Level(3);
   round = -1;
+  
+  startScreen();
   
   //rprintln("hi");
 }
@@ -95,19 +98,20 @@ void playScreen() {
     menu = null;
   }
 
-  //// visual test for onPath
-  //fill(100,30,100,150);
-  //noStroke();
-  //for (int x = 0; x<width; x++) {
-  //  for (int y = 0; y<height; y++) {
-  //    if (currentLevel.onPath(x,y)) {
-  //      ellipse(x,y,1,1);
-  //    }
-  //  }
-  //}
+  // visual test for onPath
+  fill(100,30,100,150);
+  noStroke();
+  for (int x = 0; x<width; x++) {
+    for (int y = 0; y<height; y++) {
+      if (currentLevel.onPath(x,y)) {
+        ellipse(x,y,1,1);
+      }
+    }
+  }
 
-  //text("mouseX: "+mouseX,10,20);
-  //text("mouseY: "+mouseY,10,50);
+  fill(255);
+  text("mouseX: "+mouseX,10,20);
+  text("mouseY: "+mouseY,10,50);
   //text("frame rate: "+frameRate,10,100);
   //text("Upgrade path: "+upgradeName, 10, 50);
   //text("selected button: "+selected, 10, 100);
