@@ -16,14 +16,6 @@ public class Level {
   int levelNum;
   ArrayList<Bloon> bloons;
 
-
-  //public Level1(int[][] points_, String imageName) {
-  //  super();
-  //  points = points_;
-  //  mapImg = loadImage(imageName);
-  //  pathWidth = 50;
-  //}
-
   public Level(int levelType) {
     bloons = new ArrayList<Bloon>();
     levelNum = levelType;
@@ -41,7 +33,7 @@ public class Level {
       break;
     }
   }
-  
+
   public void clearBloons() {
     bloons = new ArrayList<Bloon>();
   }
@@ -50,19 +42,20 @@ public class Level {
     if (bloons.size() == 0) {
       switch (round) {
       case 0:
-        for (int i=0; i<25; i++) {
-          if (points[0][0] == 0) {
-            bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
-          } else {
-            bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
-          }
-        }
+        //for (int i=0; i<25; i++) {
+        //  if (points[0][0] == 0) {
+        //    bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
+        //  } else {
+        //    bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
+        //  }
+        //}
+        addBloons(25,0,0);
         break;
       case 1:
         for (int i=0; i<20; i++) {
           if (i % 5 == 0) {
             if (points[0][0] == 0) {
-            bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
+              bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
             } else {
               bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
             }
@@ -83,8 +76,51 @@ public class Level {
           }
         }
         break;
-      //case 3:
+        //case 3:
       }
+    }
+  }
+
+  // adds the corresponding number of bloons evenly spread out
+  public void addBloons(int reds, int blues, int greens) {
+    int[] bloonNums = {reds, blues, greens};
+    int maxBloons= max(reds, blues, greens);
+    
+    int[] mods = new int[3];
+    
+    for(int i=0; i<3; i++) {
+      if (bloonNums[i] != 0){
+        mods[i] = maxBloons / bloonNums[i];
+      } else {
+        mods[i] = maxBloons;
+      }
+    }
+    
+    for (int j=0; j<maxBloons; j++) {
+      float[] coords;
+      if (points[0][0] == 0) {
+        coords = new float[]{points[0][0] - (float) j * 70, points[0][1]};
+      } else {
+        coords = new float[]{points[0][0], points[0][1] - (float) j * 70};
+      }
+      
+      for(int k=0; k<3; k++) {
+        if (maxBloons % mods[k] == k - 1) {
+          bloons.add(new Bloon(k, coords, points.length));
+        }
+      }
+      
+      //if (maxBloons % (maxBloons / reds) == 0) {
+      //  bloons.add(new Bloon(0, coords, points.length));
+      //}
+      
+      //if (maxBloons % (maxBloons / greens) == 0) {
+      //  bloons.add(new Bloon(1, coords, points.length));
+      //}
+      
+      //if (maxBloons % (maxBloons / blues) == 0) {
+      //  bloons.add(new Bloon(2, coords, points.length));
+      //}
     }
   }
 
@@ -97,7 +133,7 @@ public class Level {
       }
     }
   }
-  
+
   public int getType() {
     return levelNum;
   }
@@ -127,7 +163,7 @@ public class Level {
       round++;
       startAnimation();
     }
-    
+
     displayPath();
     if (animate) {
       displayBloons();
@@ -141,14 +177,14 @@ public class Level {
     //for (int[] point : points) {
     //  ellipse(point[0], point[1], 4, 4);
     //}
-    
+
     //Bloon b;
     //textSize(20);
     //for (int i=0; i<bloons.size(); i++) {
     //  b = bloons.get(i);
     //  text(b+" Coords: "+b.xCor+","+b.yCor,30,40+20*i);
     //}
-    //text("bloons length: "+bloons.size(),10,40);
+    text("bloons length: "+bloons.size(),10,40);
   }
 
   public void displayPath() {
@@ -188,17 +224,16 @@ public class Level {
         bloons.remove(i);
         i--;
       }
-      textSize(20);
+      //textSize(20);
       //text("Coords: "+b.xCor+","+b.yCor,30,40+20*i);
       //fill(0);
       //ellipse(b.xCor, b.yCor, 10,10);
     }
-    
+
     //for (Bloon l:bloons) {
     //  ellipse(l.xCor, l.yCor, 10,10);
     //}
     sortBloons();
-    
   }
 
   public void displayStillBloons() {

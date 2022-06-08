@@ -43,7 +43,6 @@ public class Sidebar {
     } else {
       start.display(color(90, 190, 50));
     }
-    
     //nextRound.display(color(0,0,200));
   }
   /*
@@ -76,6 +75,4 @@ public class Sidebar {
     }
     return null;
   }
-  
-  
 }

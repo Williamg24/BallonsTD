@@ -10,9 +10,13 @@ public class Bloon {
   int damage;
   PImage bloonImage;
 
-  public Bloon(int type_, float t_) {
-    this(type_, 0, height/2,  1);
-    t = t_;
+  //public Bloon(int type_, float t_) {
+  //  this(type_, 0, height/2,  1);
+  //  t = t_;
+  //}
+  
+  public Bloon(int type_, float[] coords, int maxPointIndex_) {
+    this(type_ , coords[0], coords[1], maxPointIndex_);
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
