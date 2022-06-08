@@ -122,7 +122,8 @@ void playScreen() {
   //}
   //text("selectedTower: "+selectedTower, 10, 180);
   textSize(40);
-  fill(#E3242B);
+  //fill(#E3242B);
+  fill(255);
   text("Round:"+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 225, 50);
   //updateButtons();
 }
@@ -193,7 +194,7 @@ void mouseClicked() {
     } else if (mouseX >= 420 && mouseX <= 420 + 360 && mouseY >= 200 && mouseY <= 480) {
       levelselected = 2;
     } else if (mouseX >= 800 && mouseX <= 800 + 360 && mouseY >= 200 && mouseY <= 480) {
-      levelselected = 2;
+      levelselected = 3;
     }
     //println(levelselected);
     if (levelselected > 0) {

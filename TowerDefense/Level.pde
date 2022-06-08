@@ -145,7 +145,7 @@ public class Level {
     //  b = bloons.get(i);
     //  text(b+" Coords: "+b.xCor+","+b.yCor,30,40+20*i);
     //}
-    text("bloons length: "+bloons.size(),10,40);
+    //text("bloons length: "+bloons.size(),10,40);
   }
 
   public void displayPath() {
