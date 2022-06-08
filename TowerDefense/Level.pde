@@ -49,23 +49,25 @@ public class Level {
         //    bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
         //  }
         //}
+        println("round 1");
         addBloons(25,0,0);
         break;
       case 1:
-        for (int i=0; i<20; i++) {
-          if (i % 5 == 0) {
-            if (points[0][0] == 0) {
-              bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
-            } else {
-              bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
-            }
-          }
-          if (points[0][0] == 0) {
-            bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
-          } else {
-            bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
-          }
-        }
+        //for (int i=0; i<20; i++) {
+        //  if (i % 5 == 0) {
+        //    if (points[0][0] == 0) {
+        //      bloons.add(new Bloon(1, points[0][0] - (float) i * 70, points[0][1], points.length));
+        //    } else {
+        //      bloons.add(new Bloon(1, points[0][0], points[0][1] - (float) i * 70, points.length));
+        //    }
+        //  }
+        //  if (points[0][0] == 0) {
+        //    bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
+        //  } else {
+        //    bloons.add(new Bloon(0, points[0][0], points[0][1] - (float) i * 70, points.length));
+        //  }
+        //}
+        addBloons(20,5,0);
         break;
       case 2:
         for (int i=0; i<20; i++) {
@@ -92,9 +94,10 @@ public class Level {
       if (bloonNums[i] != 0){
         mods[i] = maxBloons / bloonNums[i];
       } else {
-        mods[i] = maxBloons;
+        mods[i] = maxBloons+1;
       }
     }
+    println(Arrays.toString(mods));
     
     for (int j=0; j<maxBloons; j++) {
       float[] coords;
@@ -105,22 +108,10 @@ public class Level {
       }
       
       for(int k=0; k<3; k++) {
-        if (maxBloons % mods[k] == k - 1) {
+        if ((j+1) % mods[k] == 0) {
           bloons.add(new Bloon(k, coords, points.length));
         }
       }
-      
-      //if (maxBloons % (maxBloons / reds) == 0) {
-      //  bloons.add(new Bloon(0, coords, points.length));
-      //}
-      
-      //if (maxBloons % (maxBloons / greens) == 0) {
-      //  bloons.add(new Bloon(1, coords, points.length));
-      //}
-      
-      //if (maxBloons % (maxBloons / blues) == 0) {
-      //  bloons.add(new Bloon(2, coords, points.length));
-      //}
     }
   }
 

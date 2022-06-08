@@ -21,8 +21,8 @@ String upgradeName;
 ArrayList<Upgrade> upgrades;
 
 void setup() {
-  MODE = 0;
   size(1200, 700);
+  MODE = 0;
   health = 100;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
@@ -33,6 +33,8 @@ void setup() {
   upgrades.add(new Upgrade("Advanced"));
   currentLevel = new Level(1);
   round = 0;
+  
+  println("hi");
 }
 
 
