@@ -53,4 +53,8 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
   - William Guo: Created both a start screen and end screen. So far, everything resets except tower stats when user plays again.
 - ### 6/6
   - Maya Mori: Basic tower upgrades done and menu button created returns player to original start screen.
-  - William Guo: Completed Start and end screen, minor adjustments to text display and bloon speed. 
+  - William Guo: Completed Start and end screen, minor adjustments to text display and bloon speed.
+- ### 6/7
+  - Maya Mori: Fixed some small bugs and added new features to upgrades.
+- ### 6/8
+  - Maya Mori: Created a button to skip rounds and Level 3 map. Also, replaced Level with Level1 and made it easier to add new rounds.
