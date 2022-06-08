@@ -32,7 +32,7 @@ void setup() {
   upgrades.add(new Upgrade("Basic"));
   upgrades.add(new Upgrade("Advanced"));
   currentLevel = new Level(1);
-  round = 0;
+  round = -1;
   
   //rprintln("hi");
 }
@@ -132,7 +132,7 @@ void gameOverScreen() {
 }
 
 void restart() {
-  round = 0;
+  round = -1;
   MODE = 0;
   health = 5;
   //currentBloon = currentLevel.getSize() - 1;
@@ -187,11 +187,11 @@ void mouseClicked() {
     } else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625) {
       levelselected = 2;
     }
-    println(levelselected);
+    //println(levelselected);
     if (levelselected > 0) {
       MODE = 1;
       currentLevel = new Level(levelselected);
-      round = 0;
+      round = -1;
     }// else {
     //  MODE = 0;
     //}
@@ -220,19 +220,12 @@ void mouseClicked() {
     }
     
     if (nextRound.isInside(mouseX, mouseY)) {
-      //round++;
-      currentLevel.clearBloons();
-      //if (! animate) {
-      //  currentLevel.startAnimation();
-      //  animate = true;
-      //} else {
-      //  animate = false;
-      //}
+      currentLevel.clearBloons();              // this will trigger the next round
     }
 
     if (menuButton.isInside(mouseX, mouseY)) {
       MODE = 0;
-      round = 0;
+      round = -1;
       animate = false;
       towers.clear();
       levelselected = 0;

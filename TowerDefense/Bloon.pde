@@ -9,11 +9,6 @@ public class Bloon {
   int maxPointIndex;
   int damage;
   PImage bloonImage;
-
-  //public Bloon(int type_, float t_) {
-  //  this(type_, 0, height/2,  1);
-  //  t = t_;
-  //}
   
   public Bloon(int type_, float[] coords, int maxPointIndex_) {
     this(type_ , coords[0], coords[1], maxPointIndex_);
@@ -43,12 +38,6 @@ public class Bloon {
   }
 
   public void display() {
-    //fill(255, 0, 0);
-    //println("display bloon");
-
-    //fill(colors[type]);
-    //ellipse(xCor, yCor, 40, 40);
-    //getBloonType();
     image(bloonImage, xCor - 18, yCor - 18, 35, 40);
   }
 
