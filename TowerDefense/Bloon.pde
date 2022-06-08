@@ -102,7 +102,7 @@ public class Bloon {
     } else {
       return false;
     }
-    text(fracToCover,10,height-30);
+    //text(fracToCover,10,height-30);
     float newX = xCor + fracToCover * (aim[0] - xCor);
     float newY = yCor + fracToCover * (aim[1] - yCor);
     

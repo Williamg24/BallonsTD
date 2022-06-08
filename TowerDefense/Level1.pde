@@ -129,19 +129,19 @@ public class Level1 extends Level {
     }
 
     // displays points
-    fill(200, 0, 0);
-    noStroke();
-    for (int[] point : points) {
-      ellipse(point[0], point[1], 4, 4);
-    }
+    //fill(200, 0, 0);
+    //noStroke();
+    //for (int[] point : points) {
+    //  ellipse(point[0], point[1], 4, 4);
+    //}
     
-    Bloon b;
-    textSize(20);
-    for (int i=0; i<bloons.size(); i++) {
-      b = bloons.get(i);
-      text(b+" Coords: "+b.xCor+","+b.yCor,30,40+20*i);
-    }
-    text("bloons length: "+bloons.size(),10,40);
+    //Bloon b;
+    //textSize(20);
+    //for (int i=0; i<bloons.size(); i++) {
+    //  b = bloons.get(i);
+    //  text(b+" Coords: "+b.xCor+","+b.yCor,30,40+20*i);
+    //}
+    //text("bloons length: "+bloons.size(),10,40);
   }
 
   public void displayPath() {
@@ -187,9 +187,9 @@ public class Level1 extends Level {
       //ellipse(b.xCor, b.yCor, 10,10);
     }
     
-    for (Bloon l:bloons) {
-      ellipse(l.xCor, l.yCor, 10,10);
-    }
+    //for (Bloon l:bloons) {
+    //  ellipse(l.xCor, l.yCor, 10,10);
+    //}
     sortBloons();
     
   }
