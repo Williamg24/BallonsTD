@@ -14,6 +14,7 @@ Button selected;
 Upgrade menu;
 Button selectedTower;
 Button menuButton;
+Button nextRound;
 
 Button upgradePath;
 String upgradeName;
@@ -43,6 +44,7 @@ void draw() {
   case 1:
     playScreen();
     menuButton.display(color(50, 150, 200));
+    nextRound.display(color(20,130,150));
     break;
   }
   //background(90, 190, 50);     // the "grass"
@@ -67,6 +69,7 @@ void startScreen() {
   image(MAP2, 625, 200, 525, 425);
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
+  nextRound = new Button("Skip Round", width - 70, 100, 50, 50, 5, 0);
 }
 
 void playScreen() {
@@ -212,6 +215,17 @@ void mouseClicked() {
       } else {
         animate = false;
       }
+    }
+    
+    if (nextRound.isInside(mouseX, mouseY)) {
+      //round++;
+      currentLevel.clearBloons();
+      //if (! animate) {
+      //  currentLevel.startAnimation();
+      //  animate = true;
+      //} else {
+      //  animate = false;
+      //}
     }
 
     if (menuButton.isInside(mouseX, mouseY)) {

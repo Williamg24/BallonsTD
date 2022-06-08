@@ -38,12 +38,16 @@ public class Level1 extends Level {
       break;
     }
   }
+  
+  public void clearBloons() {
+    bloons = new ArrayList<Bloon>();
+  }
 
   public void startAnimation() {
     if (bloons.size() == 0) {
       switch (round) {
       case 0:
-        for (int i=0; i<5; i++) {
+        for (int i=0; i<25; i++) {
           if (points[0][0] == 0) {
             bloons.add(new Bloon(0, points[0][0] - (float) i * 70, points[0][1], points.length));
           } else {
