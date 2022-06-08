@@ -22,8 +22,8 @@ ArrayList<Upgrade> upgrades;
 
 void setup() {
   size(1200, 700);
-  //MODE = 0;
-  MODE = 1;
+  MODE = 0;
+  //MODE = 1;
   health = 100;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
@@ -32,10 +32,10 @@ void setup() {
   upgrades = new ArrayList<Upgrade>();
   upgrades.add(new Upgrade("Basic"));
   upgrades.add(new Upgrade("Advanced"));
-  currentLevel = new Level(3);
+  currentLevel = new Level(1);
   round = -1;
   
-  startScreen();
+  //startScreen();
   
   //rprintln("hi");
 }
@@ -64,14 +64,16 @@ void draw() {
 void startScreen() {
   PImage MAP1 = loadImage("Level1_map.jpg");
   PImage MAP2 = loadImage("Level2_map.jpg");
+  PImage MAP3 = loadImage("Level3_map.jpg");
   //map_select.add(new Button("MAP 1",50,200,525,425,0,0));
   //map_select.add(new Button("MAP 1",625,200,525,425,0,0));
   background(0);
   fill(255);
-  textSize(75);
-  text("SELECT A MAP TO BEGIN", 150, 125);
-  image(MAP1, 50, 200, 525, 425);
-  image(MAP2, 625, 200, 525, 425);
+  textSize(60);
+  text("SELECT A MAP TO BEGIN", 250, 70);
+  image(MAP1, 40, 200, 360, 280);
+  image(MAP2, 420, 200, 360, 280);
+  image(MAP3, 800, 200, 360, 280);
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
   nextRound = new Button("Skip Round", MAP_WIDTH + 20, 400, 120, 50, 5, 0);
@@ -98,20 +100,20 @@ void playScreen() {
     menu = null;
   }
 
-  // visual test for onPath
-  fill(100,30,100,150);
-  noStroke();
-  for (int x = 0; x<width; x++) {
-    for (int y = 0; y<height; y++) {
-      if (currentLevel.onPath(x,y)) {
-        ellipse(x,y,1,1);
-      }
-    }
-  }
+  //// visual test for onPath
+  //fill(100,30,100,150);
+  //noStroke();
+  //for (int x = 0; x<width; x++) {
+  //  for (int y = 0; y<height; y++) {
+  //    if (currentLevel.onPath(x,y)) {
+  //      ellipse(x,y,1,1);
+  //    }
+  //  }
+  //}
 
-  fill(255);
-  text("mouseX: "+mouseX,10,20);
-  text("mouseY: "+mouseY,10,50);
+  //fill(255);
+  //text("mouseX: "+mouseX,10,20);
+  //text("mouseY: "+mouseY,10,50);
   //text("frame rate: "+frameRate,10,100);
   //text("Upgrade path: "+upgradeName, 10, 50);
   //text("selected button: "+selected, 10, 100);
@@ -186,9 +188,11 @@ public int findTower(int xCor, int yCor) {
 void mouseClicked() {
   if (MODE == 0) {
     //selecting level
-    if (mouseX >= 50 && mouseX <= 575 && mouseY >= 200 && mouseY <= 625) {
+    if (mouseX >= 40 && mouseX <= 40 + 360 && mouseY >= 200 && mouseY <= 480) {
       levelselected = 1;
-    } else if (mouseX >= 625 && mouseX <= 1150 && mouseY >= 200 && mouseY <= 625) {
+    } else if (mouseX >= 420 && mouseX <= 420 + 360 && mouseY >= 200 && mouseY <= 480) {
+      levelselected = 2;
+    } else if (mouseX >= 800 && mouseX <= 800 + 360 && mouseY >= 200 && mouseY <= 480) {
       levelselected = 2;
     }
     //println(levelselected);
@@ -196,9 +200,7 @@ void mouseClicked() {
       MODE = 1;
       currentLevel = new Level(levelselected);
       round = -1;
-    }// else {
-    //  MODE = 0;
-    //}
+    }
   } else if (MODE == 2) {
     MODE = 0;
   } else {
@@ -254,10 +256,7 @@ void checkTowers() {
       selected.setColor(#BEBEBE);
       menu = upgrades.get(selectedTower.getTowerNum());
     }
-  }// else if (selected != null) {
-  //selected.setColor(0);
-  //selected = null;
-  //}
+  }
 }
 
 void checkForUpgrades() {

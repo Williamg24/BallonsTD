@@ -39,7 +39,7 @@ public class Level {
       pathWidth = 36;
       break;
      case 3:
-       pathWidth = 36;
+       pathWidth = 40;
     }
   }
 
@@ -132,12 +132,12 @@ public class Level {
       displayStillBloons();
     }
 
-    // displays points
-    fill(200, 0, 0);
-    noStroke();
-    for (int[] point : points) {
-      ellipse(point[0], point[1], 4, 4);
-    }
+    //// displays points
+    //fill(200, 0, 0);
+    //noStroke();
+    //for (int[] point : points) {
+    //  ellipse(point[0], point[1], 4, 4);
+    //}
 
     //Bloon b;
     //textSize(20);
@@ -225,6 +225,10 @@ public class Level {
       if (inPathRegion(x, y, i)) {
         return true;
       }
+    }
+    
+    if (levelNum == 3) {
+      return dist(x,y,240,537) < 100 || dist(x,y,689,176) < 100;
     }
     return false;
   }
