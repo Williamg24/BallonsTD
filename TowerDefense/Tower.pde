@@ -124,10 +124,10 @@ public class Tower {
   void faceBloon(Bloon b) {
     if (b != null) {
       pushMatrix();
-      angle = atan2(x-b.xCor, y-b.yCor);
-      translate(x, y);
-      rotate(-angle-HALF_PI);
-      //image(TopView,angle,angle);
+      angle = atan2(b.xCor -x, b.yCor - y);
+      translate(x-Tsize/2, y-Tsize/2);
+      rotate(-angle);
+      image(TopView,angle,angle);
       //fill(255,0,0);
       //rect(0, 0, 50, 2);
       popMatrix();

@@ -74,8 +74,8 @@ void playScreen() {
   bar.display(money);
   for (Tower t1 : towers) {
     t1.display();
+    t1.faceBloon(t1.firstInRange(t1));
     if (t1.canAttack() && animate) {
-      t1.faceBloon(t1.firstInRange(t1));
       attackBloons(t1);
     }
   }
