@@ -69,7 +69,7 @@ void startScreen() {
   image(MAP2, 625, 200, 525, 425);
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
-  nextRound = new Button("Skip Round", width - 70, 100, 50, 50, 5, 0);
+  nextRound = new Button("Skip Round", MAP_WIDTH + 20, 400, 120, 50, 5, 0);
 }
 
 void playScreen() {
