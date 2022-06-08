@@ -54,3 +54,5 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
 - ### 6/6
   - Maya Mori: Basic tower upgrades done and menu button created returns player to original start screen.
   - William Guo: Completed Start and end screen, minor adjustments to text display and bloon speed. 
+- ### 6/7
+  - William Guo: Started on image rotation so towers will face bloons when attacking.
