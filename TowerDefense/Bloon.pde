@@ -9,17 +9,16 @@ public class Bloon {
   int maxPointIndex;
   int damage;
   PImage bloonImage;
-
-  public Bloon(int type_, float t_) {
-    this(type_, 0, height/2,  1);
-    t = t_;
+  
+  public Bloon(int type_, float[] coords, int maxPointIndex_) {
+    this(type_ , coords[0], coords[1], maxPointIndex_);
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
     type = type_;
     xCor = x;
     yCor = y;
-    speed = 0.0035 + type * 0.0008;       // go faster for higher types
+    speed = 0.005 + type * 0.0008;       // go faster for higher types
     reward = (type + 1) * 5;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
@@ -39,12 +38,6 @@ public class Bloon {
   }
 
   public void display() {
-    //fill(255, 0, 0);
-    //println("display bloon");
-
-    //fill(colors[type]);
-    //ellipse(xCor, yCor, 40, 40);
-    //getBloonType();
     image(bloonImage, xCor - 18, yCor - 18, 35, 40);
   }
 
@@ -86,17 +79,23 @@ public class Bloon {
     return yCor;
   }
 
-  public void setX(float x) {
-    xCor = x;
-  }
+  //public void setX(float x) {
+  //  xCor = x;
+  //}
 
-  public void setY(float y) {
-    yCor = y;
-  }
+  //public void setY(float y) {
+  //  yCor = y;
+  //}
   
   // returns if position was changed or not
   public boolean setNewCoord(int[] aim) {
-    float fracToCover = speed * 3000 / dist(xCor, yCor, aim[0], aim[1]);
+    float fracToCover;
+    if (dist(xCor, yCor, aim[0], aim[1]) != 0) {
+      fracToCover = speed * 3000 / dist(xCor, yCor, aim[0], aim[1]);
+    } else {
+      return false;
+    }
+    //text(fracToCover,10,height-30);
     float newX = xCor + fracToCover * (aim[0] - xCor);
     float newY = yCor + fracToCover * (aim[1] - yCor);
     

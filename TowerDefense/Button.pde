@@ -87,6 +87,10 @@ public class Button { //<>// //<>//
       
       stroke(0);
       strokeWeight(1);
+    } else if (name.equals("Skip Round")) {
+      fill(255);
+      textSize(20);
+      text(name, xCor+5, yCor+30);
     }
   }
 

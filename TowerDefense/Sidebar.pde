@@ -3,6 +3,7 @@ public class Sidebar {
   Button start;
   PImage moneypic = loadImage("money.png");
   PImage hp = loadImage("HP.png");
+  Button nextRound;
 
   public Sidebar() {
     towers = new ArrayList<Button>();
@@ -10,6 +11,7 @@ public class Sidebar {
     towers.add(new Button("Advanced", MAP_WIDTH + 140, 120, 100, 120, 28, 20));
 
     start = new Button("Start", MAP_WIDTH + 20, 260, 250, 50, 10, 0);
+    //nextRound = new Button("Skip Round", width - 70, 100, 50, 50, 5, 0);
   }
 
   public void display(int value) {
@@ -41,6 +43,7 @@ public class Sidebar {
     } else {
       start.display(color(90, 190, 50));
     }
+    //nextRound.display(color(0,0,200));
   }
   /*
   public Button getButton(int index) {
@@ -72,6 +75,4 @@ public class Sidebar {
     }
     return null;
   }
-  
-  
 }
