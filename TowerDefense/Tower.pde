@@ -1,6 +1,6 @@
 // damage, range, delay
-int[][]originalStats = {{1, 75, 40}, {1, 100, 25}};
-int[][]towerData ={{1, 75, 40}, {1, 100, 25}};
+int[][]originalStats = {{1, 75, 10}, {1, 100, 5}, {2, 500, 20}, {1, 200, 10}};
+int[][]towerData ={{1, 75, 10}, {1, 100, 5}, {2, 1000, 25}, {1, 200, 15}};
 
 public class Tower {
   int cost;
@@ -19,13 +19,21 @@ public class Tower {
   public Tower(String towerType) {
     //println(Arrays.deepToString(towerData));
     switch (towerType) {
-    case "Basic":
+    case "Dart":
       type = 0;
-      towerSettings(mouseX, mouseY, 50, 10);
+      towerSettings(mouseX, mouseY, 50, 100);
       break;
-    case "Advanced":
+    case "Ninja":
       type = 1;
-      towerSettings(mouseX, mouseY, 50, 20);
+      towerSettings(mouseX, mouseY, 50, 350);
+      break;
+    case "Sniper":
+      type = 2;
+      towerSettings(mouseX, mouseY, 50, 275);
+      break;
+    case "Sub":
+      type = 3;
+      towerSettings(mouseX, mouseY, 50, 225);
       break;
     }
 
@@ -67,16 +75,16 @@ public class Tower {
     if (insideTower(mouseX, mouseY)) {// && mousePressed) {
       noFill();
       stroke(0);
-      ellipse(x, y, range * 2, range * 2);
+      if (type == 2) {
+        ellipse(x, y, Tsize * 2, Tsize * 2);
+      } else {
+        ellipse(x, y, range * 2, range * 2);
+      }
     }
+
     //fill(towerColor);
     //ellipse(x, y, Tsize, Tsize);
-    if (TopView != null) {
-      image(TopView, x - Tsize/2, y - Tsize/2, Tsize, Tsize);
-      //for (Tower t1 : towers) {
-      //  faceBloon(firstInRange(t1));
-      //}
-    }
+    faceAngle();
     tick++;
   }
 
@@ -123,14 +131,20 @@ public class Tower {
     return Tsize;
   }
 
+  // need img so that only faces bloons in range of it instead of across whole map
   void faceBloon(Bloon b) {
     if (b != null) {
       pushMatrix();
-      angle = atan2(x-b.xCor, y-b.yCor);
       translate(x, y);
-      rotate(-angle-HALF_PI);
-      fill(255,0,0);
-      rect(0, 0, 50, 2);
+      angle = -atan2(b.xCor -x, b.yCor - y)+PI;
+      rotate(angle);
+      if(type == 3){
+        image(TopView,-Tsize/2,-Tsize/2,68,68); 
+      }else{
+       image(TopView, -Tsize/2, -Tsize/2);
+      }
+      //fill(255,0,0);
+      //rect(0, 0, 50, 2);
       popMatrix();
     }
   }
@@ -148,5 +162,17 @@ public class Tower {
       i++;
     }
     return null;
+  }
+
+  void faceAngle() {
+    pushMatrix();
+    translate(x, y);
+    rotate(angle);
+    if(type == 3){
+     image(TopView,-Tsize/2,-Tsize/2,68,68); 
+    }else{
+     image(TopView, -Tsize/2, -Tsize/2);
+    }
+    popMatrix();
   }
 }

@@ -7,10 +7,12 @@ public class Sidebar {
 
   public Sidebar() {
     towers = new ArrayList<Button>();
-    towers.add(new Button("Basic", MAP_WIDTH + 20, 120, 100, 120, 28, 10));
-    towers.add(new Button("Advanced", MAP_WIDTH + 140, 120, 100, 120, 28, 20));
-
-    start = new Button("Start", MAP_WIDTH + 20, 260, 250, 50, 10, 0);
+    towers.add(new Button("Dart", MAP_WIDTH + 10, 120, (width-MAP_WIDTH)/2 - 15, 150, 28, 100));
+    towers.add(new Button("Ninja", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 120,(width-MAP_WIDTH)/2 -15 , 150, 28, 350));
+    towers.add(new Button("Sniper", MAP_WIDTH + 10, 280, (width-MAP_WIDTH)/2 - 15, 150, 28, 275));
+    towers.add(new Button("Sub", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 280,(width-MAP_WIDTH)/2 -15 , 150, 28, 225));
+    
+    start = new Button("Start", MAP_WIDTH + 30, 465, 250, 50, 10, 0);
     //nextRound = new Button("Skip Round", width - 70, 100, 50, 50, 5, 0);
   }
 
@@ -29,7 +31,7 @@ public class Sidebar {
     fill(#A91101); // red color for hp text
     text(": "+health, MAP_WIDTH+80, 105);
     //text("Tower Type: "+type, MAP_WIDTH+20, 90);
-    textSize(23);
+    textSize(30);
     displayButtons(value);
   }
 
