@@ -24,13 +24,21 @@ public class Button { //<>// //<>//
 
   public void setupTower() {
     switch (money) {
-    case 10:
+    case 100:
       towerImage = loadImage("Tower1.png");
       towerNum = 0;
       break;
-    case 20:
+    case 350:
       towerImage= loadImage("Tower2.png");
       towerNum = 1;
+      break;
+    case 275:
+      towerImage= loadImage("Tower3.png");
+      towerNum = 2;
+      break;
+    case 225:
+      towerImage= loadImage("Tower4.png");
+      towerNum = 3;
       break;
     default:
       towerNum = -1;
@@ -52,7 +60,7 @@ public class Button { //<>// //<>//
     fill(textColor);
     text("$" + money, xCor + wide / 4, yCor + tall - 3);
     if (towerImage != null) {
-      image(towerImage, xCor + 10, yCor + 10, 110, 110);
+      image(towerImage, xCor + 15, yCor + 10, 110, 110);
     }
   }
 
@@ -72,19 +80,19 @@ public class Button { //<>// //<>//
   public void display(color c) {
     fill(c);
     rect(xCor, yCor, wide, tall, radius);
-  
-  
-    if (name.equals("Start")){
+
+
+    if (name.equals("Start")) {
       fill(255);
       textSize(32);
       text(name, xCor+80, yCor+35);
-    } else if (name.equals("Menu")){
+    } else if (name.equals("Menu")) {
       stroke(255);
       strokeWeight(4);
       line(xCor+10, yCor+15, xCor+wide-10, yCor+15);
       line(xCor+10, yCor+25, xCor+wide-10, yCor+25);
       line(xCor+10, yCor+35, xCor+wide-10, yCor+35);
-      
+
       stroke(0);
       strokeWeight(1);
     } else if (name.equals("Skip Round")) {

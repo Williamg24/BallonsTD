@@ -30,8 +30,10 @@ void setup() {
   animate = false;
   money = 500;
   upgrades = new ArrayList<Upgrade>();
-  upgrades.add(new Upgrade("Basic"));
-  upgrades.add(new Upgrade("Advanced"));
+  upgrades.add(new Upgrade("Dart"));
+  upgrades.add(new Upgrade("Ninja"));
+  upgrades.add(new Upgrade("Sniper"));
+  upgrades.add(new Upgrade("Sub"));
   currentLevel = new Level(1);
   round = -1;
   
@@ -69,14 +71,14 @@ void startScreen() {
   //map_select.add(new Button("MAP 1",625,200,525,425,0,0));
   background(0);
   fill(255);
-  textSize(60);
-  text("SELECT A MAP TO BEGIN", 250, 70);
-  image(MAP1, 40, 200, 360, 280);
-  image(MAP2, 420, 200, 360, 280);
-  image(MAP3, 800, 200, 360, 280);
+  textSize(80);
+  text("SELECT A MAP TO BEGIN", 150, 150);
+  image(MAP1, 40, 200, 360, 300);
+  image(MAP2, 420, 200, 360, 300);
+  image(MAP3, 800, 200, 360, 300);
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
-  nextRound = new Button("Skip Round", MAP_WIDTH + 20, 400, 120, 50, 5, 0);
+  nextRound = new Button("Skip Round", MAP_WIDTH + 90, 525, 120, 50, 5, 0);
 }
 
 void playScreen() {
@@ -133,8 +135,10 @@ void restart() {
   animate = false;
   money = 500;
   upgrades.clear();
-  upgrades.add(new Upgrade("Basic"));
-  upgrades.add(new Upgrade("Advanced"));
+  upgrades.add(new Upgrade("Dart"));
+  upgrades.add(new Upgrade("Ninja"));
+  upgrades.add(new Upgrade("Sub"));
+  upgrades.add(new Upgrade("Sniper"));
   currentLevel = new Level(1);
   towers.clear();
   towerData = Arrays.copyOf(originalStats, originalStats.length);
@@ -176,11 +180,11 @@ public int findTower(int xCor, int yCor) {
 void mouseClicked() {
   if (MODE == 0) {
     //selecting level
-    if (mouseX >= 40 && mouseX <= 40 + 360 && mouseY >= 200 && mouseY <= 480) {
+    if (mouseX >= 40 && mouseX <= 40 + 360 && mouseY >= 200 && mouseY <= 500) {
       levelselected = 1;
-    } else if (mouseX >= 420 && mouseX <= 420 + 360 && mouseY >= 200 && mouseY <= 480) {
+    } else if (mouseX >= 420 && mouseX <= 420 + 360 && mouseY >= 200 && mouseY <= 500) {
       levelselected = 2;
-    } else if (mouseX >= 800 && mouseX <= 800 + 360 && mouseY >= 200 && mouseY <= 480) {
+    } else if (mouseX >= 800 && mouseX <= 800 + 360 && mouseY >= 200 && mouseY <= 500) {
       levelselected = 3;
     }
     //println(levelselected);

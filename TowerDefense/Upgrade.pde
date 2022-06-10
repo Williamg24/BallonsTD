@@ -14,11 +14,11 @@ public class Upgrade {
   //public Upgrade(Button b) {
   //  upgradePaths = new ArrayList<Button>();
   //  switch(b.name) {
-  //  case "Basic":
+  //  case "Dart":
   //    upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
   //    upgradePaths.add(new Button("ATK", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
   //    break;
-  //  case "Advanced":
+  //  case "Ninja":
   //    upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
   //    upgradePaths.add(new Button("ATK", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
   //    break;
@@ -28,15 +28,25 @@ public class Upgrade {
   public Upgrade(String towerName) {
     upgradePaths = new ArrayList<Button>();
     switch(towerName) {
-    case "Basic":
+    case "Dart":
       upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
       upgradePaths.add(new Button("Atk Spd", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
       towerType = 0;
       break;
-    case "Advanced":
+    case "Ninja":
       upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
       upgradePaths.add(new Button("Atk Spd", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
       towerType = 1;
+      break;
+    case "Sniper":
+      upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
+      upgradePaths.add(new Button("Atk Spd", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
+      towerType = 2;
+      break;
+    case "Sub":
+      upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
+      upgradePaths.add(new Button("Atk Spd", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
+      towerType = 3;
       break;
     }
   }
