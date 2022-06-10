@@ -24,7 +24,7 @@ void setup() {
   size(1200, 700);
   MODE = 0;
   //MODE = 1;
-  health = 100;
+  health = 1000;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
@@ -57,6 +57,12 @@ void draw() {
   //background(90, 190, 50);     // the "grass"
   if (health < 0) {
     gameOverScreen();
+    MODE = 2;
+  }else if (round >= 5 && health > 0){
+    winScreen();
+    MODE = 2;
+  }else if (round >= 4 && currentLevel.bloons.size() == 0 && health > 0){
+    winScreen();
     MODE = 2;
   }
   //text("currentLevel: "+currentLevel.getType(), 10, height-30);
@@ -124,6 +130,16 @@ void gameOverScreen() {
   text("GAME OVER", 300, 340);
   textSize(50);
   text("Click to Restart", 400, 400);
+  restart();
+}
+
+void winScreen(){
+  background(0);
+  fill(255);
+  textSize(100);
+  text("YOU WIN!", 400, 340);
+  textSize(50);
+  text("Click to Play Again", 400, 400);
   restart();
 }
 
@@ -219,6 +235,9 @@ void mouseClicked() {
     
     if (nextRound.isInside(mouseX, mouseY)) {
       currentLevel.clearBloons();              // this will trigger the next round
+      if (round == 4){
+        round++;
+      }
     }
 
     if (menuButton.isInside(mouseX, mouseY)) {
