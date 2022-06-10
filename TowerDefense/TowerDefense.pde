@@ -49,7 +49,7 @@ void draw() {
   case 1:
     playScreen();
     menuButton.display(color(50, 150, 200));
-    nextRound.display(color(20,130,150));
+    nextRound.display(color(20, 130, 150));
     break;
   }
 
@@ -116,7 +116,7 @@ void playScreen() {
 }
 
 void gameOverScreen() {
-  background(170,0,0);
+  background(170, 0, 0);
   fill(255);
   textSize(100);
   text("GAME OVER", 300, 340);
@@ -214,7 +214,7 @@ void mouseClicked() {
         animate = false;
       }
     }
-    
+
     if (nextRound.isInside(mouseX, mouseY)) {
       currentLevel.clearBloons();              // this will trigger the next round
     }
@@ -265,6 +265,9 @@ void checkForUpgrades() {
         break;
       case "ATK Speed":
         towerData[menu.getTowerType()][2] *= 0.8;
+        break;
+      case "Damage":
+        towerData[menu.getTowerType()][0] = (towerData[menu.getTowerType()][0] + 10) * 2;
         break;
       }
       updateTowers();            // changes values for all towers, not just new ones
