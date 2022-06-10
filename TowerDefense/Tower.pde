@@ -1,6 +1,6 @@
 // damage, range, delay
 int[][]originalStats = {{1, 75, 10}, {1, 100, 5}, {2, 500, 20}, {1, 200, 10}};
-int[][]towerData ={{1, 75, 10}, {1, 100, 5}, {2, 1000, 25}, {1, 200, 10}};
+int[][]towerData ={{1, 75, 10}, {1, 100, 5}, {2, 1000, 25}, {1, 200, 15}};
 
 public class Tower {
   int cost;
@@ -138,7 +138,11 @@ public class Tower {
       translate(x, y);
       angle = -atan2(b.xCor -x, b.yCor - y)+PI;
       rotate(angle);
-      image(TopView, -Tsize/2, -Tsize/2);
+      if(type == 3){
+        image(TopView,-Tsize/2,-Tsize/2,68,68); 
+      }else{
+       image(TopView, -Tsize/2, -Tsize/2);
+      }
       //fill(255,0,0);
       //rect(0, 0, 50, 2);
       popMatrix();
@@ -164,7 +168,11 @@ public class Tower {
     pushMatrix();
     translate(x, y);
     rotate(angle);
-    image(TopView, -Tsize/2, -Tsize/2);
+    if(type == 3){
+     image(TopView,-Tsize/2,-Tsize/2,68,68); 
+    }else{
+     image(TopView, -Tsize/2, -Tsize/2);
+    }
     popMatrix();
   }
 }
