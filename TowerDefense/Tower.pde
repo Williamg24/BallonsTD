@@ -11,7 +11,6 @@ public class Tower {
   int x;
   int y;
   int Tsize;
-  //color towerColor;
   PImage TopView;
   int type;
   float angle;
@@ -86,9 +85,9 @@ public class Tower {
     return tick > delay;
   }
 
-  public void attack(Bloon current) {
-    current.type -= damage;
-  }
+  //public void attack(Bloon current) {
+  //  current.type -= damage;
+  //}
 
   // radius around tower
   public boolean inRange(Bloon value) {

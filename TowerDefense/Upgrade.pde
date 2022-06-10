@@ -52,14 +52,10 @@ public class Upgrade {
       towerType = 1;
       break;
     case "Sniper":
-      //upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
       upgradePaths[0] = new Button("Damage", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 80);
-      //upgradePaths.add(new Button("Atk Spd", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
       towerType = 2;
       break;
     case "Sub":
-      //upgradePaths.add(new Button("Range", MAP_WIDTH, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 30));
-      //upgradePaths.add(new Button("Atk Spd", MAP_WIDTH + (width - MAP_WIDTH)/2, height - 80, (width - MAP_WIDTH)/2, height / 6, 0, 50));
       towerType = 3;
       break;
     }
@@ -86,7 +82,6 @@ public class Upgrade {
     while (!done && index < upgradePaths.length) {
       b = menu.upgradePaths[index];
       if (b.isInside(x, y)) {
-        //b.setColor(#BEBEBE);
         return b;
       } else {
         index++;

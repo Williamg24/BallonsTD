@@ -99,10 +99,6 @@ public class Level {
     }
   }
 
-  //public int getType() {
-  //  return levelNum;
-  //}
-
   public void swapOrder(int index) {
     Bloon b = bloons.get(index);
     Bloon prev = bloons.get(index-1);
@@ -256,10 +252,6 @@ public class Level {
       }
       return dist(x, y, 240, 537) < 100 || dist(x, y, 689, 176) < 100;
     }
-
-    //if (levelNum == 3) {
-    //  return dist(x,y,240,537) < 100 || dist(x,y,689,176) < 100;
-    //}
     return false;
   }
 }

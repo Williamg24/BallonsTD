@@ -25,9 +25,7 @@ ArrayList<Upgrade> upgrades;
 void setup() {
   size(1200, 700);
   MODE = 0;
-  //MODE = 1;
   health = 5;
-  //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
   money = 500;
@@ -65,8 +63,6 @@ void startScreen() {
   PImage MAP1 = loadImage("Level1_map.jpg");
   PImage MAP2 = loadImage("Level2_map.jpg");
   PImage MAP3 = loadImage("Level3_map.jpg");
-  //map_select.add(new Button("MAP 1",50,200,525,425,0,0));
-  //map_select.add(new Button("MAP 1",625,200,525,425,0,0));
   background(0);
   fill(255);
   textSize(80);
@@ -74,6 +70,7 @@ void startScreen() {
   image(MAP1, 40, 200, 360, 300);
   image(MAP2, 420, 200, 360, 300);
   image(MAP3, 800, 200, 360, 300);
+  
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
   nextRound = new Button("Skip Round", MAP_WIDTH + 90, 525, 120, 50, 5, 0);
@@ -129,7 +126,6 @@ void restart() {
   round = -1;
   MODE = 0;
   health = 5;
-  //currentBloon = currentLevel.getSize() - 1;
   animate = false;
   money = 500;
   upgrades.clear();
@@ -150,7 +146,7 @@ void attackBloons(Tower attacking) {
   boolean done = false;
   while (i < currentLevel.bloons.size() && ! done) {
     b = currentLevel.bloons.get(i);
-    if (attacking.inRange(b)) {
+    if (attacking.inRange(b) && b.canBeAttacked()) {
       b.hit(attacking.getDamage());
       attacking.resetTick();
       done = true;
@@ -272,8 +268,6 @@ void checkForUpgrades() {
       }
       updateTowers();            // changes values for all towers, not just new ones
     }
-    //upgradePath.setColor(#BEBEBE);
-    //}
   }
 }
 

@@ -13,7 +13,6 @@ public class Sidebar {
     towerButtons.add(new Button("Sub", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 280, (width-MAP_WIDTH)/2 -15, 150, 28, 225));
 
     start = new Button("Start", MAP_WIDTH + 30, 465, 250, 50, 10, 0);
-    //nextRound = new Button("Skip Round", width - 70, 100, 50, 50, 5, 0);
   }
 
   public void display(int value) {
@@ -22,10 +21,12 @@ public class Sidebar {
 
     fill(0);
     textSize(45);
+    
     // Money Display
     image(moneyPic, MAP_WIDTH+20, 3, 60, 60);
     fill(#FFD700); // gold color for money text
     text(": "+money, MAP_WIDTH+80, 50);
+    
     // HP Display
     image(hp, MAP_WIDTH+20, 60, 60, 60);
     fill(#A91101); // red color for hp text
@@ -47,11 +48,7 @@ public class Sidebar {
     }
     //nextRound.display(color(0,0,200));
   }
-  /*
-  public Button getButton(int index) {
-   return towers.get(index);
-   }
-   */
+
   // check if mouse inside Sidebar
   public boolean inSidebar(int x) {
     return (x >= MAP_WIDTH);

@@ -44,14 +44,6 @@ public class Bloon {
     image(bloonImage, xCor - 18, yCor - 18, 35, 40);
   }
 
-  //public void move() {
-  //  t += speed;
-  //}
-
-  //public float getT() {
-  //  return t;
-  //}
-
   public float getSpeed() {
     return speed;
   }
@@ -81,14 +73,11 @@ public class Bloon {
   public float getY() {
     return yCor;
   }
-
-  //public void setX(float x) {
-  //  xCor = x;
-  //}
-
-  //public void setY(float y) {
-  //  yCor = y;
-  //}
+  
+  // checks if bloon is physically on the map
+  public boolean canBeAttacked() {
+    return xCor > 0 && xCor < MAP_WIDTH && yCor > 0 && yCor < height;
+  }
 
   // returns if position was changed or not
   public boolean setNewCoord(int[] aim) {
@@ -121,7 +110,6 @@ public class Bloon {
   }
 
   public boolean isPopped() {
-    //return t > 1 || type < 0 || pointIndex >= maxPointIndex;
     return type < 0 || pointIndex >= maxPointIndex;
   }
 }
