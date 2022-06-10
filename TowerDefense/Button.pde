@@ -52,7 +52,7 @@ public class Button { //<>// //<>//
     fill(textColor);
     text("$" + money, xCor + wide / 4, yCor + tall - 3);
     if (towerImage != null) {
-      image(towerImage, xCor + wide/11, yCor + tall/8, 80, 80);
+      image(towerImage, xCor + 10, yCor + 10, 110, 110);
     }
   }
 
