@@ -81,11 +81,10 @@ void startScreen() {
 
 void playScreen() {
   currentLevel.display();
-  //println();
   bar.display(money);
   for (Tower t1 : towers) {
-    t1.display();
     t1.faceBloon(t1.firstInRange(t1));
+    t1.display();
     if (t1.canAttack() && animate) {
       attackBloons(t1);
     }
@@ -111,21 +110,9 @@ void playScreen() {
   //  }
   //}
 
-  //fill(255);
-  //text("mouseX: "+mouseX,10,20);
-  //text("mouseY: "+mouseY,10,50);
-  //text("frame rate: "+frameRate,10,100);
-  //text("Upgrade path: "+upgradeName, 10, 50);
-  //text("selected button: "+selected, 10, 100);
-  //if (selectedTower != null) {
-  //  text("towerNum: "+selectedTower.getTowerNum(), 10, 140);
-  //}
-  //text("selectedTower: "+selectedTower, 10, 180);
   textSize(40);
-  //fill(#E3242B);
   fill(255);
   text("Round:"+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 225, 50);
-  //updateButtons();
 }
 
 void gameOverScreen() {

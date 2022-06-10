@@ -71,9 +71,7 @@ public class Tower {
     }
     //fill(towerColor);
     //ellipse(x, y, Tsize, Tsize);
-    if (TopView != null) {
-      image(TopView, x - Tsize/2, y - Tsize/2, Tsize, Tsize);
-    }
+    faceAngle();
     tick++;
   }
 
@@ -124,7 +122,7 @@ public class Tower {
   void faceBloon(Bloon b) {
     if (b != null) {
       pushMatrix();
-      translate(x,y);
+      translate(x, y);
       angle = -atan2(b.xCor -x, b.yCor - y)+PI;
       rotate(angle);
       image(TopView, -Tsize/2, -Tsize/2);
@@ -147,5 +145,13 @@ public class Tower {
       i++;
     }
     return null;
+  }
+
+  void faceAngle() {
+    pushMatrix();
+    translate(x, y);
+    rotate(angle);
+    image(TopView, -Tsize/2, -Tsize/2);
+    popMatrix();
   }
 }
