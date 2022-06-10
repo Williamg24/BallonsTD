@@ -2,8 +2,8 @@ public class Bloon {
   int type;
   float xCor;
   float yCor;
-  float speed;     // how quickly t changes
-  float t;
+  float speed;
+  //float t;
   int reward;      // how much money player earns if bloon is defeated
   int pointIndex;
   int maxPointIndex;
@@ -44,13 +44,13 @@ public class Bloon {
     image(bloonImage, xCor - 18, yCor - 18, 35, 40);
   }
 
-  public void move() {
-    t += speed;
-  }
+  //public void move() {
+  //  t += speed;
+  //}
 
-  public float getT() {
-    return t;
-  }
+  //public float getT() {
+  //  return t;
+  //}
 
   public float getSpeed() {
     return speed;
@@ -121,6 +121,7 @@ public class Bloon {
   }
 
   public boolean isPopped() {
-    return t > 1 || type < 0 || pointIndex >= maxPointIndex;
+    //return t > 1 || type < 0 || pointIndex >= maxPointIndex;
+    return type < 0 || pointIndex >= maxPointIndex;
   }
 }

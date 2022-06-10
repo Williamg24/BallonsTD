@@ -49,14 +49,6 @@ public class Tower {
   public void loadTopView() {
     //println("TopView" + (type+1) + ".png");
     TopView = loadImage("TopView" + (type+1) + ".png");
-    //switch(type) {
-    //case 1:
-    //  TopView = loadImage("TopView1.png");
-    //  break;
-    //case 2:
-    //  TopView = loadImage("TopView2.png");
-    //  break;
-    //}
   }
 
   // sets the variables
@@ -82,8 +74,6 @@ public class Tower {
       }
     }
 
-    //fill(towerColor);
-    //ellipse(x, y, Tsize, Tsize);
     faceAngle();
     tick++;
   }

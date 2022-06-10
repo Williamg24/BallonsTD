@@ -1,17 +1,17 @@
 public class Sidebar {
-  ArrayList<Button> towers;
+  ArrayList<Button> towerButtons;
   Button start;
-  PImage moneypic = loadImage("money.png");
-  PImage hp = loadImage("HP.png");
   Button nextRound;
+  PImage moneyPic = loadImage("money.png");
+  PImage hp = loadImage("HP.png");
 
   public Sidebar() {
-    towers = new ArrayList<Button>();
-    towers.add(new Button("Dart", MAP_WIDTH + 10, 120, (width-MAP_WIDTH)/2 - 15, 150, 28, 100));
-    towers.add(new Button("Ninja", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 120,(width-MAP_WIDTH)/2 -15 , 150, 28, 350));
-    towers.add(new Button("Sniper", MAP_WIDTH + 10, 280, (width-MAP_WIDTH)/2 - 15, 150, 28, 275));
-    towers.add(new Button("Sub", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 280,(width-MAP_WIDTH)/2 -15 , 150, 28, 225));
-    
+    towerButtons = new ArrayList<Button>();
+    towerButtons.add(new Button("Dart", MAP_WIDTH + 10, 120, (width-MAP_WIDTH)/2 - 15, 150, 28, 100));
+    towerButtons.add(new Button("Ninja", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 120, (width-MAP_WIDTH)/2 -15, 150, 28, 350));
+    towerButtons.add(new Button("Sniper", MAP_WIDTH + 10, 280, (width-MAP_WIDTH)/2 - 15, 150, 28, 275));
+    towerButtons.add(new Button("Sub", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 280, (width-MAP_WIDTH)/2 -15, 150, 28, 225));
+
     start = new Button("Start", MAP_WIDTH + 30, 465, 250, 50, 10, 0);
     //nextRound = new Button("Skip Round", width - 70, 100, 50, 50, 5, 0);
   }
@@ -23,11 +23,11 @@ public class Sidebar {
     fill(0);
     textSize(45);
     // Money Display
-    image(moneypic,MAP_WIDTH+20,3,60,60);
+    image(moneyPic, MAP_WIDTH+20, 3, 60, 60);
     fill(#FFD700); // gold color for money text
     text(": "+money, MAP_WIDTH+80, 50);
     // HP Display
-    image(hp,MAP_WIDTH+20,60,60,60);
+    image(hp, MAP_WIDTH+20, 60, 60, 60);
     fill(#A91101); // red color for hp text
     text(": "+health, MAP_WIDTH+80, 105);
     //text("Tower Type: "+type, MAP_WIDTH+20, 90);
@@ -36,7 +36,7 @@ public class Sidebar {
   }
 
   public void displayButtons(int x) {
-    for (Button b : towers) {
+    for (Button b : towerButtons) {
       b.displayIcon();
       b.enoughMoney(x);
     }
@@ -49,9 +49,9 @@ public class Sidebar {
   }
   /*
   public Button getButton(int index) {
-    return towers.get(index);
-  }
-*/
+   return towers.get(index);
+   }
+   */
   // check if mouse inside Sidebar
   public boolean inSidebar(int x) {
     return (x >= MAP_WIDTH);
@@ -62,8 +62,8 @@ public class Sidebar {
     int index = 0;
     Button b;
     boolean done = false;
-    while (!done && index < towers.size()) {
-      b = bar.towers.get(index);
+    while (!done && index < towerButtons.size()) {
+      b = bar.towerButtons.get(index);
       if (b.isInside(x, y)) {
         //b.setColor(#BEBEBE);
         return b;

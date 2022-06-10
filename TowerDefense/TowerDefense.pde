@@ -1,10 +1,12 @@
+import java.util.*;
+
 int MAP_WIDTH = 900;
 ArrayList<Tower> towers = new ArrayList<Tower>();
 
 int MODE;
 int money;
 int health;
-int levelselected;
+int levelSelected;
 int round;            // original value is -1 to offset increment
 String type;
 boolean animate;
@@ -36,10 +38,6 @@ void setup() {
   upgrades.add(new Upgrade("Sub"));
   currentLevel = new Level(1);
   round = -1;
-  
-  //startScreen();
-  
-  //rprintln("hi");
 }
 
 
@@ -54,7 +52,7 @@ void draw() {
     nextRound.display(color(20,130,150));
     break;
   }
-  //background(90, 190, 50);     // the "grass"
+
   if (health < 0) {
     gameOverScreen();
     MODE = 2;
@@ -181,23 +179,23 @@ void mouseClicked() {
   if (MODE == 0) {
     //selecting level
     if (mouseX >= 40 && mouseX <= 40 + 360 && mouseY >= 200 && mouseY <= 500) {
-      levelselected = 1;
+      levelSelected = 1;
     } else if (mouseX >= 420 && mouseX <= 420 + 360 && mouseY >= 200 && mouseY <= 500) {
-      levelselected = 2;
+      levelSelected = 2;
     } else if (mouseX >= 800 && mouseX <= 800 + 360 && mouseY >= 200 && mouseY <= 500) {
-      levelselected = 3;
+      levelSelected = 3;
     }
-    //println(levelselected);
-    if (levelselected > 0) {
+    //println(levelSelected);
+    if (levelSelected > 0) {
       MODE = 1;
-      currentLevel = new Level(levelselected);
+      currentLevel = new Level(levelSelected);
       round = -1;
     }
   } else if (MODE == 2) {
     MODE = 0;
   } else {
     selected = bar.findButton(mouseX, mouseY);
-    //println("mouse clicked");
+
     // only place tower if sufficient money for tower type selected and not on path
     if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
       towers.add(new Tower(selectedTower.name));
@@ -226,7 +224,7 @@ void mouseClicked() {
       round = -1;
       animate = false;
       towers.clear();
-      levelselected = 0;
+      levelSelected = 0;
       //currentLevel = null;
     }
   }

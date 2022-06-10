@@ -1,5 +1,3 @@
-import java.util.*;
-
 int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}}, // Level 0, stright path
   // Level 1
   {{0, 296}, {445, 296}, {445, 129}, {294, 129}, {294, 566}, {145, 566}, {145, 405}, {572, 405}, {572, 236}, {679, 236}, {679, 512}, {400, 512}, {400, 700}}, 
@@ -101,9 +99,9 @@ public class Level {
     }
   }
 
-  public int getType() {
-    return levelNum;
-  }
+  //public int getType() {
+  //  return levelNum;
+  //}
 
   public void swapOrder(int index) {
     Bloon b = bloons.get(index);
@@ -182,7 +180,7 @@ public class Level {
         b.display();
       }
       if (b.isPopped()) {
-        if (b.getT() > 1 || b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
+        if (b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
           health -= b.getDamage();
           //println(b.getDamage());
         } else {                 // a tower popped it
