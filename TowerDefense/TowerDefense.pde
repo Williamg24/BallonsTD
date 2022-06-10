@@ -24,7 +24,7 @@ void setup() {
   size(1200, 700);
   MODE = 0;
   //MODE = 1;
-  health = 100;
+  health = 5;
   //currentBloon = currentLevel.getSize() - 1;
   bar = new Sidebar();
   animate = false;
@@ -118,7 +118,7 @@ void playScreen() {
 }
 
 void gameOverScreen() {
-  background(0);
+  background(170,0,0);
   fill(255);
   textSize(100);
   text("GAME OVER", 300, 340);

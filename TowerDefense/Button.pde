@@ -1,4 +1,4 @@
-public class Button { //<>// //<>//
+public class Button { //<>//
   PImage towerImage; 
   float xCor;
   float yCor;
