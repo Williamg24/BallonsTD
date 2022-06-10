@@ -14,7 +14,11 @@ int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}}, // Level 0, stright p
   {698, 74}, {649, 85}, {611, 116}, {595, 156}, {596, 189}, {656, 385}, {674, 413}, {699, 436}, {770, 468}, {841, 493}, {900, 528}}
 };
 
-int[][][] waterPoints = {{{}}, {{}}, {{80, 700}, {269, 548}, {401, 385}, {517, 317}, {638, 280}, {730, 235}, {785, 179}, {848, 0}}, {{}}};
+int[][][] waterPoints = {{{}}, {{}}, 
+    // Level 2
+    {{80, 700}, {269, 548}, {401, 385}, {517, 317}, {638, 280}, {730, 235}, {785, 179}, {848, 0}}, 
+    // Level 3
+    {{0,200}, {63, 247}, {178, 260}, {298, 250}, {377, 262}, {438, 311}, {522, 465}, {558, 522}, {608, 559}, {740, 617}, {863, 700}}};
 
 int[][] bloonTypesInRound = {{20, 0, 0}, {35, 0, 0}, {25, 5, 0}, {35, 18, 0}, {5, 27, 0}};
 
@@ -221,7 +225,7 @@ public class Level {
     pathLength = dist(point1[0], point1[1], point2[0], point2[1]);           // distance between the 2 points defining the path
     return ! (sqrt(d1 * d1 - pow(pathWidth/2, 2)) + sqrt(d2 * d2 - pow(pathWidth/2, 2)) > pathLength);
   }
-  
+
   private boolean inPathRegion(float x, float y, int[] point1, int[] point2, int range) {
     float d1, d2, pathLength;
 
@@ -247,6 +251,11 @@ public class Level {
       return dist(x, y, 450, 350) < 55;
       //break;
     case 3:
+      for (int i = 0; i<waterPoints[levelNum].length-1; i++) {
+        if (inPathRegion(x, y, waterPoints[levelNum][i], waterPoints[levelNum][i+1], 90)) {
+          return true;
+        }
+      }
       return dist(x, y, 240, 537) < 100 || dist(x, y, 689, 176) < 100;
     }
 

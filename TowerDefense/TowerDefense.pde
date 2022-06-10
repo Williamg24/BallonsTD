@@ -5,7 +5,7 @@ int MODE;
 int money;
 int health;
 int levelselected;
-int round;
+int round;            // original value is -1 to offset increment
 String type;
 boolean animate;
 Sidebar bar;
