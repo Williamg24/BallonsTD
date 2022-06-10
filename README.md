@@ -53,14 +53,12 @@ https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/
   - William Guo: Created both a start screen and end screen. So far, everything resets except tower stats when user plays again.
 - ### 6/6
   - Maya Mori: Basic tower upgrades done and menu button created returns player to original start screen.
-<<<<<<< HEAD
-  - William Guo: Completed Start and end screen, minor adjustments to text display and bloon speed. 
-- ### 6/7
-  - William Guo: Started on image rotation so towers will face bloons when attacking.
-=======
   - William Guo: Completed Start and end screen, minor adjustments to text display and bloon speed.
 - ### 6/7
   - Maya Mori: Fixed some small bugs and added new features to upgrades.
+  - William Guo: Started on tower rotation to face first bloon in tower range.
 - ### 6/8
   - Maya Mori: Created a button to skip rounds and Level 3 map. Also, replaced Level with Level1 and made it easier to add new rounds.
->>>>>>> a773a3a7a7e13bb8e361c398f5a2339f63e6e309
+- ### 6/9
+  - William Guo: Minor fixes to bloon speed and game display. Competed tower rotation and added 2 new towers (sniper and submarine). 
+
