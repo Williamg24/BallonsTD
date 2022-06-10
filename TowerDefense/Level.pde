@@ -20,7 +20,7 @@ int[][][] waterPoints = {{{}}, {{}},
     // Level 3
     {{0,200}, {63, 247}, {178, 260}, {298, 250}, {377, 262}, {438, 311}, {522, 465}, {558, 522}, {608, 559}, {740, 617}, {863, 700}}};
 
-int[][] bloonTypesInRound = {{20, 0, 0}, {35, 0, 0}, {25, 5, 0}, {35, 18, 0}, {5, 27, 0}};
+int[][] bloonTypesInRound = {{20, 0, 0}, {35, 0, 0}, {25, 5, 0}, {35, 18, 0}, {5, 27, 0}, {15, 15, 4}, {20, 20, 5}};
 
 public class Level {
   PImage mapImg;
@@ -139,11 +139,11 @@ public class Level {
     }
 
     //// displays points
-    fill(200, 0, 0);
-    noStroke();
-    for (int[] point : waterPoints[levelNum]) {
-      ellipse(point[0], point[1], 4, 4);
-    }
+    //fill(200, 0, 0);
+    //noStroke();
+    //for (int[] point : points) {
+    //  ellipse(point[0], point[1], 4, 4);
+    //}
 
     //Bloon b;
     //textSize(20);

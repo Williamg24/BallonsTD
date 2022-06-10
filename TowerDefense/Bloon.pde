@@ -9,9 +9,9 @@ public class Bloon {
   int maxPointIndex;
   int damage;
   PImage bloonImage;
-  
+
   public Bloon(int type_, float[] coords, int maxPointIndex_) {
-    this(type_ , coords[0], coords[1], maxPointIndex_);
+    this(type_, coords[0], coords[1], maxPointIndex_);
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
@@ -33,6 +33,9 @@ public class Bloon {
       break;
     case 1:
       bloonImage = loadImage("Blue_Bloon.png");
+      break;
+    case 2:
+      bloonImage = loadImage("Green_Bloon.png");
       break;
     }
   }
@@ -86,7 +89,7 @@ public class Bloon {
   //public void setY(float y) {
   //  yCor = y;
   //}
-  
+
   // returns if position was changed or not
   public boolean setNewCoord(int[] aim) {
     float fracToCover;
@@ -98,7 +101,7 @@ public class Bloon {
     //text(fracToCover,10,height-30);
     float newX = xCor + fracToCover * (aim[0] - xCor);
     float newY = yCor + fracToCover * (aim[1] - yCor);
-    
+
     if (dist(xCor, yCor, newX, newY) > dist(xCor, yCor, aim[0], aim[1])) {    // if new position overshoots the target coordinates
       //pointIndex++;
       return false;
@@ -108,7 +111,7 @@ public class Bloon {
       return true;
     }
   }
-  
+
   public void increasePointIndex() {
     pointIndex++;
   }
