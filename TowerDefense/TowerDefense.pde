@@ -114,7 +114,7 @@ void playScreen() {
 
   textSize(40);
   fill(255);
-  text("Round:"+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 225, 50);
+  text("Round:"+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 270, 50);
 }
 
 void gameOverScreen() {
