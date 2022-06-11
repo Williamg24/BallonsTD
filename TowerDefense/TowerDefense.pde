@@ -8,7 +8,6 @@ int money;
 int health;
 int levelSelected;
 int round;            // original value is -1 to offset increment
-String type;
 boolean animate;
 Sidebar bar;
 Level currentLevel;
@@ -21,6 +20,8 @@ Button nextRound;
 Button upgradePath;
 String upgradeName;
 ArrayList<Upgrade> upgrades;
+
+PFont gameFont;
 
 void setup() {
   size(1200, 700);
@@ -36,6 +37,9 @@ void setup() {
   upgrades.add(new Upgrade("Sub"));
   currentLevel = new Level(1);
   round = -1;
+  
+  gameFont = createFont("LuckiestGuy-Regular.ttf",80);
+  textFont(gameFont);
 }
 
 
@@ -63,7 +67,12 @@ void startScreen() {
   PImage MAP1 = loadImage("Level1_map.jpg");
   PImage MAP2 = loadImage("Level2_map.jpg");
   PImage MAP3 = loadImage("Level3_map.jpg");
-  background(0);
+  //background(0);
+  //background(90, 10, 50);
+  //background(140, 60, 30);
+  //background(90,39,16);
+  //background(170,122,72);
+  background(200,120,52);
   fill(255);
   textSize(80);
   text("SELECT A MAP TO BEGIN", 150, 150);
@@ -109,7 +118,7 @@ void playScreen() {
 
   textSize(40);
   fill(255);
-  text("Round:"+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 270, 50);
+  text("Round: "+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 250, 50);
 }
 
 void gameOverScreen() {

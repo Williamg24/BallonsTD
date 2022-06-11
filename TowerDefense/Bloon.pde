@@ -3,7 +3,6 @@ public class Bloon {
   float xCor;
   float yCor;
   float speed;
-  //float t;
   int reward;      // how much money player earns if bloon is defeated
   int pointIndex;
   int maxPointIndex;
