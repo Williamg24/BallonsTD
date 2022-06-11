@@ -1,5 +1,3 @@
-import java.util.*;
-
 int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}}, // Level 0, stright path
   // Level 1
   {{0, 296}, {445, 296}, {445, 129}, {294, 129}, {294, 566}, {145, 566}, {145, 405}, {572, 405}, {572, 236}, {679, 236}, {679, 512}, {400, 512}, {400, 700}}, 
@@ -7,14 +5,20 @@ int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}}, // Level 0, stright p
   {{745, 0}, {745, 136}, {727, 169}, {683, 187}, {628, 164}, {571, 121}, {523, 98}, {442, 90}, {334, 120}, {281, 160}, {235, 222}, {207, 290}, {198, 365}, 
     {208, 430}, {235, 496}, {259, 530}, {313, 579}, {380, 618}, {474, 628}, {554, 606}, {629, 559}, {653, 523}, {643, 498}, {620, 479}, {588, 485}, {534, 524}, {461, 539}, 
     {400, 531}, {335, 495}, {297, 436}, {279, 372}, {285, 316}, {312, 255}, {351, 213}, {404, 183}, {471, 173}, {494, 190}, {501, 214}, {499, 238}, {484, 253}, 
-  {443, 263}, {400, 282}, {371, 314}, {362, 358}, {380, 412}, {420, 447}, {468, 455}, {515, 435}, {540, 400}, {555, 372}, {586, 360}, {MAP_WIDTH, 360}},
+  {443, 263}, {400, 282}, {371, 314}, {362, 358}, {380, 412}, {420, 447}, {468, 455}, {515, 435}, {540, 400}, {555, 372}, {586, 360}, {MAP_WIDTH, 360}}, 
   // Level 3
-  {{414,0}, {411, 43}, {387, 92}, {347, 142}, {308, 183}, {294, 291}, {303, 425}, {324, 525}, {322, 575}, {294, 620}, {235, 643}, {193, 623}, {163, 584},
-   {155, 547}, {164, 497}, {178, 465}, {212, 442}, {309, 426}, {468, 378}, {626, 308}, {678, 276}, {735, 258}, {764, 224}, {774, 184}, {768, 138}, {743, 97}, 
-   {698, 74}, {649, 85}, {611, 116}, {595, 156}, {596, 189}, {656, 385}, {674, 413}, {699, 436}, {770, 468}, {841, 493}, {900, 528}}
+  {{414, 0}, {411, 43}, {387, 92}, {347, 142}, {308, 183}, {294, 291}, {303, 425}, {324, 525}, {322, 575}, {294, 620}, {235, 643}, {193, 623}, {163, 584}, 
+    {155, 547}, {164, 497}, {178, 465}, {212, 442}, {309, 426}, {468, 378}, {626, 308}, {678, 276}, {735, 258}, {764, 224}, {774, 184}, {768, 138}, {743, 97}, 
+  {698, 74}, {649, 85}, {611, 116}, {595, 156}, {596, 189}, {656, 385}, {674, 413}, {699, 436}, {770, 468}, {841, 493}, {900, 528}}
 };
-  
-int[][] bloonTypesInRound = {{20,0,0}, {35,0,0}, {25,5,0}, {35,18,0}, {5,27,0}};
+
+int[][][] waterPoints = {{{}}, {{}}, 
+  // Level 2
+  {{80, 700}, {269, 548}, {401, 385}, {517, 317}, {638, 280}, {730, 235}, {785, 179}, {848, 0}}, 
+  // Level 3
+  {{0, 200}, {63, 247}, {178, 260}, {298, 250}, {377, 262}, {438, 311}, {522, 465}, {558, 522}, {608, 559}, {740, 617}, {863, 700}}};
+
+int[][] bloonTypesInRound = {{20, 0, 0}, {35, 0, 0}, {25, 5, 0}, {35, 18, 0}, {5, 27, 0}, {15, 15, 4}, {20, 20, 5}, {10, 12, 14}, {0, 0, 30}, {0, 102, 0}};
 
 public class Level {
   PImage mapImg;
@@ -38,8 +42,8 @@ public class Level {
     case 2:
       pathWidth = 36;
       break;
-     case 3:
-       pathWidth = 40;
+    case 3:
+      pathWidth = 40;
     }
   }
 
@@ -54,20 +58,20 @@ public class Level {
   }
 
   // adds the corresponding number of bloons evenly spread out
-  public void addBloons(){
+  public void addBloons() {
     int[] bloonNums = bloonTypesInRound[round];
     int maxBloons= max(bloonNums);
     int[] mods = new int[3];              // keeps track whento add bloons
-    
-    for(int i=0; i<3; i++) {
-      if (bloonNums[i] != 0){
+
+    for (int i=0; i<3; i++) {
+      if (bloonNums[i] != 0) {
         mods[i] = maxBloons / bloonNums[i];
       } else {
         mods[i] = maxBloons+1;
       }
     }
     //println(Arrays.toString(mods));
-    
+
     for (int j=0; j<maxBloons; j++) {
       float[] coords;
       // determine where to add bloons
@@ -95,10 +99,6 @@ public class Level {
     }
   }
 
-  public int getType() {
-    return levelNum;
-  }
-
   public void swapOrder(int index) {
     Bloon b = bloons.get(index);
     Bloon prev = bloons.get(index-1);
@@ -123,6 +123,7 @@ public class Level {
       displayPath();
       round++;
       startAnimation();
+      money+= 50*round;
     }
 
     displayPath();
@@ -176,7 +177,7 @@ public class Level {
         b.display();
       }
       if (b.isPopped()) {
-        if (b.getT() > 1 || b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
+        if (b.getPointIndex() >= points.length) {      // decrease health if bloon went off map
           health -= b.getDamage();
           //println(b.getDamage());
         } else {                 // a tower popped it
@@ -220,15 +221,49 @@ public class Level {
     return ! (sqrt(d1 * d1 - pow(pathWidth/2, 2)) + sqrt(d2 * d2 - pow(pathWidth/2, 2)) > pathLength);
   }
 
+  private boolean inPathRegion(float x, float y, int[] point1, int[] point2, int range) {
+    float d1, d2, pathLength;
+
+    d1 = dist(point1[0], point1[1], x, y);
+    d2 = dist(point2[0], point2[1], x, y);
+    pathLength = dist(point1[0], point1[1], point2[0], point2[1]);           // distance between the 2 points defining the path
+    return ! (sqrt(d1 * d1 - pow(range/2, 2)) + sqrt(d2 * d2 - pow(range/2, 2)) > pathLength);
+  }
+
   public boolean onPath(float x, float y) {
     for (int i = 0; i<points.length-1; i++) {
       if (inPathRegion(x, y, i)) {
         return true;
       }
     }
-    
-    if (levelNum == 3) {
-      return dist(x,y,240,537) < 100 || dist(x,y,689,176) < 100;
+    switch (levelNum) {
+    case 2:
+      for (int i = 0; i<waterPoints[levelNum].length-1; i++) {
+        if (inPathRegion(x, y, waterPoints[levelNum][i], waterPoints[levelNum][i+1], 50)) {
+          return true;
+        }
+      }
+      return dist(x, y, 450, 350) < 55;
+      //break;
+    case 3:
+      for (int i = 0; i<waterPoints[levelNum].length-1; i++) {
+        if (inPathRegion(x, y, waterPoints[levelNum][i], waterPoints[levelNum][i+1], 90)) {
+          return true;
+        }
+      }
+      return dist(x, y, 240, 537) < 100 || dist(x, y, 689, 176) < 100;
+    }
+    return false;
+  }
+
+  public boolean inWater(float x, float y) {
+    if (levelNum <= 1) {
+      return false;         // there is no water in Level 0 or Level 1 
+    }
+    for (int i = 0; i<waterPoints[levelNum].length-1; i++) {
+      if (inPathRegion(x, y, waterPoints[levelNum][i], waterPoints[levelNum][i+1], 50)) {
+        return true;
+      }
     }
     return false;
   }

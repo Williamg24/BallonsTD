@@ -1,6 +1,6 @@
 // damage, range, delay
-int[][]originalStats = {{1, 75, 10}, {1, 100, 5}, {2, 500, 20}, {1, 200, 10}};
-int[][]towerData ={{1, 75, 10}, {1, 100, 5}, {2, 1000, 25}, {1, 200, 15}};
+int[][]originalStats = {{1, 75, 30}, {1, 100, 10}, {2, 500, 25}, {1, 200, 15}};
+int[][]towerData ={{1, 75, 30}, {1, 100, 10}, {2, 1000, 25}, {1, 200, 15}};
 
 public class Tower {
   int cost;
@@ -11,7 +11,6 @@ public class Tower {
   int x;
   int y;
   int Tsize;
-  //color towerColor;
   PImage TopView;
   int type;
   float angle;
@@ -49,14 +48,6 @@ public class Tower {
   public void loadTopView() {
     //println("TopView" + (type+1) + ".png");
     TopView = loadImage("TopView" + (type+1) + ".png");
-    //switch(type) {
-    //case 1:
-    //  TopView = loadImage("TopView1.png");
-    //  break;
-    //case 2:
-    //  TopView = loadImage("TopView2.png");
-    //  break;
-    //}
   }
 
   // sets the variables
@@ -82,8 +73,6 @@ public class Tower {
       }
     }
 
-    //fill(towerColor);
-    //ellipse(x, y, Tsize, Tsize);
     faceAngle();
     tick++;
   }
@@ -96,9 +85,9 @@ public class Tower {
     return tick > delay;
   }
 
-  public void attack(Bloon current) {
-    current.type -= damage;
-  }
+  //public void attack(Bloon current) {
+  //  current.type -= damage;
+  //}
 
   // radius around tower
   public boolean inRange(Bloon value) {

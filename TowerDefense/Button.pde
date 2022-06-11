@@ -1,4 +1,4 @@
-public class Button { //<>// //<>//
+public class Button { //<>//
   PImage towerImage; 
   float xCor;
   float yCor;
@@ -107,8 +107,8 @@ public class Button { //<>// //<>//
     return (x > xCor && x < xCor + wide && y > yCor && y < yCor + tall);
   }
 
-  public void setColor(color x) {
-    c = x;
+  public void setColor(color newColor) {
+    c = newColor;
   }
 
   public void enoughMoney(int value) {
