@@ -26,7 +26,7 @@ void setup() {
   size(1200, 700);
   MODE = 0;
   //currentBloon = currentLevel.getSize() - 1;
-  health = 5;
+  health = 25;
   bar = new Sidebar();
   animate = false;
   money = 500;

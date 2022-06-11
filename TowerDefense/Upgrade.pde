@@ -2,6 +2,8 @@ public class Upgrade {
   //ArrayList<Button> upgradePaths; 
   Button[] upgradePaths;
   int towerType;
+  PImage Path1;
+  PImage Path2;
 
   /* NOTE FOR SELF
    - Instead of ArrayList, maybe use 2-d arrays for each tower since need to be able to display next button after 

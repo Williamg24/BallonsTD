@@ -70,10 +70,10 @@ public class Button { //<>//
     fill(255);
     rect(xCor, yCor, wide, tall, radius);
     fill(0);
-    textSize(30);
-    text(name, xCor + wide / 5, height - 50);
+    textSize(25);
+    text(name, xCor + wide / 5 + 10, height - 45);
     textSize(23);
-    text("$" + money, xCor + wide / 3, height - 20);
+    text("$" + money, xCor + wide / 3, height - 15);
   }
 
   // utility buttons like start, pause etc.
