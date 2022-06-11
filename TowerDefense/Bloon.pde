@@ -6,7 +6,7 @@ public class Bloon {
   int reward;      // how much money player earns if bloon is defeated
   int pointIndex;
   int maxPointIndex;
-  int damage;
+  //int damage;
   PImage bloonImage;
 
   public Bloon(int type_, float[] coords, int maxPointIndex_) {
@@ -21,7 +21,7 @@ public class Bloon {
     reward = (type + 1) * 5;
     pointIndex = 1;
     maxPointIndex = maxPointIndex_;
-    damage = type + 1;
+    //damage = type + 1;
     loadBloonImage();
   }
 

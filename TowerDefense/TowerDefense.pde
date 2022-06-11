@@ -16,6 +16,7 @@ Upgrade menu;
 Button selectedTower;
 Button menuButton;
 Button nextRound;
+Button lose;
 
 Button upgradePath;
 String upgradeName;
@@ -52,10 +53,11 @@ void draw() {
     playScreen();
     menuButton.display(color(50, 150, 200));
     nextRound.display(color(20, 130, 150));
+    lose.display(color(170, 0, 0));
     break;
   }
 
-  if (health < 0) {
+  if (health <= 0) {
     gameOverScreen();
     MODE = 2;
   }
@@ -75,7 +77,7 @@ void startScreen() {
   background(200,120,52);
   fill(255);
   textSize(80);
-  text("SELECT A MAP TO BEGIN", 150, 150);
+  text("SELECT A MAP TO BEGIN", 170, 150);
   image(MAP1, 40, 200, 360, 300);
   image(MAP2, 420, 200, 360, 300);
   image(MAP3, 800, 200, 360, 300);
@@ -83,6 +85,7 @@ void startScreen() {
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
   nextRound = new Button("Skip Round", MAP_WIDTH + 90, 525, 120, 50, 5, 0);
+  lose = new Button("Game Over", MAP_WIDTH + 90, 580, 120, 50, 5, 0);
 }
 
 void playScreen() {
@@ -125,7 +128,7 @@ void gameOverScreen() {
   background(170, 0, 0);
   fill(255);
   textSize(100);
-  text("GAME OVER", 300, 340);
+  text("GAME OVER", 335, 340);
   textSize(50);
   text("Click to Restart", 400, 400);
   restart();
@@ -140,8 +143,8 @@ void restart() {
   upgrades.clear();
   upgrades.add(new Upgrade("Dart"));
   upgrades.add(new Upgrade("Ninja"));
-  upgrades.add(new Upgrade("Sub"));
   upgrades.add(new Upgrade("Sniper"));
+  upgrades.add(new Upgrade("Sub"));
   currentLevel = new Level(1);
   towers.clear();
   towerData = Arrays.copyOf(originalStats, originalStats.length);
@@ -229,6 +232,10 @@ void mouseClicked() {
 
     if (nextRound.isInside(mouseX, mouseY)) {
       currentLevel.clearBloons();              // this will trigger the next round
+    }
+    
+    if (lose.isInside(mouseX, mouseY)) {
+      health = 0;                              // displays game over screen
     }
 
     if (menuButton.isInside(mouseX, mouseY)) {
