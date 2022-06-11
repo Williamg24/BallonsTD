@@ -52,7 +52,7 @@ void draw() {
   case 1:
     playScreen();
     menuButton.display(color(50, 150, 200));
-    nextRound.display(color(20, 130, 150));
+    nextRound.display(color(20, 150, 170));
     lose.display(color(170, 0, 0));
     break;
   }
@@ -84,8 +84,8 @@ void startScreen() {
 
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
-  nextRound = new Button("Skip Round", MAP_WIDTH + 90, 525, 120, 50, 5, 0);
-  lose = new Button("Game Over", MAP_WIDTH + 90, 580, 120, 50, 5, 0);
+  nextRound = new Button("Skip Round", MAP_WIDTH + 20, 550, 120, 50, 5, 0);
+  lose = new Button("Game Over", MAP_WIDTH + 160, 550, 120, 50, 5, 0);
 }
 
 void playScreen() {
