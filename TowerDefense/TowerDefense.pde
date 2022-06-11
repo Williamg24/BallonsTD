@@ -1,11 +1,13 @@
+import java.util.*;
+
 int MAP_WIDTH = 900;
 ArrayList<Tower> towers = new ArrayList<Tower>();
 
 int MODE;
 int money;
 int health;
-int levelselected;
-int round;
+int levelSelected;
+int round;            // original value is -1 to offset increment
 String type;
 boolean animate;
 Sidebar bar;
@@ -23,9 +25,7 @@ ArrayList<Upgrade> upgrades;
 void setup() {
   size(1200, 700);
   MODE = 0;
-  //MODE = 1;
-  health = 100;
-  //currentBloon = currentLevel.getSize() - 1;
+  health = 5;
   bar = new Sidebar();
   animate = false;
   money = 500;
@@ -36,10 +36,6 @@ void setup() {
   upgrades.add(new Upgrade("Sub"));
   currentLevel = new Level(1);
   round = -1;
-  
-  //startScreen();
-  
-  //rprintln("hi");
 }
 
 
@@ -51,10 +47,10 @@ void draw() {
   case 1:
     playScreen();
     menuButton.display(color(50, 150, 200));
-    nextRound.display(color(20,130,150));
+    nextRound.display(color(20, 130, 150));
     break;
   }
-  //background(90, 190, 50);     // the "grass"
+
   if (health < 0) {
     gameOverScreen();
     MODE = 2;
@@ -67,8 +63,6 @@ void startScreen() {
   PImage MAP1 = loadImage("Level1_map.jpg");
   PImage MAP2 = loadImage("Level2_map.jpg");
   PImage MAP3 = loadImage("Level3_map.jpg");
-  //map_select.add(new Button("MAP 1",50,200,525,425,0,0));
-  //map_select.add(new Button("MAP 1",625,200,525,425,0,0));
   background(0);
   fill(255);
   textSize(80);
@@ -76,6 +70,7 @@ void startScreen() {
   image(MAP1, 40, 200, 360, 300);
   image(MAP2, 420, 200, 360, 300);
   image(MAP3, 800, 200, 360, 300);
+
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
   nextRound = new Button("Skip Round", MAP_WIDTH + 90, 525, 120, 50, 5, 0);
@@ -114,11 +109,11 @@ void playScreen() {
 
   textSize(40);
   fill(255);
-  text("Round:"+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 225, 50);
+  text("Round:"+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 270, 50);
 }
 
 void gameOverScreen() {
-  background(0);
+  background(170, 0, 0);
   fill(255);
   textSize(100);
   text("GAME OVER", 300, 340);
@@ -131,7 +126,6 @@ void restart() {
   round = -1;
   MODE = 0;
   health = 5;
-  //currentBloon = currentLevel.getSize() - 1;
   animate = false;
   money = 500;
   upgrades.clear();
@@ -152,7 +146,7 @@ void attackBloons(Tower attacking) {
   boolean done = false;
   while (i < currentLevel.bloons.size() && ! done) {
     b = currentLevel.bloons.get(i);
-    if (attacking.inRange(b)) {
+    if (attacking.inRange(b) && b.canBeAttacked()) {
       b.hit(attacking.getDamage());
       attacking.resetTick();
       done = true;
@@ -181,27 +175,34 @@ void mouseClicked() {
   if (MODE == 0) {
     //selecting level
     if (mouseX >= 40 && mouseX <= 40 + 360 && mouseY >= 200 && mouseY <= 500) {
-      levelselected = 1;
+      levelSelected = 1;
     } else if (mouseX >= 420 && mouseX <= 420 + 360 && mouseY >= 200 && mouseY <= 500) {
-      levelselected = 2;
+      levelSelected = 2;
     } else if (mouseX >= 800 && mouseX <= 800 + 360 && mouseY >= 200 && mouseY <= 500) {
-      levelselected = 3;
+      levelSelected = 3;
     }
-    //println(levelselected);
-    if (levelselected > 0) {
+    //println(levelSelected);
+    if (levelSelected > 0) {
       MODE = 1;
-      currentLevel = new Level(levelselected);
+      currentLevel = new Level(levelSelected);
       round = -1;
     }
   } else if (MODE == 2) {
     MODE = 0;
   } else {
     selected = bar.findButton(mouseX, mouseY);
-    //println("mouse clicked");
+
     // only place tower if sufficient money for tower type selected and not on path
-    if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
-      towers.add(new Tower(selectedTower.name));
-      money -= selectedTower.money;
+    if ((selectedTower != null) && (money >= selectedTower.money)) {
+      if (selectedTower.name.equals("Sub")) {
+        if (currentLevel.inWater(mouseX, mouseY)) {
+          towers.add(new Tower(selectedTower.name));
+          money -= selectedTower.money;
+        }
+      } else if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
+        towers.add(new Tower(selectedTower.name));
+        money -= selectedTower.money;
+      }
     }
     if (bar.inSidebar(mouseX)) {
       checkTowers();
@@ -216,7 +217,7 @@ void mouseClicked() {
         animate = false;
       }
     }
-    
+
     if (nextRound.isInside(mouseX, mouseY)) {
       currentLevel.clearBloons();              // this will trigger the next round
     }
@@ -226,7 +227,7 @@ void mouseClicked() {
       round = -1;
       animate = false;
       towers.clear();
-      levelselected = 0;
+      levelSelected = 0;
       //currentLevel = null;
     }
   }
@@ -237,7 +238,7 @@ void checkTowers() {
   if (selected != null && selected.isTower()) {// && bar.findButton(mouseX, mouseY) != selected) {
     //println(selected.name);
     if (selected.equals(selectedTower)) {
-      selectedTower.setColor(color(0));
+      selectedTower.setColor(color(45));
       selected = null;
       selectedTower = null;
     } else {
@@ -245,7 +246,7 @@ void checkTowers() {
         selectedTower.setColor(color(0));
       }
       selectedTower = selected;
-      selected.setColor(#BEBEBE);
+      selected.setColor(#BEBEBE);          // highlight it
       menu = upgrades.get(selectedTower.getTowerNum());
     }
   }
@@ -268,11 +269,12 @@ void checkForUpgrades() {
       case "ATK Speed":
         towerData[menu.getTowerType()][2] *= 0.8;
         break;
+      case "Damage":
+        towerData[menu.getTowerType()][0] = (towerData[menu.getTowerType()][0] + 10) * 2;
+        break;
       }
       updateTowers();            // changes values for all towers, not just new ones
     }
-    //upgradePath.setColor(#BEBEBE);
-    //}
   }
 }
 

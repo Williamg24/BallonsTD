@@ -2,16 +2,16 @@ public class Bloon {
   int type;
   float xCor;
   float yCor;
-  float speed;     // how quickly t changes
-  float t;
+  float speed;
+  //float t;
   int reward;      // how much money player earns if bloon is defeated
   int pointIndex;
   int maxPointIndex;
   int damage;
   PImage bloonImage;
-  
+
   public Bloon(int type_, float[] coords, int maxPointIndex_) {
-    this(type_ , coords[0], coords[1], maxPointIndex_);
+    this(type_, coords[0], coords[1], maxPointIndex_);
   }
 
   public Bloon(int type_, float x, float y, int maxPointIndex_) {
@@ -34,19 +34,14 @@ public class Bloon {
     case 1:
       bloonImage = loadImage("Blue_Bloon.png");
       break;
+    case 2:
+      bloonImage = loadImage("Green_Bloon.png");
+      break;
     }
   }
 
   public void display() {
     image(bloonImage, xCor - 18, yCor - 18, 35, 40);
-  }
-
-  public void move() {
-    t += speed;
-  }
-
-  public float getT() {
-    return t;
   }
 
   public float getSpeed() {
@@ -78,15 +73,12 @@ public class Bloon {
   public float getY() {
     return yCor;
   }
-
-  //public void setX(float x) {
-  //  xCor = x;
-  //}
-
-  //public void setY(float y) {
-  //  yCor = y;
-  //}
   
+  // checks if bloon is physically on the map
+  public boolean canBeAttacked() {
+    return xCor > 0 && xCor < MAP_WIDTH && yCor > 0 && yCor < height;
+  }
+
   // returns if position was changed or not
   public boolean setNewCoord(int[] aim) {
     float fracToCover;
@@ -98,7 +90,7 @@ public class Bloon {
     //text(fracToCover,10,height-30);
     float newX = xCor + fracToCover * (aim[0] - xCor);
     float newY = yCor + fracToCover * (aim[1] - yCor);
-    
+
     if (dist(xCor, yCor, newX, newY) > dist(xCor, yCor, aim[0], aim[1])) {    // if new position overshoots the target coordinates
       //pointIndex++;
       return false;
@@ -108,7 +100,7 @@ public class Bloon {
       return true;
     }
   }
-  
+
   public void increasePointIndex() {
     pointIndex++;
   }
@@ -118,6 +110,6 @@ public class Bloon {
   }
 
   public boolean isPopped() {
-    return t > 1 || type < 0 || pointIndex >= maxPointIndex;
+    return type < 0 || pointIndex >= maxPointIndex;
   }
 }

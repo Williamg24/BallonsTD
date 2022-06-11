@@ -10,13 +10,13 @@ A recreation of bloons tower defense with enemies and automatic towers. There wi
 https://docs.google.com/document/d/1Cq-gncs0aDlxvpy25vnXTOpVAJ0Y8o2pYRYcmNrsz4A/edit?usp=sharing
 
 # Compile and Run Instructions:
-To compile, open processing and run the program. 
+To compile, open processing and run the program.
 - #### Run Instructions:
   - To start the game, click the start button and bloons will automatically move along the path. To place tower on map, click the tower icons in the sidebar, colored in orange, to select the tower. The selected button should turn a greyish color from black. Then, click anywhere on the map to place tower (with exceptions of the bloon path and special conditions). To see the range of each tower, hover mouse over the tower and a circle will appear indicating the tower's range of detection. When tower button is selected, the upgrades menu will pop up with different upgrades for that tower type. Simply click the button to upgrade the atttributes for all towers of same type on the map. Towers can be deselected with another click, reverting the color of button back to black. The skip button allowers players to skip the current level. The menu button (located on the top right, indicated by 3 white lines) brings players back to the map selection screen allowing players to change maps. Game ends through either popping all bloons or lossing all health points.
 - #### Tower Info with placement conditions:
     - Dart Monkey (cost $100): Can be placed anywhere on the map that not a body of water or bloon path. Hits the first target in range dealing one damage to bloons. Has delay of 10 frames.
     - Ninja Monkey (cost $300): Can be placed anywhere on the map that not a body of water or bloon path. Hits the first target in range dealing one damage to bloons. Has delay of 5 frames.
-    - Sniper Monkey (cost $275): Can be placed anywhere on the map that not a body of water or bloon path. Hits the first target in range (range of whole map) dealing two damage to bloon. Has delay of 25 frames. 
+    - Sniper Monkey (cost $275): Can be placed anywhere on the map that not a body of water or bloon path. Hits the first target in range (range of whole map) dealing two damage to bloon. Has delay of 25 frames.
     - Monkey Sub: (cost $225): Can only be placed in bodies of water. Hits the frist target in range dealing one damage to bloon. Has delay of 10 frames.  
 
 ## Development Log
@@ -70,5 +70,6 @@ To compile, open processing and run the program.
 - ### 6/8
   - Maya Mori: Created a button to skip rounds and Level 3 map. Also, replaced Level with Level1 and made it easier to add new rounds.
 - ### 6/9
-  - William Guo: Minor fixes to bloon speed and game display. Competed tower rotation and added 2 new towers (sniper and submarine). 
-
+  - William Guo: Minor fixes to bloon speed and game display. Competed tower rotation and added 2 new towers (sniper and submarine).
+- ### 6/10
+  - Maya Mori: Added more rounds using green bloons and tower cannot be placed in water. Also, fixed some small bugs.
