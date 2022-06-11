@@ -8,7 +8,6 @@ int money;
 int health;
 int levelSelected;
 int round;            // original value is -1 to offset increment
-String type;
 boolean animate;
 Sidebar bar;
 Level currentLevel;
@@ -17,10 +16,13 @@ Upgrade menu;
 Button selectedTower;
 Button menuButton;
 Button nextRound;
+Button lose;
 
 Button upgradePath;
 String upgradeName;
 ArrayList<Upgrade> upgrades;
+
+PFont gameFont;
 
 void setup() {
   size(1200, 700);
@@ -36,6 +38,9 @@ void setup() {
   upgrades.add(new Upgrade("Sub"));
   currentLevel = new Level(1);
   round = -1;
+  
+  gameFont = createFont("LuckiestGuy-Regular.ttf",80);
+  textFont(gameFont);
 }
 
 
@@ -47,11 +52,12 @@ void draw() {
   case 1:
     playScreen();
     menuButton.display(color(50, 150, 200));
-    nextRound.display(color(20, 130, 150));
+    nextRound.display(color(20, 150, 170));
+    lose.display(color(170, 0, 0));
     break;
   }
 
-  if (health < 0) {
+  if (health <= 0) {
     gameOverScreen();
     MODE = 2;
   }
@@ -63,17 +69,23 @@ void startScreen() {
   PImage MAP1 = loadImage("Level1_map.jpg");
   PImage MAP2 = loadImage("Level2_map.jpg");
   PImage MAP3 = loadImage("Level3_map.jpg");
-  background(0);
+  //background(0);
+  //background(90, 10, 50);
+  //background(140, 60, 30);
+  //background(90,39,16);
+  //background(170,122,72);
+  background(200,120,52);
   fill(255);
   textSize(80);
-  text("SELECT A MAP TO BEGIN", 150, 150);
+  text("SELECT A MAP TO BEGIN", 170, 150);
   image(MAP1, 40, 200, 360, 300);
   image(MAP2, 420, 200, 360, 300);
   image(MAP3, 800, 200, 360, 300);
 
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
-  nextRound = new Button("Skip Round", MAP_WIDTH + 90, 525, 120, 50, 5, 0);
+  nextRound = new Button("Skip Round", MAP_WIDTH + 20, 550, 120, 50, 5, 0);
+  lose = new Button("Game Over", MAP_WIDTH + 160, 550, 120, 50, 5, 0);
 }
 
 void playScreen() {
@@ -109,14 +121,14 @@ void playScreen() {
 
   textSize(40);
   fill(255);
-  text("Round:"+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 270, 50);
+  text("Round: "+(round + 1) + "/" + bloonTypesInRound.length, MAP_WIDTH - 250, 50);
 }
 
 void gameOverScreen() {
   background(170, 0, 0);
   fill(255);
   textSize(100);
-  text("GAME OVER", 300, 340);
+  text("GAME OVER", 335, 340);
   textSize(50);
   text("Click to Restart", 400, 400);
   restart();
@@ -131,8 +143,8 @@ void restart() {
   upgrades.clear();
   upgrades.add(new Upgrade("Dart"));
   upgrades.add(new Upgrade("Ninja"));
-  upgrades.add(new Upgrade("Sub"));
   upgrades.add(new Upgrade("Sniper"));
+  upgrades.add(new Upgrade("Sub"));
   currentLevel = new Level(1);
   towers.clear();
   towerData = Arrays.copyOf(originalStats, originalStats.length);
@@ -220,6 +232,10 @@ void mouseClicked() {
 
     if (nextRound.isInside(mouseX, mouseY)) {
       currentLevel.clearBloons();              // this will trigger the next round
+    }
+    
+    if (lose.isInside(mouseX, mouseY)) {
+      health = 0;                              // displays game over screen
     }
 
     if (menuButton.isInside(mouseX, mouseY)) {

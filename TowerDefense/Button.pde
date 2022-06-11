@@ -88,14 +88,19 @@ public class Button { //<>//
       text(name, xCor+80, yCor+35);
     } else if (name.equals("Menu")) {
       stroke(255);
-      strokeWeight(4);
-      line(xCor+10, yCor+15, xCor+wide-10, yCor+15);
-      line(xCor+10, yCor+25, xCor+wide-10, yCor+25);
-      line(xCor+10, yCor+35, xCor+wide-10, yCor+35);
+      fill(255);
+      //strokeWeight(4);
+      //line(xCor+10, yCor+15, xCor+wide-10, yCor+15);
+      //line(xCor+10, yCor+25, xCor+wide-10, yCor+25);
+      //line(xCor+10, yCor+35, xCor+wide-10, yCor+35);
+      
+      // makes the "house" shape
+      triangle(xCor+7, yCor+23, xCor + wide/2, yCor + 8, xCor+wide - 7, yCor+23);
+      rect(xCor + 15, yCor+20, 20, 20);
 
       stroke(0);
-      strokeWeight(1);
-    } else if (name.equals("Skip Round")) {
+      //strokeWeight(1);
+    } else{// if (name.equals("Skip Round")) {
       fill(255);
       textSize(20);
       text(name, xCor+5, yCor+30);
