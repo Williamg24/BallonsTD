@@ -70,7 +70,7 @@ void startScreen() {
   image(MAP1, 40, 200, 360, 300);
   image(MAP2, 420, 200, 360, 300);
   image(MAP3, 800, 200, 360, 300);
-  
+
   //when the map is selected 
   menuButton = new Button("Menu", width - 70, 20, 50, 50, 5, 0);
   nextRound = new Button("Skip Round", MAP_WIDTH + 90, 525, 120, 50, 5, 0);
@@ -193,9 +193,16 @@ void mouseClicked() {
     selected = bar.findButton(mouseX, mouseY);
 
     // only place tower if sufficient money for tower type selected and not on path
-    if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
-      towers.add(new Tower(selectedTower.name));
-      money -= selectedTower.money;
+    if ((selectedTower != null) && (money >= selectedTower.money)) {
+      if (selectedTower.name.equals("Sub")) {
+        if (currentLevel.inWater(mouseX, mouseY)) {
+          towers.add(new Tower(selectedTower.name));
+          money -= selectedTower.money;
+        }
+      } else if ((! currentLevel.onPath(mouseX, mouseY) && mouseX < MAP_WIDTH) && (selectedTower != null) && (money >= selectedTower.money)) {
+        towers.add(new Tower(selectedTower.name));
+        money -= selectedTower.money;
+      }
     }
     if (bar.inSidebar(mouseX)) {
       checkTowers();
@@ -231,7 +238,7 @@ void checkTowers() {
   if (selected != null && selected.isTower()) {// && bar.findButton(mouseX, mouseY) != selected) {
     //println(selected.name);
     if (selected.equals(selectedTower)) {
-      selectedTower.setColor(color(0));
+      selectedTower.setColor(color(45));
       selected = null;
       selectedTower = null;
     } else {
@@ -239,7 +246,7 @@ void checkTowers() {
         selectedTower.setColor(color(0));
       }
       selectedTower = selected;
-      selected.setColor(#BEBEBE);
+      selected.setColor(#BEBEBE);          // highlight it
       menu = upgrades.get(selectedTower.getTowerNum());
     }
   }

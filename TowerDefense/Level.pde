@@ -13,12 +13,12 @@ int[][][] levelPoints = {{{0, 700/2}, {MAP_WIDTH, 700/2}}, // Level 0, stright p
 };
 
 int[][][] waterPoints = {{{}}, {{}}, 
-    // Level 2
-    {{80, 700}, {269, 548}, {401, 385}, {517, 317}, {638, 280}, {730, 235}, {785, 179}, {848, 0}}, 
-    // Level 3
-    {{0,200}, {63, 247}, {178, 260}, {298, 250}, {377, 262}, {438, 311}, {522, 465}, {558, 522}, {608, 559}, {740, 617}, {863, 700}}};
+  // Level 2
+  {{80, 700}, {269, 548}, {401, 385}, {517, 317}, {638, 280}, {730, 235}, {785, 179}, {848, 0}}, 
+  // Level 3
+  {{0, 200}, {63, 247}, {178, 260}, {298, 250}, {377, 262}, {438, 311}, {522, 465}, {558, 522}, {608, 559}, {740, 617}, {863, 700}}};
 
-int[][] bloonTypesInRound = {{20, 0, 0}, {35, 0, 0}, {25, 5, 0}, {35, 18, 0}, {5, 27, 0}, {15, 15, 4}, {20, 20, 5}, {10, 12, 14}, {0,0,30}, {0, 102, 0}};
+int[][] bloonTypesInRound = {{20, 0, 0}, {35, 0, 0}, {25, 5, 0}, {35, 18, 0}, {5, 27, 0}, {15, 15, 4}, {20, 20, 5}, {10, 12, 14}, {0, 0, 30}, {0, 102, 0}};
 
 public class Level {
   PImage mapImg;
@@ -251,6 +251,18 @@ public class Level {
         }
       }
       return dist(x, y, 240, 537) < 100 || dist(x, y, 689, 176) < 100;
+    }
+    return false;
+  }
+
+  public boolean inWater(float x, float y) {
+    if (levelNum <= 1) {
+      return false;         // there is no water in Level 0 or Level 1 
+    }
+    for (int i = 0; i<waterPoints[levelNum].length-1; i++) {
+      if (inPathRegion(x, y, waterPoints[levelNum][i], waterPoints[levelNum][i+1], 50)) {
+        return true;
+      }
     }
     return false;
   }
