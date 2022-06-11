@@ -55,10 +55,10 @@ void draw() {
   if (health < 0) {
     gameOverScreen();
     MODE = 2;
-  }else if (round >= 10 && health > 0){
+  } else if (round >= 10 && health > 0) {
     winScreen();
     MODE = 2;
-  }else if (round >= 9 && currentLevel.bloons.size() == 0 && health > 0){
+  } else if (round >= 9 && currentLevel.bloons.size() == 0 && health > 0) {
     winScreen();
     MODE = 2;
   }
@@ -128,7 +128,7 @@ void gameOverScreen() {
   restart();
 }
 
-void winScreen(){
+void winScreen() {
   background(0);
   fill(255);
   textSize(100);
@@ -164,6 +164,8 @@ void attackBloons(Tower attacking) {
     b = currentLevel.bloons.get(i);
     if (attacking.inRange(b) && b.canBeAttacked()) {
       b.hit(attacking.getDamage());
+      stroke(255, 0, 0);
+      line(attacking.x, attacking.y, b.xCor, b.yCor);
       attacking.resetTick();
       done = true;
     }
@@ -236,7 +238,7 @@ void mouseClicked() {
 
     if (nextRound.isInside(mouseX, mouseY)) {
       currentLevel.clearBloons();              // this will trigger the next round
-      if (round == 4){
+      if (round == 4) {
         round++;
       }
     }
