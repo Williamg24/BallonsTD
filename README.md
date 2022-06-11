@@ -73,3 +73,5 @@ To compile, open processing and run the program.
   - William Guo: Minor fixes to bloon speed and game display. Competed tower rotation and added 2 new towers (sniper and submarine).
 - ### 6/10
   - Maya Mori: Added more rounds using green bloons and tower cannot be placed in water. Also, fixed some small bugs.
+- ### 6/11
+  - Maya Mori: Improved visuals (changed font and colors) and fixed some bugs. Added a game over button that makes the player immediately lose.
