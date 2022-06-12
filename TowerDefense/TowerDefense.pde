@@ -141,12 +141,13 @@ void gameOverScreen() {
 }
 
 void winScreen() {
-  background(0);
+  PImage win = loadImage("winScreen.png");
+  image(win,0,0,width,height);
   fill(255);
-  textSize(100);
-  text("YOU WIN!", 400, 340);
+  textSize(150);
+  text("YOU WIN!", 275, 340);
   textSize(50);
-  text("Click to Play Again", 400, 400);
+  text("Click to Play Again", 360, 400);
   restart();
 }
 
