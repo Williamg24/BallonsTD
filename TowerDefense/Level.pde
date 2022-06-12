@@ -26,6 +26,7 @@ public class Level {
   int pathWidth;
   int levelNum;
   ArrayList<Bloon> bloons;
+  PImage popAnimation;
 
   public Level(int levelType) {
     bloons = new ArrayList<Bloon>();
@@ -35,6 +36,7 @@ public class Level {
     //println(height);
     //println(Arrays.deepToString(points));
     mapImg = loadImage("Level"+levelNum+"_map.jpg");
+    popAnimation = loadImage("pop.png");
     switch (levelNum) {
     case 1:
       pathWidth = 50;
@@ -123,6 +125,7 @@ public class Level {
       displayPath();
       round++;
       startAnimation();
+      money+= 50*round;
     }
 
     displayPath();
@@ -181,6 +184,8 @@ public class Level {
           //println(b.getDamage());
         } else {                 // a tower popped it
           money += b.worth();
+          image(b.bloonImage,b.xCor - 18, b.yCor - 18, 35, 40);
+          image(popAnimation,b.xCor - 50,b.yCor - 48,100,100);
         }
         bloons.remove(i);
         i--;

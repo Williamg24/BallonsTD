@@ -27,7 +27,8 @@ PFont gameFont;
 void setup() {
   size(1200, 700);
   MODE = 0;
-  health = 5;
+  //currentBloon = currentLevel.getSize() - 1;
+  health = 50;
   bar = new Sidebar();
   animate = false;
   money = 500;
@@ -59,6 +60,12 @@ void draw() {
 
   if (health <= 0) {
     gameOverScreen();
+    MODE = 2;
+  } else if (round >= 10 && health > 0) {
+    winScreen();
+    MODE = 2;
+  } else if (round >= 9 && currentLevel.bloons.size() == 0 && health > 0) {
+    winScreen();
     MODE = 2;
   }
   //text("currentLevel: "+currentLevel.getType(), 10, height-30);
@@ -100,7 +107,6 @@ void playScreen() {
   }
 
   // testing upgrades pop up
-  //if (selected != null) {
   if (selectedTower != null) {
     //menu = upgrades.get(selectedTower.getTowerNum());//new Upgrade(selected);
     menu.display();
@@ -134,10 +140,21 @@ void gameOverScreen() {
   restart();
 }
 
+void winScreen() {
+  PImage win = loadImage("winScreen.png");
+  image(win,0,0,width,height);
+  fill(255);
+  textSize(150);
+  text("YOU WIN!", 275, 340);
+  textSize(50);
+  text("Click to Play Again", 360, 400);
+  restart();
+}
+
 void restart() {
   round = -1;
   MODE = 0;
-  health = 5;
+  health = 50;
   animate = false;
   money = 500;
   upgrades.clear();
@@ -160,6 +177,8 @@ void attackBloons(Tower attacking) {
     b = currentLevel.bloons.get(i);
     if (attacking.inRange(b) && b.canBeAttacked()) {
       b.hit(attacking.getDamage());
+      stroke(255, 0, 0);
+      line(attacking.x, attacking.y, b.xCor, b.yCor);
       attacking.resetTick();
       done = true;
     }
@@ -232,6 +251,9 @@ void mouseClicked() {
 
     if (nextRound.isInside(mouseX, mouseY)) {
       currentLevel.clearBloons();              // this will trigger the next round
+      if (round == 4) {
+        round++;
+      }
     }
     
     if (lose.isInside(mouseX, mouseY)) {
@@ -239,12 +261,7 @@ void mouseClicked() {
     }
 
     if (menuButton.isInside(mouseX, mouseY)) {
-      MODE = 0;
-      round = -1;
-      animate = false;
-      towers.clear();
-      levelSelected = 0;
-      //currentLevel = null;
+      restart();
     }
   }
 }
