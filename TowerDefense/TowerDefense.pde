@@ -28,7 +28,7 @@ void setup() {
   size(1200, 700);
   MODE = 0;
   //currentBloon = currentLevel.getSize() - 1;
-  health = 25;
+  health = 50;
   bar = new Sidebar();
   animate = false;
   money = 500;
@@ -154,7 +154,7 @@ void winScreen() {
 void restart() {
   round = -1;
   MODE = 0;
-  health = 5;
+  health = 50;
   animate = false;
   money = 500;
   upgrades.clear();
@@ -261,12 +261,7 @@ void mouseClicked() {
     }
 
     if (menuButton.isInside(mouseX, mouseY)) {
-      MODE = 0;
-      round = -1;
-      animate = false;
-      towers.clear();
-      levelSelected = 0;
-      //currentLevel = null;
+      restart();
     }
   }
 }
