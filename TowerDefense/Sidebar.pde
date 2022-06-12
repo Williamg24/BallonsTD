@@ -7,12 +7,12 @@ public class Sidebar {
 
   public Sidebar() {
     towerButtons = new ArrayList<Button>();
-    towerButtons.add(new Button("Dart", MAP_WIDTH + 10, 120, (width-MAP_WIDTH)/2 - 15, 150, 28, 100));
-    towerButtons.add(new Button("Ninja", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 120, (width-MAP_WIDTH)/2 -15, 150, 28, 350));
-    towerButtons.add(new Button("Sniper", MAP_WIDTH + 10, 280, (width-MAP_WIDTH)/2 - 15, 150, 28, 275));
-    towerButtons.add(new Button("Sub", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 280, (width-MAP_WIDTH)/2 -15, 150, 28, 225));
+    towerButtons.add(new Button("Dart", MAP_WIDTH + 10, 130, (width-MAP_WIDTH)/2 - 15, 150, 28, 100));
+    towerButtons.add(new Button("Ninja", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 130, (width-MAP_WIDTH)/2 -15, 150, 28, 350));
+    towerButtons.add(new Button("Sniper", MAP_WIDTH + 10, 290, (width-MAP_WIDTH)/2 - 15, 150, 28, 275));
+    towerButtons.add(new Button("Sub", MAP_WIDTH +(width-MAP_WIDTH)/2 + 10, 290, (width-MAP_WIDTH)/2 -15, 150, 28, 225));
 
-    start = new Button("Start", MAP_WIDTH + 30, 465, 250, 50, 10, 0);
+    start = new Button("Start", MAP_WIDTH + 25, 465, 250, 50, 10, 0);
   }
 
   public void display(int value) {
