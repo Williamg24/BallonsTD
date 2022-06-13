@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Arrays;
 
 int MAP_WIDTH = 900;
 ArrayList<Tower> towers = new ArrayList<Tower>();
@@ -28,7 +28,7 @@ void setup() {
   size(1200, 700);
   MODE = 0;
   //currentBloon = currentLevel.getSize() - 1;
-  health = 50;
+  health = 5;
   bar = new Sidebar();
   animate = false;
   money = 500;
@@ -154,7 +154,7 @@ void winScreen() {
 void restart() {
   round = -1;
   MODE = 0;
-  health = 50;
+  health = 5;
   animate = false;
   money = 500;
   upgrades.clear();

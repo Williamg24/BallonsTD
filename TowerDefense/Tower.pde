@@ -85,10 +85,6 @@ public class Tower {
     return tick > delay;
   }
 
-  //public void attack(Bloon current) {
-  //  current.type -= damage;
-  //}
-
   // radius around tower
   public boolean inRange(Bloon value) {
     float distance = dist(x, y, value.xCor, value.yCor);
